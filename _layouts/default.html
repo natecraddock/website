@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+		<link rel="shortcut icon" sizes="192x192" href="/assets/images/favicons/android-chrome-512x512.png">
+		<link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+
+		<link rel="stylesheet" href="/assets/css/style.css">
+
+		<!-- Code Styling -->
+		<link href="/assets/css/code.css" rel="stylesheet" >
+
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/brands.css" integrity="sha384-BKw0P+CQz9xmby+uplDwp82Py8x1xtYPK3ORn/ZSoe6Dk3ETP59WCDnX+fI1XCKK" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/fontawesome.css" integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+" crossorigin="anonymous">
+		
+		<title>{{ page.title }}</title>
+	</head>
+	
+	<body>
+		<div id="container">
+			<div id="header">
+				<h1 id="title">nathan craddock</h1>
+				{% include navigation.html %}
+				{%include social.html %}
+			</div>
+		
+			<div id="content">
+				
+				{{ content }}
+
+			</div>
+		</div>
+	</body>
+</html>

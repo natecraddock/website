@@ -1,0 +1,15 @@
+permalink: pretty
+permalink: /:categories/:title
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      link: "blog"
