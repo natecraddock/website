@@ -1,0 +1,9 @@
+{{ define "main" }}
+    <ul>
+        {{ range .Site.Taxonomies.tags.ByCount }}
+            <li class="list-post">
+                <a id="list-post-link" href="{{ .Name }}">{{ .Name }}</a><sup>{{ .Count }}</sup>
+            </li>
+        {{ end }}
+    </ul>
+{{ end }}
