@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {{ template "_internal/twitter_cards.html" . }}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/style.css">
         <link rel="stylesheet" href="/fa/all.css">
-        <title>{{ block "title" .}} {{ .Site.Title }} {{ end }}</title>
+        <title>{{ block "title" .}} {{ .Page.Title }} {{ end }}</title>
     </head>
 
     <body>
@@ -24,9 +25,12 @@
                     </div>
 
                 </header>
+
+                <main>
+                    {{ block "main" . }}
+                    {{ end }}
+                </main>
         
-                {{ block "main" . }}
-                {{ end }}
         
                 <footer>
                     Nathan Craddock 2020

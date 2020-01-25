@@ -2,3 +2,9 @@ baseURL = "http://nathancraddock.net"
 languageCode = "en-us"
 title = "Nathan Craddock"
 
+[markup]
+    [markup.highlight]
+        codeFences = true
+        lineNos = true
+        tabWidth = 2
+        style = "pygments"

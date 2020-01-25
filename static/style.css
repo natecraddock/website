@@ -4,7 +4,7 @@ html {
     font-size: 12pt;
 
     --text: #000;
-    --text-light: #666;
+    --text-light: #888;
 }
 
 body {
@@ -13,7 +13,7 @@ body {
 }
 
 /* General Tags */
-ul {
+.ul-no-style {
     padding: 0;
     list-style: none;
 }
@@ -33,9 +33,10 @@ aside {
 header {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
 
-    font-size: 16pt;
+    /* font-size: 16pt; */
     padding-top: 1rem;
 }
 
@@ -46,13 +47,28 @@ header {
 }
 
 #content {
-    width: 800px;
+    width: 90%;
+}
+
+@media only screen and (min-width: 900px) {
+    #content {
+        width: 800px;
+    }
+}
+
+main {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 footer {
-
+    padding-bottom: 1rem;
 }
 
 .list-post {
+    padding-top: 1rem;
+}
+
+.tags {
     padding-top: 1rem;
 }
