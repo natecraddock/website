@@ -1,10 +1,14 @@
 {{ define "main" }}
 
+    <h1>{{ .Title }}</h1>
+
     {{ .Content }}
 
-    Tags:
-    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-        <a href="/tags/{{ $name | urlize }}">{{ $name }}</a>
-    {{ end }}
+    <div>
+        Tags:
+        {{ range $name := .Params.tags }}
+            <a href="/tags/{{ $name | urlize }}">{{ $name }}</a>
+        {{ end }}
+    </div><br>
 
 {{ end }}

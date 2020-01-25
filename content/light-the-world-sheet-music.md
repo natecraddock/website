@@ -1,11 +1,11 @@
 ---
 title: Light the World Sheet Music
 date: 2019-12-18T16:42:10-07:00
-author: Nathan
+draft: false
 tags: ["music"]
 ---
 
-![Light the world tree](/assets/images/light-the-world.jpg)
+<!-- ![Light the world tree](/assets/images/light-the-world.jpg) -->
 
 I love Light the World! I love it so much that I just had to figure out how to play it on the piano! So I transcribed the [2017 version](https://www.youtube.com/watch?v=P_VRN7hcL_8) for the piano. From there I also made sheet music for 2018's video. I'm also working on transcribing the original from 2016 right now. While the song is very similar year to year, there is enough of a difference that I wanted to learn the song for each year. Enjoy this sheet music for Light the World! Download links are below.
 
