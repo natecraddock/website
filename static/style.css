@@ -1,0 +1,55 @@
+html {
+    scroll-behavior: smooth;
+    font-family: monospace;
+    font-size: 12pt;
+
+    --text: #000;
+    --text-light: #666;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* General Tags */
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: var(--text);
+}
+
+a:hover {
+    color: var(--text-light);
+}
+
+aside {
+    color: var(--text-light)
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#content {
+    width: 50%;
+}
+
+footer {
+
+}
+
+.list-post {
+    padding-top: 1rem;
+}
