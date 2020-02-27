@@ -1,12 +1,14 @@
 {{ define "main" }}
     <ul class="ul-no-style">
         {{ range .Pages }}
-            <li class="list-post">
-                <a id="list-post-link" href="{{ .Permalink }}">{{ .Title }}</a>
-                <aside>
-                    {{ .Date.Format "2 January 2006" }}
-                </aside>
-            </li>
+            {{ if ne .Params.type "static"}}
+                <li class="list-post">
+                    <a id="list-post-link" href="{{ .Permalink }}">{{ .Title }}</a>
+                    <aside>
+                        {{ .Date.Format "2 January 2006" }}
+                    </aside>
+                </li>
+            {{ end }}
         {{ end }}
     </ul>
 {{ end }}
