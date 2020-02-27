@@ -1,8 +1,8 @@
 {{ define "main" }}
-    <ul>
+    <ul class="ul-no-style">
         {{ range .Site.Taxonomies.tags.ByCount }}
             <li class="list-post">
-                <a id="list-post-link" href="{{ .Name }}">{{ .Name }}</a><sup>{{ .Count }}</sup>
+                <a id="list-post-link" href="{{ .Name }}">{{ .Name }}</a><sub>{{ .Count }}</sub>
             </li>
         {{ end }}
     </ul>

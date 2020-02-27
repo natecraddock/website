@@ -5,4 +5,6 @@ type: "static"
 draft: false
 ---
 
-404 Error! Take me [Home](/)!
+# 404 Error :(
+
+That page doesn't exist. Take me [Home](/)!

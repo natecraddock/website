@@ -15,6 +15,7 @@ body {
 /* General Tags */
 .ul-no-style {
     padding: 0;
+    margin: 0;
     list-style: none;
 }
 
