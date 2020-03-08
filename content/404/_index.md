@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "404"
 date: 2020-02-26T19:37:27-07:00
 type: "static"
 draft: false
