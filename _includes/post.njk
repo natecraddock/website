@@ -2,6 +2,16 @@
 layout: base.njk
 ---
 
+<h1> {{ title }} </h1>
+<aside>{{ date | readableDate}}</aside>
+<br>
+
 {{ content | safe }}
 
-<em>Tags: {{ tags | join(" ") }}</em>
+<br>
+Tags:
+{% for tag in tags %}
+    {%- if collections.tags.indexOf(tag) != -1 -%}
+        <a class="tag" href="/tags/{{tag}}/">{{ tag }}</a>
+    {%- endif -%}
+{% endfor %}

@@ -8,9 +8,11 @@ pagination:
     - post
 layout: base.njk
 permalink: /tags/{{ tag_name | slug }}/
+eleventyComputed:
+  title: "Tag {{ tag_name }}"
 ---
 
-Tag: {{ tag_name }}
+<h1>Tag: {{ tag_name }}</h1>
 
 {% set postlist = collections[tag_name] %}
 {% include "postlist.njk" %}

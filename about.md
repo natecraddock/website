@@ -3,6 +3,8 @@ title: About
 layout: base.njk
 ---
 
+# About
+
 Hello! I am Nathan Craddock. I am currently studying Computer Science at Brigham Young University.
 
 I enjoy hiking, coding, 3D graphics, and Linux. I also play the piano and organ.

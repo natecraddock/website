@@ -39,6 +39,7 @@ header {
 
     /* font-size: 16pt; */
     padding-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 #container {
@@ -57,18 +58,21 @@ img {
     max-width: 100%;
 }
 
-@media only screen and (min-width: 900px) {
+code {
+    background-color: #f2f2f2;
+}
+
+@media only screen and (min-width: 960px) {
     #content {
-        width: 800px;
+        width: 900px;
     }
 
     img {
-        max-width: 800px;
+        max-width: 900px;
     }
 }
 
 main {
-    padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
@@ -76,8 +80,8 @@ footer {
     padding-bottom: 1rem;
 }
 
-.list-post {
-    padding-top: 1rem;
+.list-post, .list-tag {
+    padding-bottom: 1rem;
 }
 
 .tags {
@@ -86,4 +90,10 @@ footer {
 
 .social-icon {
     margin-left: 1rem;
+}
+
+.tag {
+    display: inline-block;
+    padding-left: 6px;
+    padding-right: 6px;
 }
