@@ -1,19 +1,27 @@
 {
-  "name": "nathan_craddock",
+  "name": "personal-website",
   "version": "1.0.0",
-  "description": "Nathan Craddock's Personal Website",
+  "description": "",
   "main": "index.js",
+  "dependencies": {
+    "@11ty/eleventy": "^0.11.0",
+    "@11ty/eleventy-plugin-rss": "^1.0.7",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+    "moment": "^2.27.0",
+    "nunjucks": "^3.2.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natecraddock/personal-website.git"
+  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "bugs": {
+    "url": "https://github.com/natecraddock/personal-website/issues"
   },
-  "dependencies": {
-    "@11ty/eleventy": "^0.10.0",
-    "@11ty/eleventy-plugin-rss": "^1.0.7",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
-    "moment": "^2.27.0"
-  }
+  "homepage": "https://github.com/natecraddock/personal-website#readme"
 }
