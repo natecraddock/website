@@ -4,6 +4,7 @@ const pluginRss = require('@11ty/eleventy-plugin-rss');
 
 module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("data");
+    eleventyConfig.addPassthroughCopy("_redirects")
     eleventyConfig.setDataDeepMerge(true);
 
     // Plugins!
