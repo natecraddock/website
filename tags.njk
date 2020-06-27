@@ -1,0 +1,19 @@
+---
+layout: base.njk
+---
+
+All tags
+
+<ul class="ul-no-style">
+{%- for tag in collections.tags -%}
+
+  <li class="list-tag">
+    {% set tag_url %}/tags/{{ tag }}/{% endset %}
+
+    <a href="{{ tag_url | url }}">
+      {{- tag -}}
+    </a>
+  </li>
+
+{%- endfor -%}
+</ul>

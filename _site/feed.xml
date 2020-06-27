@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Nathan Craddock</title>
+  <subtitle>The personal website of Nathan Craddock</subtitle>
+  <link href="https://nathancraddock.net/feed.xml" rel="self"/>
+  <link href="https://nathancraddock.net/"/>
+  <updated>2020-01-23T17:00:00-07:00</updated>
+  <id>https://nathancraddock.net/</id>
+  <author>
+    <name>Nathan Craddock</name>
+    <email>nzcraddock@gmail.com</email>
+  </author>
+  
+  <entry>
+    <title>Light the World Sheet Music</title>
+    <link href="https://nathancraddock.net/posts/light-the-world-sheet-music/"/>
+    <updated>2019-12-17T17:00:00-07:00</updated>
+    <id>https://nathancraddock.net/posts/light-the-world-sheet-music/</id>
+    <content type="html">&lt;p&gt;I love Light the World! I love it so much that I just had to figure out how to play it on the piano! So I transcribed the &lt;a href=&quot;https://www.youtube.com/watch?v=P_VRN7hcL_8&quot;&gt;2017 version&lt;/a&gt; for the piano. From there I also made sheet music for 2018&#39;s video. I&#39;m also working on transcribing the original from 2016 right now. While the song is very similar year to year, there is enough of a difference that I wanted to learn the song for each year. Enjoy this sheet music for Light the World! Download links are below.&lt;/p&gt;
+&lt;p&gt;Download &lt;a href=&quot;https://nathancraddock.net/files/light-the-world-sheet-music-2018.pdf&quot;&gt;Light the World 2018 - Light Your Faith Sheet Music (PDF)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Download &lt;a href=&quot;https://nathancraddock.net/files/light-the-world-sheet-music-2017.pdf&quot;&gt;Light the World 2017 Sheet Music (PDF)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Therefore, hold up your light that it may shine unto the world. Behold I am the light which ye shall hold up—that which ye have seen me do. (3 Nephi 18:24.)&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Test of 11ty Features</title>
+    <link href="https://nathancraddock.net/posts/test/"/>
+    <updated>2020-01-23T17:00:00-07:00</updated>
+    <id>https://nathancraddock.net/posts/test/</id>
+    <content type="html">&lt;h2&gt;11ty test&lt;/h2&gt;
+&lt;p&gt;This is my page to test random Hugo features&lt;/p&gt;
+&lt;p&gt;Syntax highlight just works out of the box. How nice!&lt;/p&gt;
+&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;&lt;span class=&quot;token macro property&quot;&gt;#&lt;span class=&quot;token directive keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&amp;lt;stdio.h&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Hello world! This is a long string %d\n&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1002&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Highlighting can also be done starting from a specific number!&lt;/p&gt;
+&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;a_function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;I am a function&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It also seems that &lt;code&gt;inline code&lt;/code&gt; works just fine too! Well.. my webpage is all monospace, so that isn&#39;t a fair comparison. why doesn&#39;t this wrap?&lt;/p&gt;
+&lt;p&gt;I may have to do a little bit of &lt;strong&gt;bolding&lt;/strong&gt; to make code stand out.&lt;/p&gt;
+&lt;h1&gt;1st level heading&lt;/h1&gt;
+&lt;h2&gt;2nd Level heading&lt;/h2&gt;
+&lt;h3&gt;Subheading&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;This has a bulleted list&lt;/li&gt;
+&lt;li&gt;Two
+&lt;ul&gt;
+&lt;li&gt;Hey&lt;/li&gt;
+&lt;li&gt;Another bullet
+&lt;ul&gt;
+&lt;li&gt;another
+&lt;ul&gt;
+&lt;li&gt;another
+&lt;ol&gt;
+&lt;li&gt;hello&lt;/li&gt;
+&lt;li&gt;haha&lt;/li&gt;
+&lt;li&gt;blah&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;a&lt;/li&gt;
+&lt;li&gt;2&lt;/li&gt;
+&lt;li&gt;adf
+&lt;ol&gt;
+&lt;li&gt;asdf&lt;/li&gt;
+&lt;li&gt;adsf&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;adsf&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Can I throw this down here?&lt;/h4&gt;
+&lt;h5&gt;5 heading&lt;/h5&gt;
+&lt;h6&gt;6 heading (probably won&#39;t use that much)&lt;/h6&gt;
+&lt;hr&gt;
+</content>
+  </entry>
+</feed>

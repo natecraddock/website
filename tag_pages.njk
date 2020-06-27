@@ -1,0 +1,16 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag_name
+  filter:
+    - all
+    - post
+layout: base.njk
+permalink: /tags/{{ tag_name | slug }}/
+---
+
+Tag: {{ tag_name }}
+
+{% set postlist = collections[tag_name] %}
+{% include "postlist.njk" %}

@@ -1,6 +1,0 @@
-# Redirection
-/music/light-the-world/               /light-the-world-sheet-music/
-https://nathancraddock.netlify.com/*  https://nathancraddock.net/:splat 301!
-/scriptures/                          https://scriptures.nathancraddock.net
-/*                                    /404.html 404
-
