@@ -16,12 +16,23 @@ module.exports = function(eleventyConfig) {
         return moment(date).format("LL");
     });
 
+    // Collection for published posts
+    eleventyConfig.addCollection("posts", function(collectionApi) {
+        let all_posts = collectionApi.getFilteredByTag("post");
+        return all_posts.filter(function(item) {
+            return !("draft" in item.data);
+        });
+    });
+
     // Filter out "default" collections for tags
     eleventyConfig.addCollection("tags", function(collectionApi) {
         let all_collections = collectionApi.getAll();
         let all_tags = new Set();
 
         all_collections.forEach(function(item) {
+            if ("draft" in item.data) {
+                return false;
+            }
             if ("tags" in item.data) {
                 let tags = item.data.tags;
 
