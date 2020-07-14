@@ -108,6 +108,9 @@ footer {
     padding-right: 6px;
 }
 
+.icon {
+	font-size: 16pt;
+}
 
 /*
  * Syntax Highlight: Prism Material Light
