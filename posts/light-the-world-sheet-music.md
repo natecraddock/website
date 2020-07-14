@@ -2,6 +2,7 @@
 title: Light the World Sheet Music
 date: 2019-12-18
 tags: ["music"]
+description: Sheet music for Light the World - Latter-day Saints - Free - PDF
 ---
 
 ![Light the world tree ornament](/data/images/light-the-world.jpg)

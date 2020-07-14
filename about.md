@@ -1,6 +1,7 @@
 ---
 title: About
 layout: base.njk
+description: About Nathan Craddock, Developer, Artist.
 ---
 
 # About

@@ -2,6 +2,7 @@
 title: Variable Names
 date: 2020-06-29 12:00:00 -7
 tags: ["code", "humor"]
+description: Funny variable names in various programming languages
 ---
 
 c/c++
