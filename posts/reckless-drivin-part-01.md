@@ -10,9 +10,9 @@ One of my favorite games is [Reckless Drivin'](http://jonasechterhoff.com/Reckle
 ![Screenshot of Reckless Drivin' with burnt cars](https://static.macupdate.com/screenshots/868/m/reckless-driving-screenshot.png)
 
 
-I wanted a way to play the game again. The original game is still available on it's website at http://jonasechterhoff.com/Reckless_Drivin.html. I decided to reverse-engineer the game to be able to play it on modern devices which is a huge task. In my initial research I decided to search "Reckless Drivin'" on GitHub, and it turns out Jonas uploaded the original source code within the last year. https://github.com/jechter/RecklessDrivin
+I wanted a way to play the game again. The original game is still available on it's website at [http://jonasechterhoff.com/Reckless_Drivin.html](http://jonasechterhoff.com/Reckless_Drivin.html). I decided to reverse-engineer the game to be able to play it on modern devices which is a huge task. In my initial research I decided to search "Reckless Drivin'" on GitHub, and it turns out Jonas uploaded the original source code within the last year. [https://github.com/jechter/RecklessDrivin](https://github.com/jechter/RecklessDrivin)
 
-This makes rewriting the game for modern machines a much easier task, but one still full of many difficulties. Here I'll document my progress in restoring this game. My repository is https://github.com/natecraddock/reckless-drivin.
+This makes rewriting the game for modern machines a much easier task, but one still full of many difficulties. Here I'll document my progress in restoring this game. My repository is [https://github.com/natecraddock/reckless-drivin](https://github.com/natecraddock/reckless-drivin).
 
 ---
 
@@ -68,5 +68,3 @@ data 'Pack' (128, "Object Definitions") {
 ```
 
 Now we have the resources for the game. The next step is to parse this file into a readable binary format and pack it into the executable.
-
-<img src="https://hitcounter.pythonanywhere.com/count/tag.svg" alt="Hits">
