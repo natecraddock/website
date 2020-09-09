@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
 html {
     scroll-behavior: smooth;
-    font-family: monospace;
+    font-family: 'Fira Mono', monospace;
     font-size: 12pt;
 
     --body-dark: #444;
