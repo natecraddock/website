@@ -5,7 +5,9 @@ tags: ["code", "humor"]
 description: Funny variable names in various programming languages
 ---
 
-c/c++
+## C
+<div class="full-bleed">
+
 ```cpp
 char broiled;
 double burger;
@@ -29,11 +31,16 @@ int eger;
 char acter;
 float ing_point;
 bool ean;
-
 ```
 
-Java
+</div>
+
+## Java
+<div class="full-bleed">
+
 ```java
 class Brick extends Throwable {};
 class Race extends Runnable {};
 ```
+
+</div>

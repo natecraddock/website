@@ -1,9 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 html {
     scroll-behavior: smooth;
-    font-family: 'Fira Mono', monospace;
-    font-size: 12pt;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 14pt;
 
     --body-dark: #444;
     --text: #000;
@@ -11,13 +19,23 @@ html {
     --text-alt: #888;
     --text-alt-dark: rgb(199, 199, 199);
     --select-highlight: #c9ddf7;
-
 }
 
 body {
     background-color: #fdfdfd;
-    margin: 0;
-    padding: 0;
+}
+
+img {
+    margin-top: 1ch;
+    margin-bottom: 2ch;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin-bottom: 1ch;
+}
+
+h1, h2 {
+    margin-top: 1ch;
 }
 
 /* General Tags */
@@ -25,6 +43,10 @@ body {
     padding: 0;
     margin: 0;
     list-style: none;
+}
+
+.gap {
+    margin: 1ch;
 }
 
 a {
@@ -35,38 +57,58 @@ a:hover {
     color: var(--text-alt);
 }
 
-aside {
+.aside {
     color: var(--text-alt)
 }
 
 header {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
+    flex-direction: column;
+    align-items: center;
     /* font-size: 16pt; */
     padding-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
-#container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+#icons {
+    margin-top: 1ch;
 }
 
-#content {
-    width: 90%;
+#icons span {
+    font-size: 16pt;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr min(65ch, 90%) 1fr;
+}
+
+main > * {
+    grid-column: 2;
+}
+
+.full-bleed {
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+#tags {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 img {
+    margin-left: auto;
+    margin-right: auto;
     display: block;
-    margin: auto;
     max-width: 100%;
+    max-height: 50vh;
+    object-fit: cover;
 }
 
 code {
+    font-family: 'Fira Mono', monospace;
+    font-size: 12pt;
     background-color: #f2f2f2;
 }
 
@@ -75,18 +117,16 @@ code {
     background: var(--select-highlight);
 }
 
-@media only screen and (min-width: 960px) {
-    #content {
-        width: 900px;
+@media only screen and (min-width: 560px) {
+    header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;    
+        justify-content: space-between;
     }
-
-    img {
-        max-width: 900px;
+    #icons {
+        margin: 0;
     }
-}
-
-main {
-    padding-bottom: 1rem;
 }
 
 footer {
@@ -99,10 +139,6 @@ footer {
 
 .tags {
     padding-top: 1rem;
-}
-
-.social-icon {
-    margin-left: 1rem;
 }
 
 .tag {
@@ -131,8 +167,7 @@ pre[class*="language-"] {
     word-wrap: normal;
     color: #90a4ae;
     background: #f2f2f2;
-    font-family: Roboto Mono, monospace;
-    font-size: 1em;
+    font-size: 12pt;
     line-height: 1.5em;
 
     -moz-tab-size: 4;
@@ -344,7 +379,7 @@ pre[class*="language-"] {
         color: var(--text-alt-dark);
     }
 
-    aside {
+    .aside {
         color: var(--text-alt-dark)
     }
 
@@ -357,25 +392,8 @@ pre[class*="language-"] {
      */
     code[class*="language-"],
     pre[class*="language-"] {
-        text-align: left;
-        white-space: pre;
-        word-spacing: normal;
-        word-break: normal;
-        word-wrap: normal;
         color: #eee;
         background: #2f2f2f;
-        font-family: Roboto Mono, monospace;
-        font-size: 1em;
-        line-height: 1.5em;
-
-        -moz-tab-size: 4;
-        -o-tab-size: 4;
-        tab-size: 4;
-
-        -webkit-hyphens: none;
-        -moz-hyphens: none;
-        -ms-hyphens: none;
-        hyphens: none;
     }
 
     code[class*="language-"]::-moz-selection,
@@ -398,21 +416,10 @@ pre[class*="language-"] {
         padding: 0.1em;
     }
 
-    pre[class*="language-"] {
-        overflow: auto;
-        position: relative;
-        margin: 0.5em 0;
-        padding: 1.25em 1em;
-    }
-
     .language-css > code,
     .language-sass > code,
     .language-scss > code {
         color: #fd9170;
-    }
-
-    [class*="language-"] .namespace {
-        opacity: 0.7;
     }
 
     .token.atrule {

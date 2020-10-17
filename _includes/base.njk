@@ -14,30 +14,29 @@ title: Nathan Craddock
     </head>
 
     <body>
-        <div id="container">
-            <div id="content">
-                <header>
-                    <div id="links">
-                        <a href="/">Home</a>
-                        <a href="https://portfolio.nathancraddock.com">Portfolio</a>
-                        <a href="/tags">Tags</a>
-                        <a href="/about">About</a>
-                    </div>
+        <main>
+             <header>
+                <div id="links">
+                    <a href="/">Home</a>
+                    <span class="gap"></span>
+                    <a href="/tags">Tags</a>
+                    <span class="gap"></span>
+                    <a href="/about">About</a>
+                </div>
 
-                    <div>
-                        <a class="social-icon" href="mailto:contact@nathancraddock.com"><span class="icon las la-envelope"></span></a>
-                        <a class="social-icon" href="https://twitter.com/natecraddock"><span class="icon lab la-twitter"></span></a>
-                        <a class="social-icon" href="https://github.com/natecraddock"><span class="icon lab la-github"></span></a>
-                        <a class="social-icon" href="/feed.xml"><span class="icon las la-rss"></span></a>
-                    </div>
+                <div id="icons">
+                    <a class="social-icon" href="mailto:contact@nathancraddock.com"><span class="icon las la-envelope"></span></a>
+                    <span class="gap"></span>
+                    <a class="social-icon" href="https://twitter.com/natecraddock"><span class="icon lab la-twitter"></span></a>
+                    <span class="gap"></span>
+                    <a class="social-icon" href="https://github.com/natecraddock"><span class="icon lab la-github"></span></a>
+                    <span class="gap"></span>
+                    <a class="social-icon" href="/feed.xml"><span class="icon las la-rss"></span></a>
+                </div>
 
-                </header>
-
-                <main>
-                    {{ content | safe }}
-                </main>
-            </div>
-        </div>
+            </header>
+            {{ content | safe }}
+        </main>
     </body>
 
 </html>

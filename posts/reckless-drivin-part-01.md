@@ -7,18 +7,17 @@ draft: true
 
 One of my favorite games is [Reckless Drivin'](http://jonasechterhoff.com/Reckless_Drivin.html), an old shareware Mac game from 2000 created by Jonas Echterhoff. Originally written for PowerPC architecture, it has become difficult to play these days.
 
-![Screenshot of Reckless Drivin' with burnt cars](https://static.macupdate.com/screenshots/868/m/reckless-driving-screenshot.png)
-
+<img class="full-bleed" src="https://static.macupdate.com/screenshots/868/m/reckless-driving-screenshot.png" alt="Screenshot of Reckless Drivin' with burnt cars">
 
 I wanted a way to play the game again. The original game is still available on it's website at [http://jonasechterhoff.com/Reckless_Drivin.html](http://jonasechterhoff.com/Reckless_Drivin.html). I decided to reverse-engineer the game to be able to play it on modern devices which is a huge task. In my initial research I decided to search "Reckless Drivin'" on GitHub, and it turns out Jonas uploaded the original source code within the last year. [https://github.com/jechter/RecklessDrivin](https://github.com/jechter/RecklessDrivin)
 
 This makes rewriting the game for modern machines a much easier task, but one still full of many difficulties. Here I'll document my progress in restoring this game. My repository is [https://github.com/natecraddock/reckless-drivin](https://github.com/natecraddock/reckless-drivin).
 
----
-
-### Cleanup
+# Cleanup
 
 After forking and cloning the repository, it became immediately clear that some initial cleanup was required before modifying the code. The style didn't match my preferences, and there were many types that needed replacing from the Mac SDKs.
+
+<div class="full-bleed">
 
 ```c
 void main()
@@ -31,13 +30,19 @@ void main()
 }
 ```
 
+</div>
+
 After replacing types and keywords like `nil`, `UInt32`, and `Boolean`, with `NULL`, `uint32_t`, and `bool`, I also created a few [typedefs](https://github.com/natecraddock/reckless-drivin/commit/32b723c0aa32c9c7005efbd88b1cf57814c87306) for types common throughout the source code. Things like
+
+<div class="full-bleed">
 
 ```c
 typedef unsigned char Str15[16];
 typedef char *Ptr;
 typedef Ptr *Handle;
 ```
+
+</div>
 
 Are common throughout the code, and searches through Apple's Developer archives explained the meaning of many types in the code.
 
@@ -47,6 +52,8 @@ One note in the original readme states
 I had no idea what that meant. After some searching I learned that old Macintosh file systems supported a "fork or section of a file used to store structured data." The original resource fork stored the sprites, sounds, textures, level data, and other important assets of the game. Those resources had been copied to the data fork and were stored in the `Data` file.
 
 I borrowed a Mac and ran the following command to extract the resources from the data fork into a text file.
+
+<div class="full-bleed">
 
 ```text
 $ derez -useDF Data > unpacked_data
@@ -66,5 +73,7 @@ data 'Pack' (128, "Object Definitions") {
 	$"02B8 009C 0202 4888 F800 9D01 000C 3853"
 ...
 ```
+
+</div>
 
 Now we have the resources for the game. The next step is to parse this file into a readable binary format and pack it into the executable.
