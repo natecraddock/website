@@ -12,6 +12,7 @@ html {
 
     font-family: 'Roboto', sans-serif;
     font-size: 14pt;
+    line-height: 1.3em;
 
     --body-dark: #444;
     --text: #000;
@@ -49,8 +50,12 @@ h1, h2 {
     margin: 1ch;
 }
 
-a {
+.title-link {
     color: var(--text);
+}
+
+a {
+    color: rgb(99, 160, 218);
 }
 
 a:hover {
@@ -372,6 +377,10 @@ pre[class*="language-"] {
     }
 
     a {
+        color: rgb(99, 160, 218);
+    }
+
+    .title-link {
         color: var(--text-dark);
     }
 
