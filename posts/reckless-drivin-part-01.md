@@ -1,7 +1,7 @@
 ---
 title: Reckless Drivin' Part 01 - Cleanup
 date: 2020-07-23 20:00:00 -7
-modified: 2020-10-17 20:00:00 -7
+modified: 2020-10-18 20:00:00 -7
 tags: ["reckless-drivin", "c", "code"]
 ---
 
@@ -17,8 +17,6 @@ This makes rewriting the game for modern machines a much easier task, but one st
 
 After forking and cloning the repository, it became immediately clear that some initial cleanup was required before modifying the code. The style didn't match my preferences, and there were many types that needed replacing from the Mac SDKs.
 
-<div class="full-bleed">
-
 ```c
 void main()
 {
@@ -30,19 +28,13 @@ void main()
 }
 ```
 
-</div>
-
 After replacing types and keywords like `nil`, `UInt32`, and `Boolean`, with `NULL`, `uint32_t`, and `bool`, I also created a few [typedefs](https://github.com/natecraddock/reckless-drivin/commit/32b723c0aa32c9c7005efbd88b1cf57814c87306) for types common throughout the source code. Statements like
-
-<div class="full-bleed">
 
 ```c
 typedef unsigned char Str15[16];
 typedef char *Ptr;
 typedef Ptr *Handle;
 ```
-
-</div>
 
 are common throughout the code, and searches through Apple's Developer archives explained the meaning of many types in the code.
 
@@ -52,8 +44,6 @@ One note in the original readme states
 I had no idea what that meant. After some searching I learned that old Macintosh file systems supported a "fork or section of a file used to store structured data." The original resource fork stored the sprites, sounds, textures, level data, and other important assets of the game. Those resources had been copied to the data fork and were stored in the `Data` file.
 
 I borrowed a Mac and ran the following command to extract the resources from the data fork into a text file.
-
-<div class="full-bleed">
 
 ```text
 $ derez -useDF Data > unpacked_data
@@ -73,7 +63,5 @@ data 'Pack' (128, "Object Definitions") {
 	$"02B8 009C 0202 4888 F800 9D01 000C 3853"
 ...
 ```
-
-</div>
 
 Now we have the resources for the game. The next step is to parse this file into a readable binary format and pack it into the executable.

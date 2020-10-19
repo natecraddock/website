@@ -6,7 +6,6 @@ description: Funny variable names in various programming languages
 ---
 
 ## C
-<div class="full-bleed">
 
 ```cpp
 char broiled;
@@ -33,14 +32,9 @@ float ing_point;
 bool ean;
 ```
 
-</div>
-
 ## Java
-<div class="full-bleed">
 
 ```java
 class Brick extends Throwable {};
 class Race extends Runnable {};
 ```
-
-</div>
