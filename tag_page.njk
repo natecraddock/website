@@ -13,7 +13,7 @@ eleventyComputed:
   description: "Nathan Craddock - Tag: {{ tag_name }}"
 ---
 
-<h1>Tag: {{ tag_name }}</h1>
+<h1 class="page-title">Tag: {{ tag_name }}</h1>
 
 {% set postlist = collections[tag_name] %}
 {% include "postlist.njk" %}

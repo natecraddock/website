@@ -12,7 +12,6 @@ html {
 
     font-family: 'Roboto', sans-serif;
     font-size: 14pt;
-    line-height: 1.3em;
 
     --body-dark: #444;
     --text: #000;
@@ -39,6 +38,10 @@ h1, h2 {
     margin-top: 1ch;
 }
 
+p {
+    line-height: 1.3em;
+}
+
 /* General Tags */
 .ul-no-style {
     padding: 0;
@@ -48,6 +51,10 @@ h1, h2 {
 
 .gap {
     margin: 1ch;
+}
+
+.page-title {
+    margin-bottom: 2ch;
 }
 
 .title-link {

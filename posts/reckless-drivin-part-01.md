@@ -1,8 +1,8 @@
 ---
 title: Reckless Drivin' Part 01 - Cleanup
 date: 2020-07-23 20:00:00 -7
+modified: 2020-10-17 20:00:00 -7
 tags: ["reckless-drivin", "c", "code"]
-draft: true
 ---
 
 One of my favorite games is [Reckless Drivin'](http://jonasechterhoff.com/Reckless_Drivin.html), an old shareware Mac game from 2000 created by Jonas Echterhoff. Originally written for PowerPC architecture, it has become difficult to play these days.
@@ -32,7 +32,7 @@ void main()
 
 </div>
 
-After replacing types and keywords like `nil`, `UInt32`, and `Boolean`, with `NULL`, `uint32_t`, and `bool`, I also created a few [typedefs](https://github.com/natecraddock/reckless-drivin/commit/32b723c0aa32c9c7005efbd88b1cf57814c87306) for types common throughout the source code. Things like
+After replacing types and keywords like `nil`, `UInt32`, and `Boolean`, with `NULL`, `uint32_t`, and `bool`, I also created a few [typedefs](https://github.com/natecraddock/reckless-drivin/commit/32b723c0aa32c9c7005efbd88b1cf57814c87306) for types common throughout the source code. Statements like
 
 <div class="full-bleed">
 
@@ -44,7 +44,7 @@ typedef Ptr *Handle;
 
 </div>
 
-Are common throughout the code, and searches through Apple's Developer archives explained the meaning of many types in the code.
+are common throughout the code, and searches through Apple's Developer archives explained the meaning of many types in the code.
 
 One note in the original readme states
 > "The resource forks of the rsrc files have been moved to the data fork."
