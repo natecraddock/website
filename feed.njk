@@ -5,8 +5,8 @@
   "metadata": {
     "title": "Nathan Craddock",
     "subtitle": "The personal website of Nathan Craddock",
-    "url": "https://nathancraddock.net/",
-    "feedUrl": "https://nathancraddock.net/feed.xml",
+    "url": "https://nathancraddock.com/",
+    "feedUrl": "https://nathancraddock.com/feed.xml",
     "author": {
       "name": "Nathan Craddock",
       "email": "nzcraddock@gmail.com"
@@ -26,7 +26,7 @@
     <name>{{ metadata.author.name }}</name>
     <email>{{ metadata.author.email }}</email>
   </author>
-  {%- for post in collections.posts %}
+  {%- for post in collections.posts | reverse %}
   {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
   <entry>
     <title>{{ post.data.title }}</title>
