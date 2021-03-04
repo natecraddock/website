@@ -4,15 +4,52 @@ layout: base.njk
 
 <div class="page-title">
     <h1> {{ title }} </h1>
-    <span class="date">Posted {{ date | readableDate}}<span>
     {% if modified %}
-        <br><span class="aside updated"><em>Updated {{ modified | readableDate }}</em></span>
+        <span class="date" title="Updated {{ modified | readableDate }}">Posted {{ date | readableDate}}<span>
+    {% else %}
+        <span class="date" title="Unchanged from first post">Posted {{ date | readableDate}}<span>
     {% endif %}
 </div>
 
 {% if series %}
-<p>This post is part of the <a href="/series/{{ series | slug | url }}">{{series}}</a> series</p>
+{% set max = 1 %}
+{% for s in collections.series %}
+    {% if s.data.series == series and s.data.series_index > max %}
+        {% set max = s.data.series_index %}
+    {% endif %}
+{% endfor %}
+<p class="aside">This is post {{series_index}} of {{max}} in the {{series}} series</p>
 {%endif%}
+
+{% if series %}
+<div id="series-nav">
+    {% if series_index > 1 %}
+        {% for s in collections.series %}
+            {% if s.data.series == series and s.data.series_index == (series_index - 1) %}
+                <span><a href="{{s.url}}" title="{{s.data.title}}">Previous</a></span>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <span class="aside">Previous</span>
+    {% endif %}
+    <span><a href="/series/{{ series | slug | url }}">All</a></span>
+    {% if series_index < max %}
+        {% for s in collections.series %}
+            {% if s.data.series == series and s.data.series_index == (series_index + 1) %}
+                <span><a href="{{s.url}}" title="{{s.data.title}}">Next</a></span>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <span class="aside">Next</span>
+    {% endif %}
+</div>
+{% endif %}
+
+<hr>
+<div>
+{{ content | safe }}
+</div>
+<hr>
 
 <div id="tags">
 Tags:
@@ -21,38 +58,6 @@ Tags:
         <a class="tag" href="/tags/{{tag}}/">{{ tag }}</a>
     {%- endif -%}
 {% endfor %}
-</div>
-
-{% if series %}
-<div id="series-nav">
-    {% set max = 1 %}
-    {% for s in collections.series %}
-        {% if s.data.series == series and s.data.series_index > max %}
-            {% set max = s.data.series_index %}
-        {% endif %}
-    {% endfor %}
-    {% if series_index > 1 %}
-        {% for s in collections.series %}
-            {% if s.data.series == series and s.data.series_index == (series_index - 1) %}
-                <span><a href="{{s.url}}" title="{{s.data.title}}">Previous</a></span>
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        <span></span>
-    {% endif %}
-    {% if series_index < max %}
-        {% for s in collections.series %}
-            {% if s.data.series == series and s.data.series_index == (series_index + 1) %}
-                <span><a href="{{s.url}}" title="{{s.data.title}}">Next</a></span>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-</div>
-{% endif %}
-
-<hr>
-<div>
-{{ content | safe }}
 </div>
 
 <div id="scroll-buffer"></div>
