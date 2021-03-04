@@ -102,7 +102,6 @@ header {
 main {
     display: grid;
     grid-template-columns: 1fr min(65ch, 90%) 1fr;
-    text-align: justify;
 }
 
 main > * {
