@@ -30,7 +30,7 @@ img {
     margin-bottom: 2ch;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, ul, ol {
     margin-bottom: 1ch;
 }
 
@@ -40,6 +40,10 @@ h1, h2 {
 
 p {
     line-height: 1.3em;
+}
+
+li {
+    margin-left: 2ch;
 }
 
 /* General Tags */
@@ -217,7 +221,7 @@ pre[class*="language-"] ::selection {
 pre[class*="language-"] {
     overflow: auto;
     position: relative;
-    margin: 0.5em 0;
+    margin: 2ch 0;
     padding: 1.25em 1em;
 }
 
