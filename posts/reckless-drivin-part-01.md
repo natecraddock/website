@@ -1,17 +1,17 @@
 ---
 title: Reckless Drivin' Part 01 - Cleanup
 date: 2020-07-23 20:00:00 -7
-modified: 2020-10-18 20:00:00 -7
-tags: ["reckless-drivin", "c", "code"]
+modified: 2021-03-03 20:00:00 -7
+tags: ["reckless-drivin", "c", "code", "reverse-engineering"]
 ---
 
 One of my favorite games is [Reckless Drivin'](http://jonasechterhoff.com/Reckless_Drivin.html), an old shareware Mac game from 2000 created by Jonas Echterhoff. Originally written for PowerPC architecture, it has become difficult to play these days.
 
-<img class="full-bleed" src="https://static.macupdate.com/screenshots/868/m/reckless-driving-screenshot.png" alt="Screenshot of Reckless Drivin' with burnt cars">
+![Reckless Drivin' menu](/data/images/reckless-drivin-menu.jpg)
 
 I wanted a way to play the game again. The original game is still available on it's website at [http://jonasechterhoff.com/Reckless_Drivin.html](http://jonasechterhoff.com/Reckless_Drivin.html). I decided to reverse-engineer the game to be able to play it on modern devices which is a huge task. In my initial research I decided to search "Reckless Drivin'" on GitHub, and it turns out Jonas uploaded the original source code within the last year. [https://github.com/jechter/RecklessDrivin](https://github.com/jechter/RecklessDrivin)
 
-This makes rewriting the game for modern machines a much easier task, but one still full of many difficulties. Here I'll document my progress in restoring this game. My repository is [https://github.com/natecraddock/reckless-drivin](https://github.com/natecraddock/reckless-drivin).
+This makes rewriting the game for modern machines a much easier task, but one still full of many difficulties. Here I'll document my progress in restoring this game. My repository is [https://github.com/natecraddock/open-reckless-drivin](https://github.com/natecraddock/open-reckless-drivin).
 
 # Cleanup
 
@@ -28,7 +28,7 @@ void main()
 }
 ```
 
-After replacing types and keywords like `nil`, `UInt32`, and `Boolean`, with `NULL`, `uint32_t`, and `bool`, I also created a few [typedefs](https://github.com/natecraddock/reckless-drivin/commit/32b723c0aa32c9c7005efbd88b1cf57814c87306) for types common throughout the source code. Statements like
+After replacing types and keywords like `nil`, `UInt32`, and `Boolean`, with `NULL`, `uint32_t`, and `bool`, I also created a few [typedefs](https://github.com/natecraddock/open-reckless-drivin/commit/32b723c0aa32c9c7005efbd88b1cf57814c87306) for types common throughout the source code. Statements like
 
 ```c
 typedef unsigned char Str15[16];
