@@ -1,8 +1,10 @@
 ---
-title: Reckless Drivin' Part 01 - Cleanup
+title: Reckless Drivin' - Cleanup
 date: 2020-07-23 20:00:00 -7
 modified: 2021-03-03 20:00:00 -7
 tags: ["reckless-drivin", "c", "code", "reverse-engineering"]
+series: "Reckless Drivin"
+series_index: 1
 ---
 
 One of my favorite games is [Reckless Drivin'](http://jonasechterhoff.com/Reckless_Drivin.html), an old shareware Mac game from 2000 created by Jonas Echterhoff. Originally written for PowerPC architecture, it has become difficult to play these days.

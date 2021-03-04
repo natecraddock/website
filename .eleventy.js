@@ -16,6 +16,12 @@ module.exports = function(eleventyConfig) {
         return moment(date).format("LL");
     });
 
+    eleventyConfig.addFilter("sortIndex", series => {
+        return series.sort(function(a, b) {
+            return a.data.series_index - b.data.series_index;
+        });
+    });
+
     // Collection for published posts
     eleventyConfig.addCollection("posts", function(collectionApi) {
         let all_posts = collectionApi.getFilteredByTag("post");
@@ -53,5 +59,26 @@ module.exports = function(eleventyConfig) {
 
         
         return [...all_tags].sort();
+    });
+
+    // Get list of series
+    eleventyConfig.addCollection("series", function(collectionApi) {
+        return collectionApi.getAll().filter(function(item) {
+            return "series" in item.data;
+        });
+    });
+
+    eleventyConfig.addCollection("series-names", function(collectionApi) {
+        let all_collections =  collectionApi.getAll();
+        let all_series = new Set();
+        all_collections.forEach(function(item) {
+            if ("draft" in item.data) {
+                return false;
+            }
+            if ("series" in item.data) {
+                all_series.add(item.data.series);
+            }
+        });
+        return [...all_series].sort();
     });
 }

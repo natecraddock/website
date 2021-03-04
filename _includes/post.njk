@@ -10,9 +10,10 @@ layout: base.njk
     {% endif %}
 </div>
 
-{{ content | safe }}
+{% if series %}
+<p>This post is part of the <a href="/series/{{ series | slug | url }}">{{series}}</a> series</p>
+{%endif%}
 
-<br>
 <div id="tags">
 Tags:
 {% for tag in tags %}
@@ -20,4 +21,39 @@ Tags:
         <a class="tag" href="/tags/{{tag}}/">{{ tag }}</a>
     {%- endif -%}
 {% endfor %}
+</div>
+
+{% if series %}
+<div id="series-nav">
+    {% set max = 1 %}
+    {% for s in collections.series %}
+        {% if s.data.series == series and s.data.series_index > max %}
+            {% set max = s.data.series_index %}
+        {% endif %}
+    {% endfor %}
+    {% if series_index > 1 %}
+        {% for s in collections.series %}
+            {% if s.data.series == series and s.data.series_index == (series_index - 1) %}
+                <span><a href="{{s.url}}" title="{{s.data.title}}">Previous</a></span>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <span></span>
+    {% endif %}
+    {% if series_index < max %}
+        {% for s in collections.series %}
+            {% if s.data.series == series and s.data.series_index == (series_index + 1) %}
+                <span><a href="{{s.url}}" title="{{s.data.title}}">Next</a></span>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+{% endif %}
+
+<hr>
+<div>
+{{ content | safe }}
+</div>
+
+<div id="scroll-buffer"></div>
 </div>

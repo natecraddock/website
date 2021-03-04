@@ -1,7 +1,9 @@
 ---
-title: Reckless Drivin' Part 02 - LZRW Decompression
+title: Reckless Drivin' - LZRW Decompression
 date: 2021-03-03 20:00:00 -7
 tags: ["reckless-drivin", "c", "code", "reverse-engineering"]
+series: "Reckless Drivin"
+series_index: 2
 ---
 
 With the information from the resource fork extracted into `unpacked_data` it is now time to

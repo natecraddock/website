@@ -1,0 +1,28 @@
+---
+pagination:
+  data: collections.series-names
+  size: 1
+  alias: series_name
+  filter:
+    - all
+    - post
+    - tags
+layout: base.njk
+permalink: /series/{{ series_name | slug }}/
+eleventyComputed:
+  title: "Posts in the {{ series_name }} series"
+  description: "Nathan Craddock - Series: {{ series_name }}"
+---
+
+<h1 class="page-title">Posts in {{ series_name }}</h1>
+
+{%- for series in collections.series | sortIndex -%}
+    {% if series.data.series == series_name %}
+        <p>{{series.data.series_index}}. <a href="{{series.url}}">
+                {{series.data.title}}
+            </a></p>
+    {% endif %}
+{%- endfor -%}
+
+</ul>
+
