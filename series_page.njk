@@ -15,6 +15,7 @@ eleventyComputed:
 ---
 
 <h1 class="page-title">Posts in {{ series_name }}</h1>
+<p>{{series_descriptions[series_name]}}</p><br><hr>
 
 {%- for series in collections.series | sortIndex -%}
     {% if series.data.series == series_name %}
