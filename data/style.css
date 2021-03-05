@@ -39,8 +39,8 @@ h1, h2 {
     margin-top: 1ch;
 }
 
-p {
-    line-height: 1.3em;
+p, li {
+    line-height: 1.5em;
 }
 
 li {
