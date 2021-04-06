@@ -93,6 +93,9 @@ header {
 
 #icons {
     margin-top: 1ch;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #icons span {
@@ -191,6 +194,11 @@ hr {
 
 .icon {
     font-size: 16pt;
+    height: 1em;
+}
+
+.icon:hover {
+    opacity: 0.5;
 }
 
 .badge {
