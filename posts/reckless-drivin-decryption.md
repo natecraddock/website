@@ -81,4 +81,8 @@ under a vm. The game now shows my registration information on the menu!
 ![Thanks for registering dialog box](/data/images/thanks-for-registering.jpg)
 ![Menu showing registered to Nathan Craddock in the lower right](/data/images/registered-to-nathan.jpg)
 
+It was very rewarding to see my name displayed in a game I never actually registered for. Sadly, the
+game is not playable under QEMU. I haven't spent anytime tweaking settings, so there might be a way, but
+the goal is to re-implement the game, not just emulate it.
+
 Now that registration and decryption works, the next step is to extract the images stored in the PPic resources.
