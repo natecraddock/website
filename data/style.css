@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
 
 * {
     box-sizing: border-box;
@@ -13,11 +12,8 @@ html {
     font-family: 'Roboto', sans-serif;
     font-size: 14pt;
 
-    --body-dark: #444;
     --text: #000;
-    --text-dark: #e4e4e4;
     --text-alt: #888;
-    --text-alt-dark: rgb(199, 199, 199);
     --text-accent: rgb(211, 211, 211);
     --select-highlight: #c9ddf7;
 }
@@ -143,7 +139,7 @@ img {
 }
 
 code {
-    font-family: 'Fira Mono', monospace;
+    font-family: monospace;
     font-size: 12pt;
     background-color: #f2f2f2;
 }
@@ -157,7 +153,7 @@ code {
     header {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;    
+        justify-content: center;
         justify-content: space-between;
     }
     #icons {
@@ -413,212 +409,4 @@ pre[class*="language-"] {
 
 .token.variable {
     color: #e53935;
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: var(--body-dark);
-        color: var(--text-dark);
-    }
-
-    a {
-        color: rgb(143, 198, 229);
-    }
-
-    .title-link {
-        color: var(--text-dark);
-    }
-
-    a:hover {
-        color: var(--text-alt-dark);
-    }
-
-    .aside {
-        color: var(--text-alt-dark)
-    }
-
-    code {
-        background-color: #2f2f2f;
-    }
-
-    /*
-    * Syntax Highlight: Prism Material Dark
-     */
-    code[class*="language-"],
-    pre[class*="language-"] {
-        color: #eee;
-        background: #2f2f2f;
-    }
-
-    code[class*="language-"]::-moz-selection,
-    pre[class*="language-"]::-moz-selection,
-    code[class*="language-"] ::-moz-selection,
-    pre[class*="language-"] ::-moz-selection {
-        background: #363636;
-    }
-
-    code[class*="language-"]::selection,
-    pre[class*="language-"]::selection,
-    code[class*="language-"] ::selection,
-    pre[class*="language-"] ::selection {
-        background: #363636;
-    }
-
-    :not(pre) > code[class*="language-"] {
-        white-space: normal;
-        border-radius: 0.2em;
-        padding: 0.1em;
-    }
-
-    .language-css > code,
-    .language-sass > code,
-    .language-scss > code {
-        color: #fd9170;
-    }
-
-    .token.atrule {
-        color: #c792ea;
-    }
-
-    .token.attr-name {
-        color: #ffcb6b;
-    }
-
-    .token.attr-value {
-        color: #a5e844;
-    }
-
-    .token.attribute {
-        color: #a5e844;
-    }
-
-    .token.boolean {
-        color: #c792ea;
-    }
-
-    .token.builtin {
-        color: #ffcb6b;
-    }
-
-    .token.cdata {
-        color: #80cbc4;
-    }
-
-    .token.char {
-        color: #80cbc4;
-    }
-
-    .token.class {
-        color: #ffcb6b;
-    }
-
-    .token.class-name {
-        color: #f2ff00;
-    }
-
-    .token.comment {
-        color: #616161;
-    }
-
-    .token.constant {
-        color: #c792ea;
-    }
-
-    .token.deleted {
-        color: #ff6666;
-    }
-
-    .token.doctype {
-        color: #616161;
-    }
-
-    .token.entity {
-        color: #ff6666;
-    }
-
-    .token.function {
-        color: #c792ea;
-    }
-
-    .token.hexcode {
-        color: #f2ff00;
-    }
-
-    .token.id {
-        color: #c792ea;
-        font-weight: bold;
-    }
-
-    .token.important {
-        color: #c792ea;
-        font-weight: bold;
-    }
-
-    .token.inserted {
-        color: #80cbc4;
-    }
-
-    .token.keyword {
-        color: #c792ea;
-    }
-
-    .token.number {
-        color: #fd9170;
-    }
-
-    .token.operator {
-        color: #89ddff;
-    }
-
-    .token.prolog {
-        color: #616161;
-    }
-
-    .token.property {
-        color: #80cbc4;
-    }
-
-    .token.pseudo-class {
-        color: #a5e844;
-    }
-
-    .token.pseudo-element {
-        color: #a5e844;
-    }
-
-    .token.punctuation {
-        color: #89ddff;
-    }
-
-    .token.regex {
-        color: #f2ff00;
-    }
-
-    .token.selector {
-        color: #ff6666;
-    }
-
-    .token.string {
-        color: #a5e844;
-    }
-
-    .token.symbol {
-        color: #c792ea;
-    }
-
-    .token.tag {
-        color: #ff6666;
-    }
-
-    .token.unit {
-        color: #fd9170;
-    }
-
-    .token.url {
-        color: #ff6666;
-    }
-
-    .token.variable {
-        color: #ff6666;
-    }
 }
