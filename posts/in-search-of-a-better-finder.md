@@ -1,6 +1,6 @@
 ---
 title: In Search of a Better File Finder
-date: 2021-05-10
+date: 2021-05-11
 tags: ["vim", "code", "python", "linux", "fzf"]
 description: Trying to design a file finder that fits my needs
 ---
