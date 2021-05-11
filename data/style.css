@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
 
 * {
     box-sizing: border-box;
@@ -139,7 +140,7 @@ img {
 }
 
 code {
-    font-family: monospace;
+    font-family: "Fira Mono", monospace;
     font-size: 12pt;
     background-color: #f2f2f2;
 }
