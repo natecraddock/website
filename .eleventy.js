@@ -10,10 +10,10 @@ module.exports = function(eleventyConfig) {
     // Plugins!
     eleventyConfig.addPlugin(syntaxHighlight);
     eleventyConfig.addPlugin(pluginRss);
-    
+
     // Add a filter for dates
     eleventyConfig.addFilter("readableDate", date => {
-        return moment(date).format("LL");
+        return moment.parseZone(date).format("LL");
     });
 
     eleventyConfig.addFilter("sortIndex", series => {
@@ -57,7 +57,7 @@ module.exports = function(eleventyConfig) {
             }
         });
 
-        
+
         return [...all_tags].sort();
     });
 
