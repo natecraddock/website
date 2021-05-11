@@ -1,6 +1,6 @@
 ---
 title: Reckless Drivin' - Decryption
-date: 2021-03-05 20:00:00 -7
+date: 2021-03-05
 tags: ["reckless-drivin", "c", "code", "reverse-engineering", "decryption"]
 series: "Reckless Drivin"
 series_index: 3
@@ -9,10 +9,10 @@ series_index: 3
 The original Reckless Drivin' game cost $12. The first three levels were free to play, with four through
 ten being restricted to paying players. When I played the game as a kid I only ever played the first three levels
 until Jonas released the game for free after moving on to other projects. I am not aware of what details were involved in the process of registering the game, but after registration the game could be unlocked using the registered name and a
-registration code. The free registration information was under the name of **Free** and the code **B3FB09B1EB**. 
+registration code. The free registration information was under the name of **Free** and the code **B3FB09B1EB**.
 With this data entered I was able to play all ten levels of the game.
 
-Looking through the source code in `packs.c` I noticed a function `uint32_t CryptData(uint_32_t *data, uint32_t len)`. 
+Looking through the source code in `packs.c` I noticed a function `uint32_t CryptData(uint_32_t *data, uint32_t len)`.
 Further inspection showed that this function was used to decrypt the level data in levels 4 through 10. The process starts with
 setting the global `gKey` used for decryption.
 1. Load registration information from the preferences, or prompt the player if this is the first time playing
@@ -49,7 +49,7 @@ fork. In this case, level 4 is used for validating registration.
 2. `CryptData()` is run on the resource data. This function iterates over the bytes in the level resource data, doing an exclusive
 or with `gKey` for each byte of data. There is some additional logic for when the resource length is not a multiple of four.
 3. As the data is being decrypted, a variable `check` is incremented with each piece of decrypted data.
-4. If the `check` returned from `CryptData()` is the same as `Chck` in the resource fork, then the data has been decrypted 
+4. If the `check` returned from `CryptData()` is the same as `Chck` in the resource fork, then the data has been decrypted
 successfully and the player is allowed to play levels 4 through 10.
 
 Levels 5 through 10 are also encrypted, but the values of `check` returned for these levels are different, so it is not used

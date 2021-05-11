@@ -1,6 +1,6 @@
 ---
 title: Reckless Drivin' - LZRW Decompression
-date: 2021-03-03 20:00:00 -7
+date: 2021-03-03
 tags: ["reckless-drivin", "c", "code", "reverse-engineering"]
 series: "Reckless Drivin"
 series_index: 2
@@ -12,7 +12,7 @@ convert this into a readable format.
 Rather than trying to understand the structure of the resource fork binary used to generate
 `unpacked_data`, I found it simpler
 to parse `unpacked_data` into my own format. I created
-[scripts/convert.py](https://github.com/natecraddock/open-reckless-drivin/blob/master/scripts/convert.py) for the purpose. I took each 
+[scripts/convert.py](https://github.com/natecraddock/open-reckless-drivin/blob/master/scripts/convert.py) for the purpose. I took each
 resource like `data 'Pack' (128, "Object Definitions") {...}` and converted it into a struct like
 the following.
 
@@ -47,7 +47,7 @@ and jumping over each resource based off the length of the current resource. Wit
 
 ## LZRW Decompression
 
-With the data in a format readable from C code it was time to actually interpret the data! There 
+With the data in a format readable from C code it was time to actually interpret the data! There
 were a few calls to `LZRWDecodeHandle()` throughout the original source code. A resource would be passed
 to this function after reading it from the resource fork. Some research revealed that LZRW is a decompression
 algorithm created by Ross Williams in the 1990s. His [website](https://web.archive.org/web/20060707195328/http://www.ross.net/compression/)
@@ -82,7 +82,7 @@ After decompressing the data there are two low-hanging-fruits to pick.
 * Decrypting the level data. Levels 4 through 10 are encrypted. The levels would only
 be decrypted when the copy of the game was registered. This data is decrypted before
 passing to the LZRW algorithm, so trying to decompress these resources would fail.
-* Reading the images in the PPic resources. The PPic resources are passed to the 
+* Reading the images in the PPic resources. The PPic resources are passed to the
 `DrawPicture()` function, which some searches showed was part of Apple's QuickDraw image
 format.
 

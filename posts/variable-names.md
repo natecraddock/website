@@ -1,6 +1,6 @@
 ---
 title: Variable Names
-date: 2020-06-29 12:00:00 -7
+date: 2020-06-29
 tags: ["code", "humor"]
 description: Funny variable names in various programming languages
 ---

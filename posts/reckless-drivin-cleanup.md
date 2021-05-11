@@ -1,7 +1,7 @@
 ---
 title: Reckless Drivin' - Cleanup
-date: 2020-07-23 20:00:00 -7
-modified: 2021-03-03 20:00:00 -7
+date: 2020-07-23
+modified: 2021-03-03
 tags: ["reckless-drivin", "c", "code", "reverse-engineering"]
 series: "Reckless Drivin"
 series_index: 1
@@ -23,7 +23,7 @@ After forking and cloning the repository, it became immediately clear that some 
 void main()
 {
 	Init();
-	while(!gExit) 
+	while(!gExit)
 		if(gGameOn) GameFrame();
 		else Eventloop();
 	Exit();

@@ -13,7 +13,7 @@ module.exports = function(eleventyConfig) {
 
     // Add a filter for dates
     eleventyConfig.addFilter("readableDate", date => {
-        return moment.parseZone(date)//.format("LL");
+        return moment.parseZone(date.toUTCString()).format("LL");
     });
 
     eleventyConfig.addFilter("sortIndex", series => {
