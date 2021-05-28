@@ -19,6 +19,7 @@ html {
 
 body {
     background-color: #fdfdfd;
+    word-wrap: break-word;
 }
 
 img {
