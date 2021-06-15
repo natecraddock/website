@@ -14,7 +14,7 @@ eleventyComputed:
   description: "Nathan Craddock - Series: {{ series_name }}"
 ---
 
-<h1 class="page-title">Posts in {{ series_name }}</h1>
+<h1>Posts in the {{ series_name }} series</h1>
 <p>{{series_descriptions[series_name]}}</p><br><hr>
 
 {%- for series in collections.series | sortIndex -%}

@@ -31,8 +31,8 @@ h1, h2, h3, h4, h5, h6, p, ul, ol {
     margin-bottom: 1ch;
 }
 
-h1, h2 {
-    margin-top: 1ch;
+p {
+    margin-bottom: 1rem;
 }
 
 p, li {
@@ -74,14 +74,11 @@ a:hover {
     color: var(--text-alt);
 }
 
-.aside {
-    color: var(--text-alt)
-}
-
 header {
     display: flex;
     align-items: center;
-    padding-top: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     margin-bottom: 1rem;
     flex-direction: row;
     flex-wrap: wrap;
@@ -159,6 +156,23 @@ hr {
 
 .list-post, .list-tag {
     padding-bottom: 1rem;
+}
+
+.list-post {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+time {
+    color: var(--text-alt);
+}
+
+@media screen and (max-width: 650px) {
+    .list-post {
+        flex-direction: column;
+    }
 }
 
 .tag {
