@@ -16,11 +16,11 @@ title: Nathan Craddock
         <main>
              <header>
                 <div id="links">
-                    <a class="title-link" href="/">Home</a>
+                    <a class="title-link {% if active_nav === "home" %}active-nav{% endif %}" href="/">Home</a>
                     <span class="gap"></span>
-                    <a class="title-link" href="/blog">Blog</a>
+                    <a class="title-link {% if active_nav === "blog" %}active-nav{% endif %}" href="/blog">Blog</a>
                     <span class="gap"></span>
-                    <a class="title-link" href="/tags">Tags</a>
+                    <a class="title-link {% if active_nav === "tags" %}active-nav{% endif %}" href="/tags">Tags</a>
                 </div>
             </header>
             {{ content | safe }}
