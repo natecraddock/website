@@ -5,9 +5,9 @@ layout: base.njk
 <div class="page-title">
     <h1> {{ title }} </h1>
     {% if modified %}
-        <span class="date" title="Updated {{ modified | readableDate }}">Posted {{ page.date | readableDate }}<span>
+        <span class="date" title="Updated {{ modified | readableDate }}">{{ page.date | readableDate }}<span>
     {% else %}
-        <span class="date" title="Unchanged from first post">Posted {{ page.date | readableDate }}<span>
+        <span class="date" title="Unchanged from first post">{{ page.date | readableDate }}<span>
     {% endif %}
 </div>
 
