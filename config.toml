@@ -1,0 +1,42 @@
+baseURL = "https://nathancraddock.com/"
+languageCode = "en-us"
+title = "Nathan Craddock"
+
+[author]
+  name = "Nathan Craddock"
+
+[taxonomies]
+  tag = "tags"
+  series = "series"
+
+sectionPagesMenu = "main"
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    title = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    title = "Blog"
+    url = "/blog/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "tag"
+    name = "Tags"
+    title = "Tags"
+    url = "/tags/"
+    weight = 3
+
+[markup]
+  [markup.highlight]
+    style = "friendly"
+
+[outputFormats]
+  [outputFormats.RSS]
+    mediatype = "application/rss"
+    baseName = "feed"

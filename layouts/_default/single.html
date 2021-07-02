@@ -1,0 +1,38 @@
+{{ define "main" }}
+
+<div class="page-title">
+  <h1>{{ .Title }}</h1>
+  <time class="alt-text">{{ .Date.Format "January 2, 2006" }}</time>
+</div>
+
+<hr>
+<div>
+  {{ .Content }}
+</div>
+<hr>
+
+{{ if isset .Params "series" }}
+  {{ $related := where .Site.RegularPages ".Params.series" "eq" .Params.series }}
+
+  <h2 class="aside">This is a post in the {{ .Params.series }} series</h2>
+
+  {{ range $related }}
+    <ul class="ul-no-style">
+      <li class="list-post">
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+        <time class="alt-text">{{ .Date.Format "January 2, 2006" }}</time>
+      </li>
+    </ul>
+  {{ end }}
+  <hr>
+{{ end }}
+
+<div id="tags">
+Tags:
+{{- range (.GetTerms "tags") -}}
+  <a class="tag" href="{{ .Page.Permalink }}">{{- .Page.Title -}}</a>
+{{- end -}}
+</div>
+
+
+{{ end }}

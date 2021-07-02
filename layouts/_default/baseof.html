@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {{/* <meta name="description" content="{{ description | safe }}"> */}}
+        <link rel="stylesheet" href="/style.css" type="text/css">
+        {{ with .OutputFormats.Get "rss" -}}
+            {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+        {{ end -}}
+
+        <title>{{ .Site.Title }}</title>
+    </head>
+
+    <body>
+        <main>
+             <header>
+                <div id="links">
+                    {{/*
+                    <a class="title-link {% if active_nav === "home" %}active-nav{% endif %}" href="/">Home</a>
+                    <span class="gap"></span>
+                    <a class="title-link {% if active_nav === "blog" %}active-nav{% endif %}" href="/blog">Blog</a>
+                    <span class="gap"></span>
+                    <a class="title-link {% if active_nav === "tags" %}active-nav{% endif %}" href="/tags">Tags</a>
+                    */}}
+                    {{ $currentPage := . }}
+                    {{ range .Site.Menus.main }}
+                    <a class="title-link {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+                                            active-nav
+                                            {{ end }}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+                    <span class="gap"></span>
+                    {{ end }}
+                </div>
+            </header>
+
+            {{ block "main" . }}
+
+            {{ end }}
+
+            <div id="scroll-buffer"></div>
+        </main>
+    </body>
+</html>
