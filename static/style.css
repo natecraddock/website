@@ -205,7 +205,7 @@ code {
 
 pre {
     padding: 1rem;
-    overflow-x: auto;
+    overflow-x: scroll;
     border-radius: 0.25rem;
     line-height: 1.3em;
 }
@@ -214,4 +214,5 @@ pre {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
+    overflow: hidden;
 }
