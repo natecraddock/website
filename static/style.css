@@ -130,12 +130,6 @@ img {
     object-fit: cover;
 }
 
-code {
-    font-family: var(--mono-font);
-    font-size: 12pt;
-    /* background-color: #f2f2f2; */
-}
-
 ::-moz-selection,
 ::selection {
     background: var(--select-highlight);
@@ -192,6 +186,8 @@ hr {
 /* syntax highlight */
 
 code {
+    font-family: var(--mono-font);
+    font-size: 12pt;
     background-color: #f0f0f0;
     border-radius: 0.25rem;
 }
@@ -204,6 +200,7 @@ code {
 }
 
 pre {
+    word-wrap: normal;
     padding: 1rem;
     overflow-x: scroll;
     border-radius: 0.25rem;
@@ -211,6 +208,7 @@ pre {
 }
 
 .highlight {
+    background-color: #f0f0f0;
     margin-top: 1rem;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
