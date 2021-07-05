@@ -9,7 +9,11 @@
             {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
         {{ end -}}
 
-        <title>{{ .Site.Title }}</title>
+        {{ if eq .Page.Title "" }}
+            <title>{{ .Site.Title }}</title>
+        {{ else }}
+            <title>{{ .Page.Title }} | Nathan Craddock</title>
+        {{ end }}
     </head>
 
     <body>
