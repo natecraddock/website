@@ -1,7 +1,7 @@
 {{ range sort .Pages.ByTitle }}
   <ul class="ul-no-style">
     <li class="list-post">
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      <span class="alt-text"><a href="{{ .Permalink }}">{{ .Title }}</a> - ({{ len .Pages }})</span>
     </li>
   </ul>
 {{ end }}
