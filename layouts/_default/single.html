@@ -2,7 +2,11 @@
 
 <div class="page-title">
   <h1>{{ .Title }}</h1>
-  <time class="alt-text">{{ .Date.Format "January 2, 2006" }}</time>
+  <time class="alt-text" title="{{- if isset .Params "modified" -}}
+                                  Last edited on {{ .Params.Modified.Format "January 2, 2006" }}
+                                {{- end -}}">
+    {{ .Date.Format "January 2, 2006" }}
+  </time>
 </div>
 
 <hr>
