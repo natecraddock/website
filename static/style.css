@@ -43,6 +43,18 @@ li {
     margin-left: 2ch;
 }
 
+blockquote {
+    margin-bottom: 1rem;
+    /* margin-left: 2px; */
+    border-left: solid var(--text-accent) 5px;
+    font-style: italic;
+}
+
+blockquote p {
+    margin-bottom: 0;
+    margin-left: 1rem;
+}
+
 /* General Tags */
 .ul-no-style {
     padding: 0;
