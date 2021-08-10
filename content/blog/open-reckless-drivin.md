@@ -5,11 +5,11 @@ draft = false
 tags = ["reckless-drivin", "c", "programming", "reversing"]
 
 aliases = [
-  "/posts/reckless-drivin-cleanup/"
-  "/blog/reckless-drivin-cleanup/"
-  "/posts/reckless-drivin-decompression/"
-  "/blog/reckless-drivin-decompression/"
-  "/posts/reckless-drivin-decryption/"
+  "/posts/reckless-drivin-cleanup/",
+  "/blog/reckless-drivin-cleanup/",
+  "/posts/reckless-drivin-decompression/",
+  "/blog/reckless-drivin-decompression/",
+  "/posts/reckless-drivin-decryption/",
   "/blog/reckless-drivin-decryption/"
 ]
 +++
