@@ -16,18 +16,21 @@
 <hr>
 
 {{ if isset .Params "series" }}
-  {{ $related := where .Site.RegularPages ".Params.series" "eq" .Params.series }}
+  {{ $name := .Params.series | urlize }}
+  {{ $series := index .Site.Taxonomies.series $name }}
 
   <h2 class="aside">This is a post in the {{ .Params.series }} series</h2>
 
-  {{ range $related }}
-    <ul class="ul-no-style">
+  <ul class="ul-no-style">
+  {{ range $series.Pages.Reverse }}
+    {{ $current := eq .File.UniqueID $.File.UniqueID }}
       <li class="list-post">
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
+        <a class="{{ if $current }} current-series {{ end }}" href="{{ .Permalink }}">{{ .Title }}</a>
         <time class="alt-text">{{ .Date.Format "January 2, 2006" }}</time>
       </li>
-    </ul>
   {{ end }}
+  </ul>
+
   <hr>
 {{ end }}
 

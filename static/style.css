@@ -183,6 +183,10 @@ hr {
     flex-wrap: wrap;
 }
 
+.current-series {
+    font-weight: bold;
+}
+
 .alt-text {
     color: var(--text-alt);
 }
