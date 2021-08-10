@@ -27,16 +27,16 @@ img {
     margin-bottom: 2ch;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, ol {
+h1, h2, h3, h4, h5, h6, p, ol {
     margin-bottom: 1ch;
 }
 
-p {
+ul, p {
     margin-bottom: 1rem;
 }
 
 p, li {
-    line-height: 1.5em;
+    line-height: 1.6em;
 }
 
 li {
@@ -104,7 +104,7 @@ header {
 
 main {
     display: grid;
-    grid-template-columns: 1fr min(75ch, 90%) 1fr;
+    grid-template-columns: 1fr min(72ch, 90%) 1fr;
 }
 
 main > * {
