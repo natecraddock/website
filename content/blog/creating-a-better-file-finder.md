@@ -1,7 +1,7 @@
 +++
 title = "Creating a Better File Finder"
 date = 2021-06-29
-tags = ["neovim", "code", "python", "linux"]
+tags = ["neovim", "programming", "python", "linux"]
 description = "A neovim file finder that fits my needs"
 
 aliases = [

@@ -1,8 +1,8 @@
 +++
 title = "Reckless Drivin' - LZRW Decompression"
 date = 2021-03-03
-tags = ["reckless-drivin", "c", "code", "reverse-engineering"]
-series = "Reckless Drivin"
+tags = ["reckless-drivin", "c", "programming", "reversing"]
+draft = true
 
 aliases = [
   "/posts/reckless-drivin-decompression/"

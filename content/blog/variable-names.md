@@ -1,7 +1,7 @@
 +++
 title = "Variable Names"
 date = "2020-06-29"
-tags = ["code", "humor"]
+tags = ["programming", "humor"]
 description = "Funny variable names in various programming languages"
 
 aliases = [

@@ -1,8 +1,8 @@
 +++
 title = "Reckless Drivin' - Decryption"
 date = 2021-03-05
-tags = ["reckless-drivin", "c", "code", "reverse-engineering", "decryption"]
-series = "Reckless Drivin"
+tags = ["reckless-drivin", "c", "programming", "reversing", "decryption"]
+draft = true
 
 aliases = [
   "/posts/reckless-drivin-decryption/"
