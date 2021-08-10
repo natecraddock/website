@@ -6,7 +6,7 @@
 
 html {
     --text: #000;
-    --text-alt: #888;
+    --text-alt: #555;
     --text-accent: rgb(211, 211, 211);
     --select-highlight: #c9ddf7;
     --mono-font: San Francisco Mono, Monaco, "Liberation Mono", "Consolas", "Lucida Console", "DejaVu Sans Mono", monospace;
@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6, p, ol {
     margin-bottom: 1ch;
 }
 
-ul, p {
+ul, p, aside {
     margin-bottom: 1rem;
 }
 
@@ -43,10 +43,18 @@ li {
     margin-left: 2ch;
 }
 
+aside {
+    border-left: solid var(--text-accent) 5px;
+    color: var(--text-alt);
+}
+
+aside p {
+    margin-left: 1rem;
+}
+
 blockquote {
     margin-bottom: 1rem;
-    /* margin-left: 2px; */
-    border-left: solid var(--text-accent) 5px;
+    /* border-left: solid var(--text-accent) 5px; */
     font-style: italic;
 }
 
