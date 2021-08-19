@@ -28,11 +28,11 @@ img {
     margin-bottom: 2ch;
 }
 
-h1, h2, h3, h4, h5, h6, p, ol {
+h1, h2, h3, h4, h5, h6, p {
     margin-bottom: 1ch;
 }
 
-ul, p, aside {
+ol, ul, p, aside {
     margin-bottom: 1rem;
 }
 
@@ -55,7 +55,7 @@ aside p {
 
 blockquote {
     margin-bottom: 1rem;
-    border-left: solid var(--code-background) 8px;
+    /* border-left: solid var(--code-background) 8px; */
     font-style: italic;
 }
 
