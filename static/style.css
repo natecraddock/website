@@ -8,6 +8,7 @@ html {
     --text: #000;
     --text-alt: #555;
     --text-accent: rgb(211, 211, 211);
+    --code-background: #F0F0F0;
     --select-highlight: #c9ddf7;
     --mono-font: San Francisco Mono, Monaco, "Liberation Mono", "Consolas", "Lucida Console", "DejaVu Sans Mono", monospace;
     --sans-font: -apple-system, BlinkMacSystemFont, "Liberation Sans", Roboto, "Segoe UI", Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -44,7 +45,7 @@ li {
 }
 
 aside {
-    border-left: solid var(--text-accent) 5px;
+    border-left: solid var(--code-background) 8px;
     color: var(--text-alt);
 }
 
@@ -54,7 +55,7 @@ aside p {
 
 blockquote {
     margin-bottom: 1rem;
-    /* border-left: solid var(--text-accent) 5px; */
+    border-left: solid var(--code-background) 8px;
     font-style: italic;
 }
 
@@ -212,7 +213,7 @@ hr {
 code {
     font-family: var(--mono-font);
     font-size: 12pt;
-    background-color: #f0f0f0;
+    background-color: var(--code-background);
     border-radius: 0.25rem;
 }
 
@@ -232,7 +233,7 @@ pre {
 }
 
 .highlight {
-    background-color: #f0f0f0;
+    background-color: var(--code-background);
     margin-top: 1rem;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
