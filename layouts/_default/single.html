@@ -28,8 +28,8 @@
   {{ range $series.Pages.Reverse }}
     {{ $current := eq .File.UniqueID $.File.UniqueID }}
       <li class="list-post">
-        <a class="{{ if $current }} current-series {{ end }}" href="{{ .Permalink }}">{{ .Title }}</a>
-        <time class="alt-text">{{ .Date.Format "January 2, 2006" }}</time>
+        <a class="link-name {{ if $current }} current-series {{ end }}" href="{{ .Permalink }}">{{ .Title }}</a>
+        <time class="alt-text nowrap">{{ .Date.Format "January 2, 2006" }}</time>
       </li>
   {{ end }}
   </ul>

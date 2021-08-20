@@ -173,6 +173,16 @@ hr {
     margin-top: 10%;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
+.link-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .list-post, .list-tag {
     padding-bottom: 1rem;
 }
@@ -181,7 +191,7 @@ hr {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .current-series {
@@ -193,8 +203,14 @@ hr {
 }
 
 @media screen and (max-width: 650px) {
+    .link-name {
+        white-space: normal;
+        overflow: visible;
+    }
+
     .list-post {
         flex-direction: column;
+        flex-wrap: wrap;
     }
 }
 

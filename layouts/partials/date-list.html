@@ -1,8 +1,8 @@
 {{ range .Pages }}
   <ul class="ul-no-style">
     <li class="list-post">
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-      <time class="alt-text">{{ .Date.Format "January 2, 2006" }}</time>
+      <a class="link-name" href="{{ .Permalink }}">{{ .Title }}</a>
+      <time class="alt-text nowrap">{{ .Date.Format "January 2, 2006" }}</time>
     </li>
   </ul>
 {{ end }}
