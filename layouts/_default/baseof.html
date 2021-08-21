@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {{/* <meta name="description" content="{{ description | safe }}"> */}}
+        {{ if isset .Params "description" }}
+            <meta name="description" content="{{ .Params.description | safe }}">
+        {{ end }}
         <link rel="stylesheet" href="/style.css" type="text/css">
         {{ with .OutputFormats.Get "rss" -}}
             {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
@@ -22,9 +24,7 @@
                 <div id="links">
                     {{ $currentPage := . }}
                     {{ range .Site.Menus.main }}
-                    <a class="title-link {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
-                                            active-nav
-                                            {{ end }}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+                    <a class="title-link" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
                     <span class="gap"></span>
                     {{ end }}
                 </div>

@@ -2,6 +2,8 @@
 
 <h2 class="page-title">Posts tagged "{{ .Title }}"</h2>
 
+{{ range .Pages }}
 {{ partial "date-list.html" . }}
+{{ end }}
 
 {{ end }}

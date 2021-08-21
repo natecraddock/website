@@ -1,5 +1,7 @@
 {{ define "main" }}
 
-{{ partial "list.html" . }}
+{{ range .Pages.ByTitle }}
+    {{ partial "list.html" . }}
+{{ end }}
 
 {{ end }}

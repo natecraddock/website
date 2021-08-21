@@ -1,5 +1,7 @@
 {{ define "main" }}
 
-{{ partial "date-list.html" . }}
+{{ range .Pages }}
+    {{ partial "date-list.html" . }}
+{{ end }}
 
 {{ end }}

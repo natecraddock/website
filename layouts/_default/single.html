@@ -23,16 +23,9 @@
   {{ $series := index .Site.Taxonomies.series $name }}
 
   <h2 class="aside">This is a post in the {{ .Params.series }} series</h2>
-
-  <ul class="ul-no-style">
   {{ range $series.Pages.Reverse }}
-    {{ $current := eq .File.UniqueID $.File.UniqueID }}
-      <li class="list-post">
-        <a class="link-name {{ if $current }} current-series {{ end }}" href="{{ .Permalink }}">{{ .Title }}</a>
-        <time class="alt-text nowrap">{{ .Date.Format "January 2, 2006" }}</time>
-      </li>
+    {{ partial "date-list.html" . }}
   {{ end }}
-  </ul>
 
   <hr>
 {{ end }}
