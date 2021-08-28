@@ -23,7 +23,7 @@ reasons, but mostly because my desire to share each step of the journey required
 enough effort to discourage me from writing as frequently as I wanted.
 
 {{< aside >}}
-I made sure to redirect the deleted post URLS to this page, in case there was
+I made sure to redirect the deleted post URLs to this page, in case there was
 actually anyone following along before I started sharing these posts.
 {{</ aside >}}
 
