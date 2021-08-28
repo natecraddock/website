@@ -3,6 +3,7 @@ title = "Open Reckless Drivin'"
 date = 2021-08-09T17:58:55-06:00
 draft = false
 tags = ["reckless-drivin", "c", "programming", "reversing"]
+series = "Open Reckless Drivin'"
 
 aliases = [
   "/posts/reckless-drivin-cleanup/",
