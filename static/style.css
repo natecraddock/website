@@ -214,10 +214,13 @@ hr {
     }
 }
 
+#tags {
+    margin-top: 1rem;
+}
+
 .tag {
     display: inline-block;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-right: 8px;
 }
 
 .badge {
