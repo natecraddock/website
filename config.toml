@@ -40,3 +40,6 @@ sectionPagesMenu = "main"
   [outputFormats.RSS]
     mediatype = "application/rss"
     baseName = "feed"
+
+# prevent new readers from getting a backlog of everything
+rssLimit = 10
