@@ -22,5 +22,6 @@ Find me on [GitHub](https://github.com/natecraddock), or send an email to
 [contact@nathancraddock.com](mailto:contact@nathancraddock.com) if you want to
 say hi! This blog also has an [RSS feed](/feed.xml).
 
-This website is hosted on [Cloudflare Pages](https://pages.cloudflare.com/) and
-generated with [Hugo](https://gohugo.io).
+This website is hosted on [Cloudflare Pages](https://pages.cloudflare.com/),
+generated with [Hugo](https://gohugo.io), and licensed under [CC BY-SA
+4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1).
