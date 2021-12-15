@@ -26,8 +26,8 @@ textures, level data, sounds, and other game assets. The
 [commit](https://github.com/jechter/RecklessDrivin/commit/12b3ca40ea840d53906002131bb0416d63f42955)
 that introduced the file is titled "resource fork". The project's readme says:
 
-> "To be able to upload this to git... the resource forks of the rsrc files have
-> been moved to the data fork."
+> To be able to upload this to git... the resource forks of the rsrc files have
+> been moved to the data fork.
 
 Until this point I hadn't ever heard of resource or data forks, so I turned to
 Wikipedia and archived Macintosh articles to learn more.
@@ -53,13 +53,13 @@ From C source code, a resource can be accessed with the following call:
 Handle picture = GetResource('PICT', 1000);
 ```
 
-{{< aside >}}
+{{< sidenote >}}
 The four characters of the type identifier were written inside a character
 literal which would be interpreted as a single 32-bit integer. This code emits a
 `-Wmultichar` warning in gcc, but it does work. In my reimplementation I chose
 to use four-character string literals instead of relying on the
 implementation defined behavior of character literals.
-{{</ aside >}}
+{{</ sidenote >}}
 
 Many tools like git only read information from the data fork, which is why Jonas
 moved all the data from the resource fork to the data fork before committing in
@@ -102,9 +102,9 @@ resources are `Pack`s including:
 * Level Data
 * Sounds
 
-{{< aside >}}
+{{< sidenote >}}
 I assume that `Pack` implies packed or compressed data, as I explain later.
-{{</ aside >}}
+{{</ sidenote >}}
 
 Unpacking `Data` verified that all of the game assets were preserved, but I
 still needed a way to read the file in code. I couldn't find any information on
@@ -122,11 +122,11 @@ struct Resource {
 };
 ```
 
-{{< aside >}}
+{{< sidenote >}}
 The integer sizes in this struct are larger than needed. I could repack the data
 to align with the exact integer sizes used for the type and ID, but that doesn't
 matter for this description.
-{{</ aside >}}
+{{</ sidenote >}}
 
 This made it trivial to iterate over the resources stored in the data file to
 find any resource given a type and ID. Now that I could read the data it was
@@ -216,11 +216,11 @@ Reckless Drivin', I determined that the data was stored in the
 [QuickDraw](https://en.wikipedia.org/wiki/QuickDraw) format. These images are
 used for the loading screen, menus, and credits screens in Reckless Drivin'.
 
-{{< aside >}}
+{{< sidenote >}}
 When a QuickDraw image is stored in a resource fork, it is usually in the `PICT`
 type. I assume that `PPic` means *Packed PICT*, but unless Jonas reveals what he
 meant by `PPic` we will never know.
-{{</ aside >}}
+{{</ sidenote >}}
 
 QuickDraw is an Apple graphics library documented in [Inside Macintosh: Imaging
 With
@@ -241,9 +241,9 @@ opcodes include
 The QuickDraw format also specifies certain bytes that are stored in the header
 of the image:
 
-> "In a picture created in extended version 2 or version 2 format, the first
+> In a picture created in extended version 2 or version 2 format, the first
 > opcode is the 2-byte VersionOp opcode: $0011. This is followed by the 2-byte
-> Version opcode: $02FF"
+> Version opcode: $02FF
 
 So I could look at the decompressed `PPic` files and look for `0011` and `02FF`
 to confirm that the decompression was successful. The QuickDraw PDF also

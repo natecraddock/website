@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6, p {
     margin-bottom: 1ch;
 }
 
-ol, ul, p, aside {
+ol, ul, p {
     margin-bottom: 1rem;
 }
 
@@ -44,12 +44,14 @@ li {
     margin-left: 2ch;
 }
 
-aside {
+small {
+    display: block;
     border-left: solid var(--code-background) 8px;
     color: var(--text-alt);
 }
 
-aside p {
+small p {
+    font-size: 11pt;
     margin-left: 1rem;
 }
 
@@ -65,6 +67,10 @@ blockquote p {
 }
 
 /* General Tags */
+.title {
+    display: inline-block;
+}
+
 .ul-no-style {
     padding: 0;
     margin: 0;
@@ -79,7 +85,7 @@ blockquote p {
     margin: 1ch;
 }
 
-.page-title {
+.post-header {
     margin-bottom: 2ch;
 }
 
@@ -131,13 +137,16 @@ main > * {
     flex-direction: row;
     justify-content: space-between;
 }
+
 #series-nav span {
     display: inline-block;
     width: 30%
 }
+
 #series-nav span:first-child {
     text-align: left;
 }
+
 #series-nav span:last-child {
     text-align: right;
 }
@@ -220,7 +229,13 @@ hr {
 
 .tag {
     display: inline-block;
-    padding-right: 8px;
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
+    margin-right: 0.4rem;
+    border-radius: 5px;
+    border: 1px solid var(--text-alt);
+    text-decoration: none;
+    font-weight: normal;
 }
 
 .badge {
@@ -231,9 +246,15 @@ hr {
 
 code {
     font-family: var(--mono-font);
-    font-size: 12pt;
+    font-size: 11pt;
     background-color: var(--code-background);
     border-radius: 0.25rem;
+}
+
+@media screen and (max-width: 650px) {
+    code {
+        font-size: 10pt;
+    }
 }
 
 :not(pre) > code {

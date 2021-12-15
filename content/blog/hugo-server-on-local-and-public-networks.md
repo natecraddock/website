@@ -52,13 +52,13 @@ your network. The program is called cloudflared and is easy to install and use.
 docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup)
 for installing cloudflared for Linux, MacOS, or Windows.
 
-{{< aside >}}
+{{< sidenote >}}
 The Cloudflare docs are focused on creating persistent tunnels registered on
 your own domain, and only briefly cover the TryCloudflare service. There is no
 need to authenticate cloudflared or create config files to use the subdomains of
 `trycloudflare.com`. You don't even need a Cloudflare account! Here is [more
 documentation on TryCloudflare](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/trycloudflare).
-{{</ aside >}}
+{{</ sidenote >}}
 
 Once installed the following command will create a temporary tunnel. The `--url`
 flag specifies which local server to connect the tunnel to.

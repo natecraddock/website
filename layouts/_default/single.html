@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-<div class="page-title">
+<div class="post-header">
   <h1>{{ .Title }}</h1>
 
   {{ if isset .Params "subtitle" }}
@@ -14,9 +14,9 @@
   </time>
 
   <div id="tags">
-  {{- range sort (.GetTerms "tags") "LinkTitle" -}}
-    <a class="tag" href="{{ .Page.Permalink }}">{{- .Page.Title -}}</a>
-  {{- end -}}
+    {{- range sort (.GetTerms "tags") "LinkTitle" -}}
+      <a class="tag title-link alt-text" href="{{ .Page.Permalink }}">{{- .Page.Title -}}</a>
+    {{- end -}}
   </div>
 </div>
 
@@ -30,7 +30,7 @@
   {{ $name := .Params.series | urlize }}
   {{ $series := index .Site.Taxonomies.series $name }}
 
-  <h2 class="aside">This is a post in the {{ .Params.series }} series</h2>
+  <h2>This is a post in the {{ .Params.series }} series</h2>
   {{ range $series.Pages.Reverse }}
     {{ partial "date-list.html" . }}
   {{ end }}

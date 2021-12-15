@@ -23,10 +23,10 @@ game's code in as much detail as possible. That was the wrong choice for many
 reasons, but mostly because my desire to share each step of the journey required
 enough effort to discourage me from writing as frequently as I wanted.
 
-{{< aside >}}
+{{< sidenote >}}
 I made sure to redirect the deleted post URLs to this page, in case there was
 actually anyone following along before I started sharing these posts.
-{{</ aside >}}
+{{</ sidenote >}}
 
 So I have started again with the goal to write more frequently, and not be
 focused on explaining everything that I do (the commit logs are better suited to
