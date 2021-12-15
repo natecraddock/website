@@ -14,7 +14,7 @@
   </time>
 
   <div id="tags">
-  {{- range (.GetTerms "tags") -}}
+  {{- range sort (.GetTerms "tags") "LinkTitle" -}}
     <a class="tag" href="{{ .Page.Permalink }}">{{- .Page.Title -}}</a>
   {{- end -}}
   </div>
