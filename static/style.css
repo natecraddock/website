@@ -246,15 +246,9 @@ hr {
 
 code {
     font-family: var(--mono-font);
-    font-size: 11pt;
+    font-size: 10pt;
     background-color: var(--code-background);
     border-radius: 0.25rem;
-}
-
-@media screen and (max-width: 650px) {
-    code {
-        font-size: 10pt;
-    }
 }
 
 :not(pre) > code {
