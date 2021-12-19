@@ -224,6 +224,11 @@ hr {
 }
 
 #tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 0.3rem;
+    row-gap: 0.3rem;
     margin-top: 1rem;
 }
 
@@ -231,7 +236,6 @@ hr {
     display: inline-block;
     padding-right: 0.3rem;
     padding-left: 0.3rem;
-    margin-right: 0.4rem;
     border-radius: 5px;
     border: 1px solid var(--text-alt);
     text-decoration: none;
