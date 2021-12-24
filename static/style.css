@@ -101,6 +101,15 @@ a:hover {
     color: var(--text-alt);
 }
 
+.header-anchor {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.header-anchor:hover {
+    text-decoration: underline;
+}
+
 header {
     display: flex;
     align-items: center;
