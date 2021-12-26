@@ -1,7 +1,10 @@
 {{ define "main" }}
 
+<h1>Tags</h1>
+<div id="tags" style="margin-top: 0">
 {{ range .Pages.ByTitle }}
-    {{ partial "list.html" . }}
+  <a class="tag alt-text title-link" href="{{ .Permalink }}">{{ .Title }}</a>
 {{ end }}
+</div>
 
 {{ end }}
