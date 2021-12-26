@@ -20,7 +20,13 @@
   </div>
 </div>
 
+{{ if .Params.toc }}
+  <hr>
+  <h2>Table of Contents</h2>
+  {{ .TableOfContents }}
+{{ end }}
 <hr>
+
 <div>
   {{ .Content }}
 </div>
