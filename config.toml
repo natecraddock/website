@@ -11,7 +11,7 @@ title = "Nathan Craddock"
 
 [markup]
   [markup.highlight]
-    style = "friendly"
+    style = "trac"
 
 [outputFormats]
   [outputFormats.RSS]

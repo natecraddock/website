@@ -251,17 +251,11 @@ hr {
     font-weight: normal;
 }
 
-.badge {
-    max-width: 20%;
-}
-
 /* syntax highlight */
 
 code {
     font-family: var(--mono-font);
     font-size: 10pt;
-    background-color: var(--code-background);
-    border-radius: 0.25rem;
 }
 
 :not(pre) > code {
@@ -269,20 +263,41 @@ code {
     padding-right: 0.3rem;
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
+    border-radius: 5px;
+    background-color: var(--code-background);
 }
 
 pre {
     word-wrap: normal;
-    padding: 1rem;
-    overflow-x: scroll;
-    border-radius: 0.25rem;
-    line-height: 1.3em;
+    padding: 0.5rem;
+    overflow-x: auto;
+    line-height: 1.1em;
+    border-radius: 5px
 }
 
 .highlight {
-    background-color: var(--code-background);
+    border: 1px solid var(--text-alt);
+    border-radius: 5px;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    border-radius: 0.25rem;
     overflow: hidden;
+}
+
+.labeled-code {
+    border-radius: 5px;
+    border: 1px solid var(--text-alt);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.labeled-code > .highlight {
+    border: none;
+    margin: 0;
+}
+
+.code-header {
+    font-family: var(--mono-font);
+    color: var(--text-alt);
+    padding-left: 0.5rem;
+    border-bottom: 1px solid var(--text-alt);
 }

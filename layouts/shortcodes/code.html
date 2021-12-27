@@ -1,0 +1,6 @@
+<div class="labeled-code">
+    <div class="code-header">
+        {{.Get "header"}}
+    </div>
+    {{ highlight (trim .Inner "\n\r") (.Get "lang") }}
+</div>
