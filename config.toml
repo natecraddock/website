@@ -11,7 +11,7 @@ title = "Nathan Craddock"
 
 [markup]
   [markup.highlight]
-    style = "trac"
+    noClasses = false
 
 [outputFormats]
   [outputFormats.RSS]
