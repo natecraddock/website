@@ -314,7 +314,8 @@ pre {
 
 .code-header {
     font-family: var(--mono-font);
-    color: var(--text-alt);
+    font-size: 10pt;
+    line-height: 1.4rem;
     padding-left: 0.5rem;
     border-bottom: 1px solid var(--text-alt);
 }

@@ -45,7 +45,7 @@ look at C as lacking through the lens of the present. I hope to not forget the
 circumstances surrounding C's creation while also recognizing that mistakes were
 made and can be improved on.
 
-# Consistency In Types
+## Consistency In Types
 
 In many ways Zig has a very consistent type system. Although distinct from the
 behaviors of the language, I find that Zig's syntax for declaring types is very
