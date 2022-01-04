@@ -10,7 +10,7 @@
 html {
     --text: #000000;
     --text-alt: #555555;
-    --text-accent: #dfdfdf;
+    --text-accent: #eaeaea;
     --link: #36769b;
     --background: #fdfdfd;
     --select-highlight: #c9ddf7;
@@ -28,7 +28,7 @@ html {
     html {
         --text: #fbfbfb;
         --text-alt: #bbbbbb;
-        --text-accent: #343434;
+        --text-accent: #303030;
         --background: #1c1c1c;
         --link: #88aec3;
         --select-highlight: #2a649d;
@@ -58,8 +58,8 @@ p, li {
     line-height: 1.6em;
 }
 
-li {
-    margin-left: 2ch;
+ol, ul {
+    margin-left: 1.6rem;
 }
 
 small {
@@ -76,10 +76,6 @@ small p {
 blockquote {
     margin-bottom: 1rem;
     font-style: italic;
-}
-
-blockquote p {
-    margin-bottom: 0;
     margin-left: 1rem;
 }
 
