@@ -1,7 +1,6 @@
 +++
 title = "Zig Naming Conventions"
 date = 2022-01-08T21:30:52-07:00
-draft = true
 tags = ["programming", "zig"]
 +++
 
