@@ -48,18 +48,17 @@ type would be `PICT` for picture. [This
 table](https://en.wikipedia.org/wiki/Resource_fork#Major_resource_types) lists
 some of the most common types of data stored in resource forks.
 
-From C source code, a resource can be accessed with the following call:
+From C source code, a resource can be accessed with the following call, passing
+the type[^1] and the id:
 ```c
 Handle picture = GetResource('PICT', 1000);
 ```
 
-{{< sidenote >}}
-The four characters of the type identifier were written inside a character
+[^1]: The four characters of the type identifier were written inside a character
 literal which would be interpreted as a single 32-bit integer. This code emits a
 `-Wmultichar` warning in gcc, but it does work. In my reimplementation I chose
 to use four-character string literals instead of relying on the
 implementation defined behavior of character literals.
-{{</ sidenote >}}
 
 Many tools like git only read information from the data fork, which is why Jonas
 moved all the data from the resource fork to the data fork before committing in
@@ -102,10 +101,6 @@ resources are `Pack`s including:
 * Level Data
 * Sounds
 
-{{< sidenote >}}
-I assume that `Pack` implies packed or compressed data, as I explain later.
-{{</ sidenote >}}
-
 Unpacking `Data` verified that all of the game assets were preserved, but I
 still needed a way to read the file in code. I couldn't find any information on
 the resource file format, so I decided to write a small Python script
@@ -122,11 +117,9 @@ struct Resource {
 };
 ```
 
-{{< sidenote >}}
-The integer sizes in this struct are larger than needed. I could repack the data
-to align with the exact integer sizes used for the type and ID, but that doesn't
-matter for this description.
-{{</ sidenote >}}
+Note that the integer sizes in this struct are larger than needed. I could
+repack the data to align with the exact integer sizes used for the type and ID,
+but that doesn't matter for this description.
 
 This made it trivial to iterate over the resources stored in the data file to
 find any resource given a type and ID. Now that I could read the data it was
@@ -213,14 +206,12 @@ QuickDraw graphics file.
 
 By looking at the function calls surrounding the uses of the `PPic` resources in
 Reckless Drivin', I determined that the data was stored in the
-[QuickDraw](https://en.wikipedia.org/wiki/QuickDraw) format. These images are
-used for the loading screen, menus, and credits screens in Reckless Drivin'.
+[QuickDraw](https://en.wikipedia.org/wiki/QuickDraw) format.[^2] These images
+are used for the loading screen, menus, and credits screens in Reckless Drivin'.
 
-{{< sidenote >}}
-When a QuickDraw image is stored in a resource fork, it is usually in the `PICT`
-type. I assume that `PPic` means *Packed PICT*, but unless Jonas reveals what he
-meant by `PPic` we will never know.
-{{</ sidenote >}}
+[^2]: The conventional resource type for a QuickDraw image is `PICT`. I assume
+that `PPic` means *Packed PICT*, but unless Jonas reveals what he meant by
+`PPic` we will never know.
 
 QuickDraw is an Apple graphics library documented in [Inside Macintosh: Imaging
 With
@@ -352,12 +343,3 @@ my work, it was both rewarding and motivating to have access to Reckless
 Drivin's game assets in my reimplementation. This post has grown long enough, so
 I won't describe the process of writing a QuickDraw interpreter until a later
 post.
-
----
-
-*As mentioned in [my first post](/blog/open-reckless-drivin) about Open Reckless
-Drivin, my goal for these posts is to describe the interesting things I have learned while
-reimplementing the game. I am not an expert in the topics covered here; most
-of what I share I learned while working on Open Reckless Drivin'. If there is
-something unclear or incorrect, please [let me
-know](mailto:contact@nathancraddock.com) and I will correct it. Thanks!*

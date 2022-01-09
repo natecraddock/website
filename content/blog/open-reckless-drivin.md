@@ -18,15 +18,13 @@ aliases = [
 This is the second time I have started writing about [Open Reckless
 Drivin'](https://github.com/natecraddock/open-reckless-drivin), my attempt to
 reimplement Jonas Echterhoff's Macintosh racing game. In my first blog posts
-(which I have deleted), I attempted to describe the process of rewriting the
+(which I have deleted[^1]), I attempted to describe the process of rewriting the
 game's code in as much detail as possible. That was the wrong choice for many
 reasons, but mostly because my desire to share each step of the journey required
 enough effort to discourage me from writing as frequently as I wanted.
 
-{{< sidenote >}}
-I made sure to redirect the deleted post URLs to this page, in case there was
-actually anyone following along before I started sharing these posts.
-{{</ sidenote >}}
+[^1]: I made sure to redirect the deleted post URLs to this page, in case there
+was actually anyone following along before I started sharing these posts.
 
 So I have started again with the goal to write more frequently, and not be
 focused on explaining everything that I do (the commit logs are better suited to
