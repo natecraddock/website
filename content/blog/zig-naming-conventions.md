@@ -9,7 +9,7 @@ systems languages, which is mainly a side effect of Zig's implementation of type
 generics and reflection at compile time. When those features are understood, the
 naming conventions in Zig become clear. This post steps through the Zig language
 reference and gives examples for each naming guideline in context to clarify the
-the naming conventions.
+naming conventions.
 
 Zig's [style guide](https://ziglang.org/documentation/master/#Names) in the
 language reference lists the following naming guidelines:
