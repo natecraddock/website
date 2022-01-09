@@ -64,7 +64,7 @@ ol, ul {
 
 small {
     display: block;
-    border-left: solid var(--text-accent) 5px;
+    border-left: solid var(--text-accent) 4px;
     color: var(--text-alt);
 }
 
@@ -74,9 +74,15 @@ small p {
 }
 
 blockquote {
+    border-left: solid var(--text-accent) 4px;
     margin-bottom: 1rem;
     font-style: italic;
-    margin-left: 1rem;
+    padding-left: 1rem;
+}
+
+/* fix in-line formatting */
+sub, sup, code {
+    line-height: 0;
 }
 
 /* General Tags */
@@ -196,6 +202,15 @@ hr {
     margin: 2ch 0 2ch 0;
     border: 0;
     border-top: 1px solid var(--text-accent);
+}
+
+.footnotes hr {
+    margin: 3ch 0 3ch 0;
+    padding: 0;
+}
+
+.footnote-ref {
+    text-decoration: none;
 }
 
 #scroll-buffer {
