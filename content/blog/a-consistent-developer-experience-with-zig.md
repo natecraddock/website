@@ -1,6 +1,6 @@
 +++
 title = "A Consistent Developer Experience with Zig"
-date = 2022-01-14T14:17:42-07:00
+date = 2022-01-12T14:17:42-07:00
 draft = false
 tags = ["plt", "zig", "c"]
 +++
@@ -18,9 +18,9 @@ which frequently emphasizes the consistency of the language:
 Around this time I was in the process of learning Rust. I had a fair grasp on
 the concepts of ownership and lifetimes, along with the syntax of the language,
 but I didn't yet feel comfortable creating my own projects. Reading this
-enthusiastic praise from Kevin motivated me to try Zig.[^1]
+enthusiastic praise from Kevin motivated me to try Zig.[^rust]
 
-[^1]: Please don't think I'm bashing Rust here. I love the goals and
+[^rust]: Please don't think I'm bashing Rust here. I love the goals and
   capabilities of the language! But with its guarantees and features Rust is a
   larger, more complex language than C or Zig. For me Zig hits the sweet spot of
   fixing major problems in C, while staying small, consistent, and easy to fit
@@ -35,13 +35,14 @@ but for this post I will focus on the areas of Zig that I find lead to a
 consistent developer experience.
 
 Because I have a lot of C experience, and Zig is a systems language, many of the
-examples I share will compare Zig to C. In that context I find it important to
-recognize that Zig is only 5 years old, while C is approaching 50 years. In
-comparing the two languages I find it encouraging to see the progress made over
-the decades. With the knowledge and progress we have today it is very easy to
-look at C as lacking through the lens of the present. I hope to not forget the
-circumstances surrounding C's creation while also recognizing that mistakes were
-made and can be improved on.
+examples I share will compare Zig to C.[^c]
+
+[^c]: In this comparison I find it important to recognize that Zig is only 5
+  years old, while C is approaching 50 years. In comparing the two languages I
+  find it encouraging to see the progress made over the decades. It is very easy
+  to view C negatively through the lens of the present. I hope we do not forget
+  the historical significance of C, while also recognizing that mistakes were
+  made and can be improved on in new languages.
 
 ## Consistency In Types
 
@@ -170,10 +171,11 @@ tried this and it worked as expected which was satisfying!
 Zig's first-class types also lead to a very simple and consistent method of
 declaring generic types. Languages like Rust and C++ introduce templating syntax
 with `<>` characters to mark a struct as generic. In Zig, generics are
-implemented with compile-time function calls.[^2] This is a generic `Pair` struct.
+implemented with compile-time function calls.[^memoized] This is a generic
+`Pair` struct.
 
-[^2]: All compile time function calls are memoized, so two separate calls to a
-  generic type function will result in the same type.
+[^memoized]: All compile time function calls are memoized, so two separate calls
+  to a generic type function will result in the same type.
 
 ```zig
 fn Pair(comptime A: type, comptime B: type) type {
@@ -191,18 +193,18 @@ pub fn main() !void {
 
 Rather than modifying the struct syntax to support generics, Zig stays
 remarkably consistent regarding `struct {}` as a value at compile time. The
-`Pair` function[^3] is evaluated at compile time which returns a new type defined by
-the arguments to the function.
+`Pair` function[^naming] is evaluated at compile time which returns a new type
+defined by the arguments to the function.
 
-[^3]: An interesting side-effect of Zig's use of functions for type generics is
-  seen in the naming conventions of the language. A function name written in
-  camelCase is a typical function, but a function in TitleCase is a function
-  that returns a type. The same applies to variable names, snake_case for
-  typical variables, and TitleCase for variables that store types. While this
-  isn't *required* for code to compile, syntax highlighters do examine the
-  casing to determine what part of the language a given identifier represents.
-  I've written about [Zig's naming conventions](/blog/zig-naming-conventions) at
-  length in another post.
+[^naming]: An interesting side-effect of Zig's use of functions for type
+  generics is seen in the naming conventions of the language. A function name
+  written in camelCase is a typical function, but a function in TitleCase is a
+  function that returns a type. The same applies to variable names, snake_case
+  for typical variables, and TitleCase for variables that store types. While
+  this isn't *required* for code to compile, syntax highlighters do examine
+  the casing to determine what part of the language a given identifier
+  represents. I've written about [Zig's naming
+  conventions](/blog/zig-naming-conventions) at length in another post.
 
 Continuing the pattern of consistency, the result of the `Pair()` function can be
 stored as a constant for reuse, creating a new type that can be used anywhere.

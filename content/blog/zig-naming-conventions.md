@@ -26,7 +26,7 @@ Simply put, **the naming convention used for an identifier depends on its
 type**, which isn't too different from other languages. Let's take a look at
 these points to explore why this naming pattern makes sense for Zig.
 
-## Types and namespaces
+## Types and Namespaces
 
 > If `x` is a type then `x` should be `TitleCase` ...
 
@@ -114,7 +114,7 @@ A more detailed example of this is [`std.zig` from the Zig standard
 library](https://github.com/ziglang/zig/blob/master/lib/std/std.zig) which
 exposes a hierarchy of namespace structs.
 
-## Functions and types
+## Functions and Types
 
 > If `x` is callable, and `x`'s return type is `type`, then `x` should be
 > `TitleCase`. If `x` is otherwise callable, then `x` should be `camelCase`.
@@ -157,7 +157,7 @@ pub fn main() void {
 This is probably the greatest deviation from naming conventions in other
 languages, but it is consistent with Zig's model of generics.
 
-## Other identifiers
+## Other Identifiers
 
 If no other guideline applies, everything else in Zig should use snake case.
 This applies to variables, fields, and even constants.
