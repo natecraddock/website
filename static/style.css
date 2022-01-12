@@ -7,6 +7,10 @@
     padding: 0;
 }
 
+:root {
+    color-scheme: light dark;
+}
+
 html {
     --text: #000000;
     --text-alt: #555555;
@@ -229,15 +233,12 @@ hr {
     text-overflow: ellipsis;
 }
 
-.list-post, .list-tag {
-    padding-bottom: 1rem;
-}
-
 .list-post {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
 }
 
 .current-series {

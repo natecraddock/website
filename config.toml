@@ -19,4 +19,5 @@ title = "Nathan Craddock"
     baseName = "feed"
 
 # prevent new readers from getting a backlog of everything
-rssLimit = 10
+[services.rss]
+limit = 5
