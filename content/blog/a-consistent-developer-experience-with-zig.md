@@ -205,7 +205,7 @@ the arguments to the function.
   length in another post.
 
 Continuing the pattern of consistency, the result of the `Pair()` function can be
-stored in a variable for reuse, creating a new type that can be used anywhere.
+stored as a constant for reuse, creating a new type that can be used anywhere.
 
 ```zig
 const Vec2d = Pair(i64, i64);

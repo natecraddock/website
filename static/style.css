@@ -66,17 +66,6 @@ ol, ul {
     margin-left: 1.6rem;
 }
 
-small {
-    display: block;
-    border-left: solid var(--text-accent) 4px;
-    color: var(--text-alt);
-}
-
-small p {
-    font-size: 11pt;
-    margin-left: 1rem;
-}
-
 blockquote {
     border-left: solid var(--text-accent) 4px;
     margin-bottom: 1rem;
