@@ -1,5 +1,5 @@
 +++
-title = "A Consistent Developer Experience with Zig"
+title = "A More Consistent Language with Zig"
 date = 2022-01-12T14:17:42-07:00
 draft = false
 tags = ["plt", "zig", "c"]
@@ -26,30 +26,28 @@ enthusiastic praise from Kevin motivated me to try Zig.[^rust]
   fixing major problems in C, while staying small, consistent, and easy to fit
   the language inside my head.
 
-Now over half a year later I have spent quite a bit of time reading, writing,
-and studying the Zig programming language. I find the language to be small and
-simple. Like Kevin, I am very enthusiastic about using Zig, and I found myself
-comfortable and productive early in the learning process. Many aspects of the
-language excite me, especially the capabilities of compile-time metaprogramming,
-but for this post I will focus on the areas of Zig that I find lead to a
-consistent developer experience.
+Now over half a year later I have spent quite a bit of time with the Zig
+programming language. I find the language to be small and simple. Like Kevin, I
+am very enthusiastic about using Zig, and I found myself comfortable and
+productive early in the learning process. Many aspects of the language excite
+me, especially the capabilities of compile-time metaprogramming, but for this
+post I will focus on the areas of Zig that I find lead to a consistent
+experience.
 
-Because I have a lot of C experience, and Zig is a systems language, many of the
+Because I am familiar with C, and Zig is also a systems language, many of the
 examples I share will compare Zig to C.[^c]
 
-[^c]: In this comparison I find it important to recognize that Zig is only 5
-  years old, while C is approaching 50 years. In comparing the two languages I
-  find it encouraging to see the progress made over the decades. It is very easy
-  to view C negatively through the lens of the present. I hope we do not forget
-  the historical significance of C, while also recognizing that mistakes were
-  made and can be improved on in new languages.
+[^c]: In this comparison I find it important to recognize that Zig is only
+  almost 6 years old, while C is approaching 50 years. In comparing the two
+  languages I find it encouraging to see the progress made over the decades. It
+  is very easy to view C negatively through the lens of the present. I hope we
+  do not forget the historical significance of C, while also recognizing that
+      mistakes were made and can be improved on in new languages.
 
 ## Consistency In Types
 
-In many ways Zig has a very consistent type system. Although distinct from the
-behaviors of the language, I find that Zig's syntax for declaring types is very
-readable and consistent. To start simple, compare declaring an int between C and
-Zig.
+I find that Zig's syntax for declaring types is very readable and consistent. To
+start simple, compare declaring an int between C and Zig.
 
 {{< code lang="c" header="c" >}}
 int value = 0;
@@ -59,18 +57,17 @@ int value = 0;
 var value: i32 = 0;
 {{</ code >}}
 
-There are a couple differences in this simple example. C places the type on the
-left of the identifier, while Zig requires a type annotation appended to the
-name. The types of most variables can be inferred in Zig, but in this situation
+There are a couple differences between these statements. C places the type on
+the left of the identifier, while Zig requires a type annotation appended to the
+name. The types of most variables can be inferred in Zig, but in this statement
 the type must be specified to determine how much storage to allocate on the
-stack for `value`. Zig also uses `var` to introduce a variable declaration. At
-this point, there isn't anything worth noting about the developer experience
-between the languages, so let's move on to array syntax.
+stack for `value`. Zig also uses `var` to introduce a variable declaration. With
+such a simple example there isn't anything else worth noting about the
+differences between the languages, so let's move on to array syntax.
 
 The following code snippets both declare a zero-filled integer array of size 2.
 
 {{< code lang="c" header="c" >}}
-int value = 0;
 int values[2] = { 0, 0 };
 {{</ code >}}
 
@@ -78,14 +75,14 @@ int values[2] = { 0, 0 };
 var values: [2]i32 = .{ 0, 0 };
 {{</ code >}}
 
-Here we begin to see some larger differences between C and Zig. With the
-introduction of arrays C begins to fragment the type information between the two
-sides of the array name. The datatype on the left, and the size of the array on
+Here we begin to see more notable differences between C and Zig. With the
+introduction of arrays, C begins to fragment the type information between the two
+sides of the array name; the datatype on the left, and the size of the array on
 the right.
 
 Zig stays consistent with the single integer example by prefixing the type
-annotation with `[2]` to indicate an array of size 2 of 32 bit signed integers.
-The data is initialized with an [anonymous list
+annotation with `[2]` to specify an array size 2. The data is initialized with
+an [anonymous list
 literal](https://ziglang.org/documentation/0.8.1/#Anonymous-List-Literals) (the
 `.{}`) which infers its type from context. Here Zig starts to show one of my
 favorite consistencies of the language: **types read from left to right**. To
@@ -111,11 +108,8 @@ var ptr: *i32 = &number;
 ptr.* += 10;
 ```
 
-This is another example of a small change that adds to the great developer
-experience in Zig.
-
-Once you know how the types work, that knowledge is immediately available.
-Casting int to slice, etc.
+This is another example of a small change that adds to the consistent experience
+in Zig.
 
 
 ## Defining Types
@@ -140,7 +134,7 @@ Superficially there isn't much difference between C and Zig besides syntax, but
 there is one important distinction. Unlike C where the struct keyword requires a
 name, all Zig [structs](https://ziglang.org/documentation/master/#struct) are
 anonymous until bound to an identifier. Storing the type as a constant with
-`const Point = struct {}` allows for reuse.
+`const Point = struct { ... }` allows for reuse.
 
 This is because Zig types are first-class values at compile time. In the above
 code the `struct { x: i32, y: i32 }` describes a composite type of two unsigned
@@ -161,7 +155,7 @@ pub fn main() !void {
 }
 ```
 
-While writing this post I hadn't ever tried using a bare `struct {}` as a
+While writing this post I hadn't ever tried using a anonymous `struct {}` as a
 function parameter's type. But fitting with the theme of consistency in Zig, I
 tried this and it worked as expected which was satisfying!
 
@@ -218,7 +212,6 @@ pub fn main() !void {
 }
 ```
 
-This only scratches the surface of Zig's consistent developer experience.
 Looking only at the syntax for declaring types, Zig shows how a simple concept
 used consistently reduces the surface area of a programming language. Once you
 understand how to declare a struct and define a function, you can easily create
