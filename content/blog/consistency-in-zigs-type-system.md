@@ -31,8 +31,7 @@ programming language. I find the language to be small and simple. Like Kevin, I
 am very enthusiastic about using Zig, and I found myself comfortable and
 productive early in the learning process. Many aspects of the language excite
 me, especially the capabilities of compile-time metaprogramming, but for this
-post I will focus on one area of Zig that I find leads to a consistent
-experience: it's type system.
+post I will focus Zig's type system.
 
 Because I am familiar with C, and Zig is also a systems language, many of the
 examples I share will compare Zig to C.[^c]
