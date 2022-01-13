@@ -1,8 +1,8 @@
 +++
-title = "A More Consistent Language with Zig"
+title = "Consistency in Zig's Type System"
 date = 2022-01-12T14:17:42-07:00
 draft = false
-tags = ["plt", "zig", "c"]
+tags = ["zig", "c"]
 +++
 
 One of the articles that first got me interested in Zig is [Kevin Lynagh's
@@ -31,8 +31,8 @@ programming language. I find the language to be small and simple. Like Kevin, I
 am very enthusiastic about using Zig, and I found myself comfortable and
 productive early in the learning process. Many aspects of the language excite
 me, especially the capabilities of compile-time metaprogramming, but for this
-post I will focus on the areas of Zig that I find lead to a consistent
-experience.
+post I will focus on one area of Zig that I find leads to a consistent
+experience: it's type system.
 
 Because I am familiar with C, and Zig is also a systems language, many of the
 examples I share will compare Zig to C.[^c]
@@ -44,7 +44,7 @@ examples I share will compare Zig to C.[^c]
   do not forget the historical significance of C, while also recognizing that
       mistakes were made and can be improved on in new languages.
 
-## Consistency In Types
+## Simple Types
 
 I find that Zig's syntax for declaring types is very readable and consistent. To
 start simple, compare declaring an int between C and Zig.
@@ -112,7 +112,7 @@ This is another example of a small change that adds to the consistent experience
 in Zig.
 
 
-## Defining Types
+## Struct Types
 
 Now let's take a look at defining new types.
 
