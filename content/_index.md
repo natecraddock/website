@@ -1,11 +1,21 @@
 +++
-date = 2021-06-30T21:38:47-06:00
+date = 2022-01-13T15:48:10-07:00
 +++
 
 Hi, I'm Nathan.
 
-I am currently a computer science student at BYU in my senior year,
-working as a research assistant studying DNS privacy.
+I'm a computer science undergraduate at BYU in my senior year. I work as a
+teaching assistant for our Intro to Programming C++ course. As a teaching
+assistant I developed [zygrader](https://github.com/cs142ta/zygrader), a system
+for communication with the [zyBooks](https://zybooks.com) learning platform that
+makes it easier for us to grade student submissions.
+
+I am currently working on [zf](https://github.com/natecraddock/zf), a fuzzy
+finder written in Zig, and [Open Reckless
+Drivin'](https://github.com/natecraddock/open-reckless-drivin), a
+reimplementation a Macintosh game from the early 2000s by Jonas Echterhoff. I
+sometimes [write about interesting things I learn](/tags/reckless-drivin)
+related to this project.
 
 In the summers of
 [2019](https://summerofcode.withgoogle.com/archive/2019/projects/5416561530109952/)
@@ -16,7 +26,7 @@ I participated in the Google Summer of Code with
 history](https://miikahweb.com/en/blender/git-statistics/developers/natecraddock)
 shows other areas I contributed to.
 
-Outside of computer science I enjoy hiking, running, reading, and playing piano.
+Outside of computery things I enjoy hiking, running, reading, and playing piano.
 
 Find me on [GitHub](https://github.com/natecraddock), or send an email to
 [contact@nathancraddock.com](mailto:contact@nathancraddock.com) if you want to
