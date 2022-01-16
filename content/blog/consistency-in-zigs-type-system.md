@@ -1,5 +1,5 @@
 +++
-title = "Consistency in Zig's Type System"
+title = "Consistency and Precision in Zig's Type System"
 date = 2022-01-12T14:17:42-07:00
 draft = false
 tags = ["zig", "c"]
@@ -110,6 +110,52 @@ ptr.* += 10;
 This is another example of a small change that adds to the consistent experience
 in Zig.
 
+
+### Precision in Types
+
+Zig's type system also affords more precision than C's. Take for example the
+type of a string in C, `const char *`. This could be a pointer to a single char,
+it could be `NULL`, or it could point to a sequence of any number of `char`s,
+potentially `NULL`-terminated. Because C's type system cannot encode anything
+beyond a pointer to memory, the compiler cannot prevent invalid access, like
+attempting to index a pointer to a single char.
+
+Zig's type system on the other hand gives more tools to express these types with
+precision. A pointer to a single char (or `u8`) is written as `*u8` and cannot
+be `null`. An attempt to index a single-item pointer is a compile error.
+
+```zig
+pub fn main() !void {
+    var char: u8 = 'a';
+    const ptr: *u8 = &char;
+    _ = ptr[0];
+}
+```
+
+```text
+> zig run main.zig
+./main.zig:6:12: error: index of single-item pointer
+    _ = ptr[0];
+           ^
+```
+
+All [many-item pointer](https://ziglang.org/documentation/0.9.0/#Pointers) types
+are created with variations of `[]`.
+
+```zig
+// a pointer to an unknown number of u8
+const ptr: [*]u8 = undefined;
+
+// a pointer to a runtime-known number of items (slice)
+const ptr: []u8 = undefined;
+
+// a 0-terminated multi-item pointer of u8
+const ptr:[*:0]u8 = undefined;
+```
+
+These types are all slightly different, and their uses will be checked by the
+compiler. This is especially useful when interfacing with C code by encoding
+more information about the properties of a pointer.
 
 ## Struct Types
 
