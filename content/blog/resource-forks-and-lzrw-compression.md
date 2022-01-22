@@ -13,7 +13,7 @@ the CodeWarrior project structure. I have been working on [Open Reckless
 Drivin'](https://github.com/natecraddock/open-reckless-drivin) off and on over
 the last couple years to modernize the code and release the game for all
 platforms, and my [previous post](/blog/open-reckless-drivin/) about Open
-Reckless Drivin' explains more about the my goals with this project. This post
+Reckless Drivin' explains more about my goals with this project. This post
 shares interesting things I learned while unpacking the game assets from the
 binary file Jonas released.
 
@@ -67,7 +67,7 @@ Handle picture = GetResource('PICT', 1000);
 literal which would be interpreted as a single 32-bit integer. This code emits a
 `-Wmultichar` warning in gcc, but it does work. In my reimplementation I chose
 to use four-character string literals instead of relying on the
-implementation defined behavior of character literals.
+implementation-defined behavior of character literals.
 
 This returns a handle pointing to memory where the resource was stored. Many
 tools like git only read information from the data fork, which is why Jonas
@@ -77,8 +77,8 @@ git.
 ### Extracting the resources with DeRez
 
 Once I knew the resource data was stored in `Data`, I needed to find a way to
-read the file see what it contained. Some searching led me to a Mac tool called
-[DeRez](https://www.unix.com/man-page/osx/1/DeRez/) used for decompiling
+read the file and see what it contained. Some searching led me to a Mac tool
+called [DeRez](https://www.unix.com/man-page/osx/1/DeRez/) used for decompiling
 resources. It happens to be bundled with Xcode command line tools, so I borrowed
 a friend's Macbook, installed DeRez, and processed `Data` with it. The output
 format resembles xxd, with the hex bytes on the left and an ascii representation
@@ -105,7 +105,7 @@ data 'Pack' (128, "Object Definitions") {
 This resource is of type `Pack` and has an ID of 128. Other resource types in
 the file include `PPic` and `Chck`, none of which are [standard resource
 types](https://en.wikipedia.org/wiki/Resource_fork#Major_resource_types). Some
-of the resources are helpfully labeled with an description string. Most of the
+of the resources are helpfully labeled with a description string. Most of the
 resources are `Pack`s including:
 
 * Object Definitions
@@ -235,7 +235,7 @@ which is helpfully archived on Apple's developer website. This 822 page PDF file
 documents both the API for using QuickDraw, and the binary file format for the
 images when saved to disk. QuickDraw files contain a series of 2-byte opcodes
 that construct the image through lines, rectangles, polygons and other
-predefined shapes. Bitmap image data can also be drawn with with QuickDraw. The
+predefined shapes. Bitmap image data can also be drawn with QuickDraw. The
 `PPic` images were created with QuickDraw extended version 2, and the Imaging
 With QuickDraw PDF describes the opcodes starting on page 731. Some of the
 opcodes include
