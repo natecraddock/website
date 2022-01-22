@@ -1,6 +1,9 @@
 {{ define "main" }}
 
-<h2 class="title">Posts tagged <span class="tag">{{ .Title }}</span></h2>
+<span class="title tag-title">
+  <h2 class="title">Posts tagged <span class="tag">{{ .Title }}</span></h2>
+  <a class="title-link" href="feed.xml">tag rss feed</a>
+</span>
 
 {{ range .Pages }}
 {{ partial "date-list.html" . }}

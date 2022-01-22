@@ -269,6 +269,12 @@ hr {
     font-weight: normal;
 }
 
+.tag-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 /* syntax highlight */
 
 code {
