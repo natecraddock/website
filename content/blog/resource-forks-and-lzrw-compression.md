@@ -1,25 +1,33 @@
 +++
 title = "Unpacking LZRW-Compressed Resource Forks"
-subtitle = "How a four-byte offset made all the difference"
-date = 2021-08-28T08:51:41-06:00
-draft = true
+date = 2022-01-21T17:32:05-07:00
 tags = ["reckless-drivin", "c", "programming", "reversing"]
 series = "Open Reckless Drivin'"
 +++
 
-Reckless Drivin' is a shareware Macintosh game released by Jonas Echterhoff in
+[Reckless Drivin'](http://jonasechterhoff.com/Reckless_Drivin.html) is a
+shareware Macintosh game released by Jonas Echterhoff in
 2000. Jonas released the source code on GitHub in 2019, but the game is
-difficult to compile due to the dependency on deprecated Apple system calls. I
-started [Open Reckless
-Drivin'](https://github.com/natecraddock/open-reckless-drivin) to modernize the
-code and release the game for all platforms, and my [previous
-post](/blog/open-reckless-drivin/) about Open Reckless Drivin' mentions more
-about the project and my goals with it. This post shares interesting things I
-learned while unpacking the game assets from the binary file Jonas released.
+difficult to compile due to the dependency on deprecated Apple system calls and
+the CodeWarrior project structure. I have been working on [Open Reckless
+Drivin'](https://github.com/natecraddock/open-reckless-drivin) off and on over
+the last couple years to modernize the code and release the game for all
+platforms, and my [previous post](/blog/open-reckless-drivin/) about Open
+Reckless Drivin' explains more about the my goals with this project. This post
+shares interesting things I learned while unpacking the game assets from the
+binary file Jonas released.
+
+While I used an Apple PowerBook G4 to play Reckless Drivin' when I was younger,
+I never used a PowerPC Mac at an age when I could understand things like
+QuickDraw, Resource Forks, and LZRW compression. So this project has been a
+really interesting learning experience to understand what is now part of
+computing history. The project is far from finished, and I have had parts of
+this post written up for over a year now, so I figured I might as well finally
+share it in hopes that others will also find it interesting.
 
 ## Learning about resource and data forks
 
-After modernizing and formatting the source code of [Reckless
+After cleaning up the source code of [Reckless
 Drivin'](https://github.com/jechter/RecklessDrivin), my first goal was to read
 the contents of the file called `Data`. This file includes the images, sprites,
 textures, level data, sounds, and other game assets. The
@@ -40,7 +48,8 @@ data associated with the file in the file system. Although there was support
 for an arbitrary number of forks, most Macintosh software only used the data and
 [resource](https://en.wikipedia.org/wiki/Resource_fork) forks. On PowerPC
 machines the executable was stored in the data fork, and the resource fork
-stored structured data associated with the file.
+stored structured data associated with the file like icons, images, and sounds.
+These resource forks are essentially databases stored alongside an executable.
 
 Each resource stored in the resource fork has a four-byte type identifier,
 usually a four-character label, and a two-byte ID number. An example resource
@@ -60,7 +69,8 @@ literal which would be interpreted as a single 32-bit integer. This code emits a
 to use four-character string literals instead of relying on the
 implementation defined behavior of character literals.
 
-Many tools like git only read information from the data fork, which is why Jonas
+This returns a handle pointing to memory where the resource was stored. Many
+tools like git only read information from the data fork, which is why Jonas
 moved all the data from the resource fork to the data fork before committing in
 git.
 
@@ -68,12 +78,12 @@ git.
 
 Once I knew the resource data was stored in `Data`, I needed to find a way to
 read the file see what it contained. Some searching led me to a Mac tool called
-[DeRez](https://www.unix.com/man-page/osx/1/DeRez/) that is bundled with the
-Xcode command line tools for decompiling resources. I borrowed a friend's
-Macbook, installed DeRez, and ran `Data` through it. The output format resembles
-xxd, with the hex bytes on the left and an ascii representation on the right.
-Each resource is listed in a `data` block surrounded by `{}` characters. Here's
-a small portion of the decompiled output file.
+[DeRez](https://www.unix.com/man-page/osx/1/DeRez/) used for decompiling
+resources. It happens to be bundled with Xcode command line tools, so I borrowed
+a friend's Macbook, installed DeRez, and processed `Data` with it. The output
+format resembles xxd, with the hex bytes on the left and an ascii representation
+on the right. Each resource is listed in a `data` block surrounded by `{}`
+characters. Here's a small[^unpacked] portion of the decompiled output file.
 
 ```text
 $ derez -useDF Data > unpacked_data
@@ -90,6 +100,8 @@ data 'Pack' (128, "Object Definitions") {
 	$"9302 00B8 0094 0200 F800 4244 9501 000A"            /* ......BD... */
 ```
 
+[^unpacked]: The full output was 362,666 lines of text (27MB of data).
+
 This resource is of type `Pack` and has an ID of 128. Other resource types in
 the file include `PPic` and `Chck`, none of which are [standard resource
 types](https://en.wikipedia.org/wiki/Resource_fork#Major_resource_types). Some
@@ -103,7 +115,8 @@ resources are `Pack`s including:
 
 Unpacking `Data` verified that all of the game assets were preserved, but I
 still needed a way to read the file in code. I couldn't find any information on
-the resource file format, so I decided to write a small Python script
+the resource file format, so I decided to write a [small Python
+script](https://github.com/natecraddock/open-reckless-drivin/blob/5582a3113101efe4b3bf9d644a370bfb867238ef/scripts/convert.py)
 to store the unpacked data in a more compact format of my choosing. Each
 resource is represented in memory by the following struct, which stores the type
 identifier, the ID number, and an array of data with its associated length.
@@ -119,16 +132,18 @@ struct Resource {
 
 Note that the integer sizes in this struct are larger than needed. I could
 repack the data to align with the exact integer sizes used for the type and ID,
-but that doesn't matter for this description.
+but that doesn't really matter.
 
-This made it trivial to iterate over the resources stored in the data file to
-find any resource given a type and ID. Now that I could read the data it was
-time to interpret the bytes.
+The output of the script took the bytes from the DeRez unpacked `Data` file, and
+placed them end to end with the headers from the `Resource` struct. This made it
+trivial to write a C program to iterate over the resources stored in the data
+file to find any resource given a type and ID. The next step was to find some
+meaning in the bytes.
 
 ## Reading the packs
 
 Most of the game data is stored as `Pack` resources. These packs are read into
-memory by the `LoadPack(int num)` function.
+memory by the `uint32_t LoadPack(int num)` function.
 
 ```c
 uint32_t LoadPack(int num) {
@@ -146,12 +161,13 @@ uint32_t LoadPack(int num) {
 }
 ```
 
-This function loads a `Pack` resource given an ID number and stores a Handle in
+This function loads a `Pack` resource given an ID number and stores a handle in
 a global array. This function also contains two roadblocks to interpreting the
 resources:
 
 1. Some packs are encrypted, as indicated by the call to `CryptData()` when the
-   pack number is above a certain value.
+   pack number is above a certain value. This is because levels 4 through 10
+   were restricted to registered players.
 2. Each pack is compressed by the LZRW algorithm which is decompressed by a call
    to `LZRWDecodeHandle()`.
 
@@ -169,8 +185,8 @@ compression behind. In 1997 he released all of his algorithms on his
 "compression crypt" website. Ross' website is not always available online, so
 here's an [archived
 link](https://web.archive.org/web/20181223115027/http://www.ross.net/compression/index.html)
-to his homepage where the seven compression algorithms are linked. A compression
-[benchmarking
+to his homepage where the seven compression algorithms are located. A
+compression [benchmarking
 repo](https://github.com/1adityashetty1/benchmarking/tree/main/lzrw) on GitHub
 also contains the source code for most of the variants, with an additional
 header file to create a common interface for the different source files.
@@ -188,19 +204,18 @@ no other indication of success, I decided that If the pack would decompress
 without memory issues, then the LZRW variant worked.
 
 At this point I thought this task would be simple: Decompress all the packs with
-each variant until one decompressed without memory issues. I soon found a
-problem when more than one of the variants succeeded without issue. For example,
-both **lzrw3** and **lzrw3-a** would successfully decompress all of the files
-with no memory issues. Some of the other algorithms like **lzrw1** would
-decompress some of the resource packs, but would fail with out-of-bounds memory
-accesses with other packs.
+each variant until one variant decompressed without memory issues. I soon found
+a problem because more than one of the variants succeeded without issue. Both
+**lzrw3** and **lzrw3-a** would successfully decompress all of the files with no
+memory issues. Some of the other algorithms like **lzrw1** would decompress some
+of the resource packs, but would fail with out-of-bounds memory accesses with
+other packs.
 
-Because multiple variants decompressed successfully, I would now need to look
-at the bytes in the decompressed resource packs to determine if the data was
-decoded properly. Because the `Pack` resources can be directly mapped to
-Reckless Drivin' structs, there wouldn't be any way to know from the bytes alone
-if the decompression was valid. So I turned to the `PPic` resources, which is a
-QuickDraw graphics file.
+Because multiple variants decompressed successfully, I would now need to look at
+the bytes in the decompressed resource packs to determine if the data was
+decoded properly. Because the `Pack` resources are cast directly to various
+structs in Reckless Drivin', it would be very difficult to find any obvious
+patterns in the data. So I turned to the `PPic` resources instead.
 
 ### QuickDraw graphics
 
@@ -236,10 +251,11 @@ of the image:
 > opcode is the 2-byte VersionOp opcode: $0011. This is followed by the 2-byte
 > Version opcode: $02FF
 
-So I could look at the decompressed `PPic` files and look for `0011` and `02FF`
-to confirm that the decompression was successful. The QuickDraw PDF also
-contains a decompiled picture on page 749 that was a great reference for
-comparing against the binary files.
+With this information I thought I could look at the decompressed `PPic` files
+and look for header bytes like `0011` and `02FF` to confirm that the
+decompression was successful. The QuickDraw PDF also contains a decompiled
+QuickDraw image on page 749 which was a great reference for comparing against
+the binary files.
 
 ```text
 data 'PICT' (128) {
@@ -260,36 +276,35 @@ data 'PICT' (128) {
 Here is the header of `PPic` 1000 after decompression with **lzrw3**.
 
 ```text
-$ xxd ppic-1000 | head -n 4
+$ xxd ppic-1000 | head -n 2
 00000000: 0000 0000 7f10 0000 0000 01e0 0280 0011  ................
 00000010: 0c31 3233 00ff fe00 0248 3132 3334 3536  .123.....H123456
-00000020: 3731 3233 3435 3637 3831 3233 3132 3331  7123456781231231
-00000030: 3233 3431 3233 3132 3334 3536 3738 3930  2341231234567890
 ```
 
 Comparing the two there are many similarities, and I began to be excited, but
 closer inspection showed that there wasn't a perfect match between the expected
 header information, and what `PPic` 1000 contained. The `0011` and `fffe`
-sequences are in the file, but aren't in the expected locations or alignments.
+bytes are in the file, but aren't in the expected locations or alignments.
 
 Another confusion is that the *uncompressed* `PPic` resources also contained
-the `0011` and `fffe` byte sequences, but were in some ways more aligned with
-the specification.
+the `0011` and `fffe` byte sequences, and were in some ways more aligned with
+the specification!
 
 ```text
 data 'PPic' (1000) {
         $"0005 7F10 0000 0000 0000 7F10 0000 0000"
         $"01E0 0280 0011 02FF 0C00 7400 FFFE 0002"
-        $"4804 0205 0300 0200 A101 F200 1638 4249"
-        $"0680 4D01 06F3 2C47 7289 7068 AF62 6A00"
 ```
 
-This makes sense, because the uncompressed data needs to exist somewhere in a
-compressed file. But it still made me question, wondering if Jonas had
-decompressed the resource forks when releasing the source code.
+The version opcodes are in the uncompressed data, but not in the correct
+locations. This makes sense, because the uncompressed data needs to exist
+somewhere in a compressed file, and this compression algorithm happened to keep
+these bytes intact. But the fact that these bytes were in the uncompressed data
+still made me question, wondering if Jonas had decompressed the resource forks
+when releasing the source code.
 
-At this point my school studies started up again and I took a break from working
-on this problem. Months later I had the idea to decompile the binary found on
+At this point my school studies picked up and I took a break from working on
+this problem. Months later I had the idea to decompile the binary found on
 Jonas' website to see if I was missing any steps in reading the resource data.
 
 ## Ghidra saves the day
@@ -309,8 +324,8 @@ The highlighted line of decompiled code is:
 .compress(2,uVar3,**param_1 + 4,iVar1 + -4,*piVar2,auStack24);
 ```
 
-This function call matches the same function call found in Ross Williams' code
-that I used when blindly reimplementing `LZRWDecodeHandle()`, but with one
+This function call has the same signature as the one found in Ross Williams'
+code that I used when blindly reimplementing `LZRWDecodeHandle()`, but with one
 interesting difference that stands out. The first four bytes of the packed data
 are ignored, as indicated by the +4 offset to the array, and the -4 offset to
 the length of the array. I added the same offsets to my implementation and
@@ -324,11 +339,9 @@ lzrw3a_compress(COMPRESS_ACTION_DECOMPRESS, working_mem, **handle + 4,
 The following is `PPic` 1000 after decompression with the memory offset.
 
 ```text
-$ xxd ppic-1000 | head -n 4
+$ xxd ppic-1000 | head -n 2
 00000000: 7f10 0000 0000 01e0 0280 0011 02ff 0c00  ................
 00000010: fffe 0000 0048 0000 0048 0000 0000 0000  .....H...H......
-00000020: 01e0 0280 0000 0000 00a1 01f2 0016 3842  ..............8B
-00000030: 494d 0000 0000 0000 01e0 0280 4772 8970  IM..........Gr.p
 ```
 
 This exactly lined up with the format described in the QuickDraw specifications,
@@ -342,4 +355,6 @@ Although at this point there still wasn't anything besides bytes to show for all
 my work, it was both rewarding and motivating to have access to Reckless
 Drivin's game assets in my reimplementation. This post has grown long enough, so
 I won't describe the process of writing a QuickDraw interpreter until a later
-post.
+post. This process of unpacking the resource forks taught me a lot of
+interesting things about Macintosh computers, and I hope you found this
+interesting too!
