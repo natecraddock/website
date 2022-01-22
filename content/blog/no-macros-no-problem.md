@@ -20,13 +20,12 @@ have written as a `#define` macro in C. The function is used to convert an ascii
 representation of a letter to the expected code for that letter when holding the
 ctrl key.
 
-{{< sidenote >}}
+TODO: Sidenote
 Terminal applications like zf and fzf often use keybindings that require holding
 the `ctrl` key while pressing another character, like pressing `ctrl` and `n` to
 move down a line. The character `n` has an ascii value of 110, but when holding
 `ctrl` the value sent by the terminal is 14. This transformation is done by
 masking the value of the letter with `0x1f` to only include the lower 5 bits.
-{{</ sidenote >}}
 
 This example is small, but still provides context for discussing many reasons
 why Zig's comptime evaluation is one of the language's greatest strengths. Here
@@ -85,12 +84,11 @@ approach of the `ctrl` function:
    calling it at compile time. This could also be used at runtime with no
    modifications.
 
-   {{< sidenote >}}
+   TODO: Sidenote
    For runtime use, C may have the advantage here. Because `CTRL` is not a
    function, runtime use will never create a new stack frame. If the Zig
    compiler does not inline the call to `ctrl` then the C implementation would
    be more optimal for a runtime call.
-   {{</ sidenote >}}
 
    Now with this trivial example, both `CTRL` and `ctrl` will both work during
    and before runtime. Zig functions however can be extended with additional

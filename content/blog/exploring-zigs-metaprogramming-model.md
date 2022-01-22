@@ -98,12 +98,11 @@ This is a powerful concept. Unlike other format string implementations like C's
 `printf` or Rust's `fmt!` macro, Zig does not need to handle format strings in
 the compiler because the comptime language is powerful enough.
 
-{{< sidenote >}}
+TODO: Sidenote
 Tom Stuart has very in depth presentation on partial evaluation and the Futamura
 projections titled [Compilers for Free](https://tomstu.art/compilers-for-free)
 which I highly recommend. Tom has included some wonderful animations that help
 explain some of the applications of partial evaluation.
-{{</ sidenote >}}
 
 In solving Advent of Code problems this year, I have utilized Zig's partial
 evaluation and type reflection on a number of occasions. The Advent of Code
