@@ -43,6 +43,7 @@ body {
     color: var(--text);
     background-color: var(--background);
     word-wrap: break-word;
+    text-align: justify;
 }
 
 img {
