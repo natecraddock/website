@@ -100,6 +100,7 @@ sub, sup, code {
 
 .post-header {
     margin-bottom: 2ch;
+    text-align: left;
 }
 
 .title-link {
