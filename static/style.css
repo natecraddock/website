@@ -43,7 +43,6 @@ body {
     color: var(--text);
     background-color: var(--background);
     word-wrap: break-word;
-    text-align: justify;
 }
 
 img {
@@ -53,11 +52,14 @@ img {
 
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1ch;
-    text-align: left;
 }
 
 ol, ul, p {
     margin-bottom: 1rem;
+}
+
+p {
+    text-align: justify;
 }
 
 p, li {
