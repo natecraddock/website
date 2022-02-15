@@ -6,6 +6,9 @@
         {{ if isset .Params "description" }}
             <meta name="description" content="{{ .Params.description | safe }}">
         {{ end }}
+
+        <link rel=icon href=data:,>
+
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="/style.css" type="text/css">
         {{ with .OutputFormats.Get "rss" -}}
