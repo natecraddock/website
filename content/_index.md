@@ -29,7 +29,7 @@ shows other areas I contributed to.
 Outside of computery things I enjoy hiking, running, reading, and playing piano.
 
 Find me on [GitHub](https://github.com/natecraddock), or send an email to
-[contact@nathancraddock.com](mailto:contact@nathancraddock.com) if you want to
+[nathan@nathancraddock.com](mailto:nathan@nathancraddock.com) if you want to
 say hi! This blog also has an [RSS feed](/feed.xml).
 
 This website is hosted on [Cloudflare Pages](https://pages.cloudflare.com/),
