@@ -1,8 +1,8 @@
 +++
-title = "The Missing Documentation for Git Custom Commands"
+title = "Exploring the Inner-workings of Custom Git Commands"
 date = 2022-02-23T08:29:32-07:00
 draft = false
-tags = ["git", "fish", "linux", "tools"]
+tags = ["git", "fish", "tools"]
 +++
 
 Git allows creating custom commands, but this feature is undocumented. I have
@@ -23,7 +23,7 @@ cherry-picking. Curious, I started looking into how Git knew to run the
 Searching online for "Git custom commands" will pull up several webpages that
 explain how to make a custom Git command. These were helpful for me in learning
 how to make my own custom command, but they left me wondering how it worked and
-where it was documented, if anywhere. Per [this Stack Overflow
+where it was documented, if anywhere. According to [this Stack Overflow
 question](https://stackoverflow.com/questions/10978257/extending-git-functionality),
 there is no documentation for custom commands besides the source code. I find
 Git custom commands useful, and think they should be more well known, so I'm
@@ -195,7 +195,7 @@ I won't go into more detail because there are
 [other](https://wilsonmar.github.io/git-custom-commands/)
 [articles](http://thediscoblog.com/blog/2014/03/29/custom-git-commands-in-3-steps/)
 that sufficiently cover this process. Please refer to those or others for more
-details!
+information!
 
 ## Thoughts
 
