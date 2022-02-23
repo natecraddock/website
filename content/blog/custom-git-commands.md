@@ -1,7 +1,6 @@
 +++
 title = "Exploring the Inner-workings of Custom Git Commands"
 date = 2022-02-23T08:29:32-07:00
-draft = false
 tags = ["git", "fish", "tools"]
 +++
 
