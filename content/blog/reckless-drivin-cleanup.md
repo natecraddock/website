@@ -1,7 +1,6 @@
 +++
 title = "Reckless Drivin' - Cleanup"
 date = 2020-07-23
-modified = 2021-03-03
 tags = ["reckless-drivin", "c", "programming", "reversing"]
 draft = true
 

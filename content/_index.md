@@ -1,5 +1,5 @@
 +++
-date = 2022-01-13T15:48:10-07:00
+type = "plain"
 +++
 
 Hi, I'm Nathan.
@@ -8,14 +8,16 @@ I'm a computer science undergraduate at BYU in my senior year. I work as a
 teaching assistant for our Intro to Programming C++ course. As a teaching
 assistant I developed [zygrader](https://github.com/cs142ta/zygrader), a system
 for communication with the [zyBooks](https://zybooks.com) learning platform that
-makes it easier for us to grade student submissions.
+makes it easier for us to grade student submissions. I really enjoy working in
+Zig, C, Lua, and Python, but I also know C++, JavaScript, and Java.
 
-I am currently working on [zf](https://github.com/natecraddock/zf), a fuzzy
-finder written in Zig, and [Open Reckless
-Drivin'](https://github.com/natecraddock/open-reckless-drivin), a
-reimplementation a Macintosh game from the early 2000s by Jonas Echterhoff. I
-sometimes [write about interesting things I learn](/tags/reckless-drivin)
-related to this project.
+See [now](/now) to learn what I'm currently working on. Here's the bullet points:
+* [zf](https://github.com/natecraddock/zf), a terminal fuzzy finder and library
+  written in Zig
+* [Open Reckless Drivin'](https://github.com/natecraddock/open-reckless-drivin),
+  a reimplementation of a Macintosh game from the early 2000s by Jonas
+  Echterhoff
+* Neovim plugins
 
 In the summers of
 [2019](https://summerofcode.withgoogle.com/archive/2019/projects/5416561530109952/)

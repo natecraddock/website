@@ -7,9 +7,7 @@
   <p class="alt-text"><em>{{ .Params.Subtitle }}</em></p>
   {{ end }}
 
-  <time class="alt-text" title="{{- if isset .Params "modified" -}}
-                                  Last edited on {{ .Params.Modified.Format "January 2, 2006" }}
-                                {{- end -}}">
+  <time class="alt-text" title="Last edited on {{ .Lastmod.Format "January 2, 2006" }}">
     {{ .Date.Format "January 2, 2006" }}
   </time>
 
