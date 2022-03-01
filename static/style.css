@@ -186,11 +186,6 @@ img {
     object-fit: cover;
 }
 
-::-moz-selection,
-::selection {
-    background: var(--select-highlight);
-}
-
 footer {
     padding-bottom: 1rem;
 }
