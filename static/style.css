@@ -54,6 +54,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1ch;
 }
 
+h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 > code {
+    font-size: inherit;
+}
+
+
 ol, ul, p {
     margin-bottom: 1rem;
 }
@@ -75,6 +80,10 @@ blockquote {
     margin-bottom: 1rem;
     font-style: italic;
     padding-left: 1rem;
+}
+
+blockquote p {
+    text-align: left;
 }
 
 /* fix in-line formatting */
