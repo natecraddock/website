@@ -7,7 +7,7 @@
   <p class="alt-text"><em>{{ .Params.Subtitle }}</em></p>
   {{ end }}
 
-  <time class="alt-text" title="Last edited on {{ .Lastmod.Format "January 2, 2006" }}">
+  <time class="alt-text" title="Last edited on {{ .Page.Lastmod.Format "January 2, 2006" }}">
     {{ .Date.Format "January 2, 2006" }}
   </time>
 
@@ -43,7 +43,7 @@
 
 <hr>
 <p>
-Last updated on <time>{{ .Lastmod.Format "January 2, 2006" }}</time>
+Last updated on <time>{{ .Page.Lastmod.Format "January 2, 2006" }}</time>
 </p>
 
 {{ end }}
