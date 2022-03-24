@@ -12,7 +12,7 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="/style.css" type="text/css">
         {{ with .OutputFormats.Get "rss" -}}
-            {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+            {{ printf `<link rel="%s" type="%s" href="/blog/feed.xml" title="%s" />` .Rel .MediaType.Type $.Site.Title | safeHTML }}
         {{ end -}}
 
         {{ if eq .Page.Title "" }}
@@ -54,7 +54,7 @@
                     <span class="gap"></span>
                     <a class="title-link" href="/tags">Tags</a>
                     <span class="gap"></span>
-                    <a class="title-link" href="/feed.xml">Feed</a>
+                    <a class="title-link" href="/blog/feed.xml">Feed</a>
                 </div>
             </header>
 
