@@ -2,8 +2,6 @@ baseURL = "https://nathancraddock.com/"
 languageCode = "en-us"
 title = "Nathan Craddock"
 
-enableGitInfo = true
-
 [author]
   name = "Nathan Craddock"
 

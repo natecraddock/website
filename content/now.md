@@ -1,6 +1,7 @@
 +++
 title = "Now"
 type = "plain"
+lastmod = 2022-02-23
 +++
 
 ## Projects
