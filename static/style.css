@@ -166,26 +166,6 @@ main > * {
     grid-column: 1 / -1;
 }
 
-#series-nav {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-#series-nav span {
-    display: inline-block;
-    width: 30%
-}
-
-#series-nav span:first-child {
-    text-align: left;
-}
-
-#series-nav span:last-child {
-    text-align: right;
-}
-
 img {
     margin-left: auto;
     margin-right: auto;
@@ -238,10 +218,6 @@ hr {
     justify-content: space-between;
     flex-wrap: nowrap;
     padding-bottom: 0.5rem;
-}
-
-.current-series {
-    font-weight: bold;
 }
 
 .alt-text {

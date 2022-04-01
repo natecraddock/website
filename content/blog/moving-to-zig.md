@@ -2,7 +2,6 @@
 title = "Moving to Zig"
 date = 2022-02-28T15:42:20-07:00
 tags = ["reckless-drivin", "c", "zig"]
-series = "Open Reckless Drivin'"
 +++
 
 It has been half a year since I last made a [commit on Reckless

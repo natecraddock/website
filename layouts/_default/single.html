@@ -29,21 +29,4 @@
   {{ .Content }}
 </div>
 
-{{ if isset .Params "series" }}
-  <hr>
-  {{ $name := .Params.series | urlize }}
-  {{ $series := index .Site.Taxonomies.series $name }}
-
-  <h2>This is a post in the {{ .Params.series }} series</h2>
-  {{ range $series.Pages.Reverse }}
-    {{ partial "date-list.html" . }}
-  {{ end }}
-
-{{ end }}
-
-<hr>
-<p>
-Last updated on <time>{{ .Params.lastmod.Format "January 2, 2006" }}</time>
-</p>
-
 {{ end }}
