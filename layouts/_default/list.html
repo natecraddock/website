@@ -1,9 +1,12 @@
 {{ define "main" }}
 
-<ul class="ul-no-style">
+{{ range .Pages.GroupByDate "2006" }}
+    <h2>{{ .Key }}</h2>
+    <ul class="ul-no-style">
     {{ range .Pages }}
         {{ partial "date-list.html" . }}
     {{ end }}
-</ul>
+    </ul>
+{{ end }}
 
 {{ end }}

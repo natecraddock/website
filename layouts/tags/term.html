@@ -5,8 +5,13 @@
   <a class="title-link" href="feed.xml">tag rss feed</a>
 </span>
 
-{{ range .Pages }}
-{{ partial "date-list.html" . }}
+{{ range .Pages.GroupByDate "2006" }}
+    <h2>{{ .Key }}</h2>
+    <ul class="ul-no-style">
+    {{ range .Pages}}
+        {{ partial "date-list.html" . }}
+    {{ end }}
+    </ul>
 {{ end }}
 
 {{ end }}
