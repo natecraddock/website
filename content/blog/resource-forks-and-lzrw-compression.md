@@ -172,7 +172,8 @@ resources:
 
 Because decompression is needed for all `Pack` and `PPic` resources, that is
 what I will focus on for the remainder of this post. I will describe the process
-of decrypting the level data in a later post.
+of decrypting the level data in a [later
+post](/blog/decryption-generating-registration-codes).
 
 ## LZRW decompression
 
