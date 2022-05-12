@@ -2,6 +2,10 @@
 title = "Moving to Zig"
 date = 2022-02-28T15:42:20-07:00
 tags = ["reckless-drivin", "c", "zig"]
+
+aliases = [
+    "/blog/moving-to-zig/"
+]
 +++
 
 It has been half a year since I last made a [commit on Reckless

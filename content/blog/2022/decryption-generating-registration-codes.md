@@ -2,6 +2,10 @@
 title = "Decryption and Generating Registration Codes"
 date = 2022-04-19T13:25:27-06:00
 tags = ["zig", "reckless-drivin"]
+
+aliases = [
+   "/blog/decryption-generating-registration-codes/"
+]
 +++
 
 As mentioned in my post about [unpacking LZRW compressed game

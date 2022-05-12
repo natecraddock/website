@@ -6,7 +6,8 @@ description = "Sheet music for Light the World - Latter-day Saints - Free - PDF"
 
 aliases = [
   "/posts/light-the-world-sheet-music/",
-  "/music/light-the-world/"
+  "/music/light-the-world/",
+  "/blog/light-the-world-sheet-music/"
 ]
 +++
 

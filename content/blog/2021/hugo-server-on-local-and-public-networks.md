@@ -3,6 +3,10 @@ title = "Running a Hugo Server on Local and Public Networks"
 date = 2021-08-21T10:47:25-06:00
 draft = false
 tags = ["web", "hugo", "cloudflared", "fish"]
+
+aliases = [
+    "/blog/hugo-server-on-local-and-public-networks"
+]
 +++
 
 When writing posts or updating the layout of this website, I run

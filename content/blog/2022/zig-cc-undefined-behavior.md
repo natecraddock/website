@@ -2,6 +2,10 @@
 title = "Catching Undefined Behavior with zig cc"
 date = 2022-03-23T18:57:12-06:00
 tags = ["c", "zig", "reckless-drivin"]
+
+aliases = [
+    "/blog/zig-cc-undefined-behavior/"
+]
 +++
 
 I just resolved an issue in [Reckless

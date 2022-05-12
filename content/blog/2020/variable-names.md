@@ -5,7 +5,8 @@ tags = ["programming", "humor"]
 description = "Funny variable names in various programming languages"
 
 aliases = [
-  "/posts/variable-names/"
+  "/posts/variable-names/",
+  "/blog/variable-names/"
 ]
 +++
 

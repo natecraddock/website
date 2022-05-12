@@ -2,6 +2,10 @@
 title = "Exploring the Inner-workings of Custom Git Commands"
 date = 2022-02-23T08:29:32-07:00
 tags = ["git", "fish", "tools"]
+
+aliases = [
+    "/blog/custom-git-commands/"
+]
 +++
 
 Git allows creating custom commands, but this feature is undocumented. I have

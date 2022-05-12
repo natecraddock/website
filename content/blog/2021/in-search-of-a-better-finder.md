@@ -5,7 +5,8 @@ tags = ["neovim", "programming", "python", "linux", "fzf"]
 description = "Trying to design a file finder that fits my needs"
 
 aliases = [
-  "/posts/in-search-of-a-better-finder/"
+  "/posts/in-search-of-a-better-finder/",
+  "/blog/in-search-of-a-better-finder/"
 ]
 +++
 

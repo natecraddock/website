@@ -10,7 +10,8 @@ aliases = [
   "/posts/reckless-drivin-decompression/",
   "/blog/reckless-drivin-decompression/",
   "/posts/reckless-drivin-decryption/",
-  "/blog/reckless-drivin-decryption/"
+  "/blog/reckless-drivin-decryption/",
+  "/blog/open-reckless-drivin/"
 ]
 +++
 

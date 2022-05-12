@@ -2,6 +2,10 @@
 title = "Zig Naming Conventions"
 date = 2022-01-08T21:30:52-07:00
 tags = ["programming", "zig"]
+
+aliases = [
+    "/blog/zig-naming-conventions/"
+]
 +++
 
 Zig's suggested naming conventions slightly deviate from what is common in other

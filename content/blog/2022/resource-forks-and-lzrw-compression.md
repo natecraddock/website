@@ -2,6 +2,10 @@
 title = "Unpacking LZRW-Compressed Game Assets from Resource Forks"
 date = 2022-01-21T17:32:05-07:00
 tags = ["reckless-drivin", "c", "reversing"]
+
+aliases = [
+    "/blog/resource-forks-and-lzrw-compression/"
+]
 +++
 
 [Reckless Drivin'](http://jonasechterhoff.com/Reckless_Drivin.html) is a
