@@ -1,16 +1,17 @@
 +++
 type = "plain"
-lastmod = 2022-02-23
+lastmod = 2022-05-12
 +++
 
 Hi, I'm Nathan!
 
-I am a computer science undergraduate at BYU in my senior year and I work as a
-teaching assistant for two of our computer science courses. As a teaching
-assistant I developed [zygrader](https://github.com/cs142ta/zygrader), a system
-for communication with the [zyBooks](https://zybooks.com) learning platform that
-makes it easier for us to grade student submissions. I really enjoy working in
-Zig, C, Lua, and Python, but I also know C++, JavaScript, and Java.
+I recently graduated with a Bachelors Degree in computer science from BYU. While
+a student there I worked as a teaching assistant for two of our computer science
+courses. As a teaching assistant I developed
+[zygrader](https://github.com/cs142ta/zygrader), a system for communication with
+the [zyBooks](https://zybooks.com) learning platform that makes it easier for us
+to grade student submissions. I really enjoy working in Zig, C, Lua, and Python,
+but I also know C++, JavaScript, and Java.
 
 In the summers of
 [2019](https://summerofcode.withgoogle.com/archive/2019/projects/5416561530109952/)
