@@ -67,6 +67,10 @@ ol, ul, p, details {
     margin-bottom: 1rem;
 }
 
+li > ul, li > ol {
+    margin-bottom: 0;
+}
+
 p {
     text-align: justify;
 }
