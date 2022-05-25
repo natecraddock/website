@@ -23,8 +23,6 @@ html {
     --sans-font: -apple-system, BlinkMacSystemFont, "Liberation Sans", Roboto, "Segoe UI", Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     --mono-font: San Francisco Mono, Monaco, "Liberation Mono", "Consolas", "Lucida Console", "DejaVu Sans Mono", monospace;
 
-    scroll-behavior: smooth;
-
     font-family: var(--sans-font);
     font-size: 12pt;
 }
@@ -49,7 +47,14 @@ body {
 
 img {
     margin-top: 1ch;
-    margin-bottom: 2ch;
+    margin-bottom: 1.3rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 50vh;
+    object-fit: cover;
+    border: solid 1px var(--text-accent);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -78,7 +83,7 @@ p {
 }
 
 p, li {
-    line-height: 1.6em;
+    line-height: 1.7em;
 }
 
 ol, ul {
@@ -172,20 +177,6 @@ main > * {
     grid-column: 2;
 }
 
-.full-bleed {
-    width: 100%;
-    grid-column: 1 / -1;
-}
-
-img {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    max-width: 100%;
-    max-height: 50vh;
-    object-fit: cover;
-}
-
 footer {
     padding-bottom: 1rem;
 }
@@ -270,6 +261,7 @@ hr {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     margin-bottom: 1rem;
 }
