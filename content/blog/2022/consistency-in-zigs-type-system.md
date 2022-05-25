@@ -186,7 +186,7 @@ anonymous until bound to an identifier. Storing the type as a constant with
 `const Point = struct { ... }` allows for reuse.
 
 This is because Zig types are first-class values at compile time. In the above
-code the `struct { x: i32, y: i32 }` describes a composite type of two unsigned
+code the `struct { x: i32, y: i32 }` describes a composite type of two signed
 integers. The assignment to `const Point` is really a compile-time assignment
 of data.
 
