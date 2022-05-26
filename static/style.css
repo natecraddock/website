@@ -1,5 +1,5 @@
-@import "light.css" screen;
-@import "dark.css" screen and (prefers-color-scheme: dark);
+@import "syntax.css" screen;
+/* @import "dark.css" screen and (prefers-color-scheme: dark); */
 
 * {
     box-sizing: border-box;
