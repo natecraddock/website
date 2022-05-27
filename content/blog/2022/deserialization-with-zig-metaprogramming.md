@@ -5,7 +5,7 @@ tags = ["zig", "reckless-drivin", "comptime"]
 +++
 
 I recently designed a simple struct deserializer for reading game asset data in
-[Reckless Drivin'](http://localhost:1313/blog/2021/open-reckless-drivin/). This
+[Reckless Drivin'](/blog/2021/open-reckless-drivin/). This
 code was straightforward to write, and has considerably sped up my progress in
 [rewriting](/blog/2022/moving-to-zig/) the game. Because the code is simple and
 has helped me so much, I thought it would make a good Zig metaprogramming
@@ -39,10 +39,10 @@ There are 3 types of resources, `Packs`, `PPics`, and `Chck`.
   level data.
 
 All `Pack` and `PPic` data is stored [LZRW
-compressed](http://localhost:1313/blog/2022/resource-forks-and-lzrw-compression/).
+compressed](/blog/2022/resource-forks-and-lzrw-compression/).
 Levels 4 through 10 were only available to players who purchased the full game
 and must be [decrypted with a registration
-code](http://localhost:1313/blog/2022/decryption-generating-registration-codes/)
+code](/blog/2022/decryption-generating-registration-codes/)
 before decompression. I have included a diagram showing the structure of the
 resource fork below.
 
