@@ -1,1 +1,3 @@
-<a class="header-anchor" href="#{{ .Anchor | safeURL }}"><h{{ .Level }} id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }}</h{{ .Level }}></a>
+<h{{ .Level }} id="{{ .Anchor | safeURL }}">
+    <a class="header-anchor" href="#{{ .Anchor | safeURL }}">#</a>&nbsp;{{ .Text | safeHTML }}
+</h{{ .Level }}>
