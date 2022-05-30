@@ -37,6 +37,10 @@ html {
         --select-highlight: #2a649d;
         --code-background: #303030;
     }
+
+    .invert {
+        filter: invert(100%);
+    }
 }
 
 body {
@@ -52,8 +56,6 @@ img {
     margin-right: auto;
     display: block;
     max-width: 100%;
-    max-height: 50vh;
-    object-fit: cover;
     border: solid 1px var(--text-accent);
 }
 

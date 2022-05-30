@@ -46,7 +46,7 @@ code](/blog/2022/decryption-generating-registration-codes/)
 before decompression. I have included a diagram showing the structure of the
 resource fork below.
 
-![diagram showing the structure of the resource fork](/images/resource-fork.png)
+{{< invertimg src="/images/resource-fork.png" alt="diagram showing the structure of the resource fork" >}}
 
 In my implementation I use Zig's `@embedFile()` builtin function to insert the
 full resource fork data as an array of bytes directly in the executable.
@@ -76,7 +76,7 @@ points to the position in the byte stream where that entry begins.
   entry IDs are sorted, entries in these packs are found by using a binary
   search.
 
-![the structure of a pack](/images/resource-pack.png)
+{{< invertimg src="/images/resource-pack.png" alt="the structure of a pack" >}}
 
 The entries are usually struct data (which is why I need to deserialize the
 entries), but other entries are simple arrays of bytes used for textures and
