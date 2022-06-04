@@ -276,12 +276,7 @@ code {
 }
 
 :not(pre) > code {
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
-    padding-top: 0.1rem;
-    padding-bottom: 0.05rem;
-    border-radius: 4px;
-    background-color: var(--code-background);
+    font-weight: bold;
 }
 
 pre {
