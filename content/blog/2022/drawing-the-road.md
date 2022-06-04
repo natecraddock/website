@@ -1,7 +1,6 @@
 +++
 title = "Drawing the Road"
 date = 2022-06-04T13:37:44-06:00
-draft = true
 tags = ["zig", "reckless-drivin", "c"]
 +++
 
