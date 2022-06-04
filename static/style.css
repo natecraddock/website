@@ -72,7 +72,7 @@ h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 > code {
 }
 
 
-ol, ul, p, details {
+ol, ul, p, details, video {
     margin-bottom: 1.3rem;
 }
 
