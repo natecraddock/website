@@ -1,7 +1,7 @@
 +++
 title = "Decryption and Generating Registration Codes"
 date = 2022-04-19T13:25:27-06:00
-tags = ["zig", "reckless-drivin"]
+tags = ["zig", "reckless-drivin", "games"]
 
 aliases = [
    "/blog/decryption-generating-registration-codes/"

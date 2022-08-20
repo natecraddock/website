@@ -1,7 +1,7 @@
 +++
 title = "Drawing the Road"
 date = 2022-06-04T13:37:44-06:00
-tags = ["zig", "reckless-drivin", "c"]
+tags = ["zig", "reckless-drivin", "c", "games"]
 +++
 
 It's time for a long-awaited [Reckless Drivin'](https://github.com/natecraddock/open-reckless-drivin) progress update! There are actual pixels drawn to the screen!
