@@ -77,10 +77,6 @@ li > ul, li > ol {
     margin-bottom: 0;
 }
 
-p {
-    text-align: justify;
-}
-
 p, li {
     line-height: 1.7em;
 }
@@ -136,6 +132,7 @@ sub, sup, code {
 
 a {
     color: var(--link);
+    text-decoration: none;
 }
 
 a:hover {
