@@ -132,6 +132,9 @@ sub, sup, code {
 
 a {
     color: var(--link);
+}
+
+a:has(code) {
     text-decoration: none;
 }
 
