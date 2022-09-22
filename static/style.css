@@ -15,7 +15,7 @@ html {
     --link: #36769b;
     --background: #fdfdfd;
     --select-highlight: #c9ddf7;
-    --code-background: #efefef;
+    --code-background: #eaeaea;
 
     --sans-font: -apple-system, BlinkMacSystemFont, "Liberation Sans", Roboto, "Segoe UI", Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     --mono-font: San Francisco Mono, Monaco, "Liberation Mono", "Consolas", "Lucida Console", "DejaVu Sans Mono", monospace;
@@ -32,7 +32,7 @@ html {
         --background: #1c1c1c;
         --link: #88aec3;
         --select-highlight: #2a649d;
-        --code-background: #303030;
+        --code-background: #505050;
     }
 
     .invert {
@@ -270,21 +270,22 @@ hr {
 code {
     font-family: var(--mono-font);
     font-size: 10pt;
+    padding: 2px;
+    border-radius: 4px;
+    background-color: var(--code-background);
 }
 
-code {
-    font-weight: bold;
-}
-
-.highlight {
-    padding-left: 1rem;
-    padding-right: 1rem;
+pre > code {
+    /* background-color: var(--background); */
+    padding: 0;
 }
 
 pre {
+    background-color: var(--code-background);
     word-wrap: normal;
     overflow-x: auto;
     line-height: 1.2em;
+    padding: 0.5em;
 }
 
 .highlight {
@@ -309,5 +310,4 @@ pre {
     font-style: italic;
     font-family: var(--mono-font);
     font-size: 8pt;
-    padding-left: 1rem;
 }
