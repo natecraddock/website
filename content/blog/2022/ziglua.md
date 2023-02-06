@@ -10,9 +10,9 @@ So how did this come about?
 
 While contributing to Blender during the Google Summer of Code in 2019 and 2020, I was fascinated by the Blender Python API. I decided then that I eventually wanted to write some sort of program that embedded another language for some form of extensibility.
 
-Then I learned Lua. After hearing about it for years, I first used Lua when [creating a fuzzy finder for Neovim](http://localhost:1313/blog/2021/creating-a-better-file-finder/), a project I have since abandoned. But that project introduced me to Lua and it's simplicity, and reminded me of my plan to embed a language in a program of my own.
+Then I learned Lua. After hearing about it for years, I first used Lua when [creating a fuzzy finder for Neovim](https://nathancraddock.com/blog/2021/creating-a-better-file-finder/), a project I have since abandoned. But that project introduced me to Lua and it's simplicity, and reminded me of my plan to embed a language in a program of my own.
 
-Then earlier this year [I ranted about text editors](http://localhost:1313/blog/2022/thoughts-on-vim-terminals-gui/). At the time I was using Neovim full time, and had been for about a year. Before that I was using Emacs. Those experiences opened my eyes to different text editing paradigms. The rant focused on how I wanted a perfect Vim + GUI editor, most likely a GUI layer on top of the Neovim API.
+Then earlier this year [I ranted about text editors](https://nathancraddock.com/blog/2022/thoughts-on-vim-terminals-gui/). At the time I was using Neovim full time, and had been for about a year. Before that I was using Emacs. Those experiences opened my eyes to different text editing paradigms. The rant focused on how I wanted a perfect Vim + GUI editor, most likely a GUI layer on top of the Neovim API.
 
 The funny thing is, almost a week after writing those thoughts down my plans changed.
 
