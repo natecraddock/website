@@ -1,3 +1,6 @@
+@import "light.css" screen;
+@import "dark.css" screen and (prefers-color-scheme: dark);
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -272,6 +275,9 @@ code {
     font-size: 10pt;
     padding: 2px;
     border-radius: 4px;
+}
+
+:not(pre) > code {
     background-color: var(--code-background);
 }
 
@@ -281,7 +287,6 @@ pre > code {
 }
 
 pre {
-    background-color: var(--code-background);
     word-wrap: normal;
     overflow-x: auto;
     line-height: 1.2em;
