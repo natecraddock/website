@@ -1,35 +1,28 @@
 +++
 type = "plain"
-lastmod = 2022-05-12
+lastmod = 2023-03-06
 +++
 
-Hi, I'm Nathan!
+Hello, I'm Nathan!
 
-I recently graduated with a Bachelors Degree in computer science from BYU. While
-a student there I worked as a teaching assistant for two of our computer science
-courses. As a teaching assistant I developed
-[zygrader](https://github.com/cs142ta/zygrader), a system for communication with
-the [zyBooks](https://zybooks.com) learning platform that makes it easier for us
-to grade student submissions. I really enjoy working in Zig, C, Lua, and Python,
-but I also know C++, JavaScript, and Java.
+I work as a software engineer maintaining internal software written in JavaScript and PHP, which leaves me with plenty of mental energy for solving more exciting problems in my free time. Nearly all of my personal projects are written in [Zig](https://ziglang.org), but I also enjoy Lua, C, Python, and many other languages. Read my [now](/now) page for more details of what I'm currently working on.
 
-In the summers of
-[2019](https://summerofcode.withgoogle.com/archive/2019/projects/5416561530109952/)
-and
-[2020](https://summerofcode.withgoogle.com/archive/2020/projects/5735262606327808/)
-I participated in the Google Summer of Code with
-[Blender](https://www.blender.org) improving the outliner editor. My [commit
+I'm an active member of the open source software community; both creating new projects and contributing to existing projects.
+
+* [zf](https://github.com/natecraddock/zf): a fuzzy finder that is optimized for filtering filepaths.
+* [ziglua](https://github.com/natecraddock/ziglua): an idiomatic Zig wrapper for the Lua C API.
+* [open-reckless-drivin](https://github.com/natecraddock/open-reckless-drivin): a rewrite of an old Macintosh game.
+* [workspaces.nvim](https://github.com/natecraddock/workspaces.nvim) and [sessions.nvim](https://github.com/natecraddock/sessions.nvim): simple workspace and session plugins for neovim.
+* [projectile](https://github.com/natecraddock/projectile): a Blender addon to apply initial velocities to rigid body objects.
+* [Blender](https://blender.org): I participated in the Google Summer of Code in [2019](https://summerofcode.withgoogle.com/archive/2019/projects/5416561530109952/) and [2020](https://summerofcode.withgoogle.com/archive/2020/projects/5735262606327808/) improving the outliner editor. My [commit
 history](https://miikahweb.com/en/blender/git-statistics/developers/natecraddock)
 shows other areas I contributed to.
 
-Read my [now](/now) page to see what I'm currently working on.
+Outside of computery things I enjoy hiking, running, reading, playing piano, and making fancy pizzas.
 
-Outside of computery things I enjoy hiking, running, reading, and
-playing piano.
-
-Find me on [GitHub](https://github.com/natecraddock), or send an email to
+You can find me on [GitHub](https://github.com/natecraddock), or send an email to
 [nathan@nathancraddock.com](mailto:nathan@nathancraddock.com) if you want to
-say hi! This blog also has an [RSS feed](/feed.xml).
+say hi! Please don't hesitate to reach out, I love hearing from people! This blog also has an [RSS feed](/feed.xml).
 
 This website is hosted on [Cloudflare Pages](https://pages.cloudflare.com/),
 generated with [Hugo](https://gohugo.io), and licensed under [CC BY-SA
