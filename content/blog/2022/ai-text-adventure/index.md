@@ -1,5 +1,5 @@
 +++
-title = "Generating Zork Artwork from the Room Descriptions"
+title = "Generating Zork artwork from the room descriptions"
 date = 2022-08-20T16:31:31-06:00
 tags = ["games", "ai"]
 +++

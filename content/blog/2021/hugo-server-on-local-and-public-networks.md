@@ -1,5 +1,5 @@
 +++
-title = "Running a Hugo Server on Local and Public Networks"
+title = "Running a Hugo server on local and public networks"
 date = 2021-08-21T10:47:25-06:00
 draft = false
 tags = ["web", "hugo", "cloudflared", "fish"]

@@ -1,5 +1,5 @@
 +++
-title = "Light the World Sheet Music"
+title = "Light the World sheet music"
 date = 2019-12-18
 tags = ["music"]
 description = "Sheet music for Light the World - Latter-day Saints - Free - PDF"

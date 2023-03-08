@@ -1,5 +1,5 @@
 +++
-title = "My Thoughts on Vim, Terminals, and GUI Editors"
+title = "My thoughts on Vim, terminals, and GUI editors"
 date = 2022-05-18T20:28:16-06:00
 tags = ["neovim", "tools", "editors", "rant"]
 +++

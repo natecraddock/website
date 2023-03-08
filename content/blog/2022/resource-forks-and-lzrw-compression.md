@@ -1,5 +1,5 @@
 +++
-title = "Unpacking LZRW-Compressed Game Assets from Resource Forks"
+title = "Unpacking LZRW-compressed game assets from resource forks"
 date = 2022-01-21T17:32:05-07:00
 tags = ["reckless-drivin", "c", "reversing", "games"]
 

@@ -1,5 +1,5 @@
 +++
-title = "Zig Naming Conventions"
+title = "Zig naming conventions"
 date = 2022-01-08T21:30:52-07:00
 tags = ["programming", "zig"]
 

@@ -1,5 +1,5 @@
 +++
-title = "In Search of a Better File Finder"
+title = "In search of a better file finder"
 date = 2021-05-11
 tags = ["neovim", "programming", "python", "linux", "fzf"]
 description = "Trying to design a file finder that fits my needs"

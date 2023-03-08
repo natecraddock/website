@@ -1,5 +1,5 @@
 +++
-title = "Writing a Struct Deserializer with Zig Metaprogramming"
+title = "Writing a struct deserializer with Zig metaprogramming"
 date = 2022-05-25T14:28:26-06:00
 tags = ["zig", "reckless-drivin", "comptime"]
 +++

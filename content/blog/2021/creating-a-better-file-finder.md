@@ -1,5 +1,5 @@
 +++
-title = "Creating a Better File Finder"
+title = "Creating a better file finder"
 date = 2021-06-29
 tags = ["neovim", "programming", "python", "linux"]
 description = "A neovim file finder that fits my needs"

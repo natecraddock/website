@@ -1,5 +1,5 @@
 +++
-title = "Variable Names"
+title = "Variable names"
 date = "2020-06-29"
 tags = ["programming", "humor"]
 description = "Funny variable names in various programming languages"

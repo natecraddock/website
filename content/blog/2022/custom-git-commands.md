@@ -1,5 +1,5 @@
 +++
-title = "Exploring the Inner-workings of Custom Git Commands"
+title = "Exploring the inner-workings of custom Git commands"
 date = 2022-02-23T08:29:32-07:00
 tags = ["git", "fish", "tools"]
 

@@ -1,5 +1,5 @@
 +++
-title = "Consistency and Precision in Zig's Type System"
+title = "Consistency and precision in Zig's type system"
 date = 2022-01-12T14:17:42-07:00
 draft = false
 tags = ["zig", "c"]

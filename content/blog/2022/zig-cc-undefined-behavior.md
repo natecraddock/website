@@ -1,5 +1,5 @@
 +++
-title = "Catching Undefined Behavior with zig cc"
+title = "Catching undefined behavior with zig cc"
 date = 2022-03-23T18:57:12-06:00
 tags = ["c", "zig", "reckless-drivin"]
 

@@ -1,5 +1,5 @@
 +++
-title = "Decryption and Generating Registration Codes"
+title = "Decryption and generating registration codes"
 date = 2022-04-19T13:25:27-06:00
 tags = ["zig", "reckless-drivin", "games"]
 
