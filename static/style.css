@@ -286,6 +286,7 @@ pre {
     overflow-x: auto;
     line-height: 1.2em;
     padding: 1rem;
+    text-size-adjust: none;
 }
 
 .highlight {
