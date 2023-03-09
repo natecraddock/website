@@ -99,6 +99,11 @@ blockquote p {
     text-align: left;
 }
 
+/* fix in-line formatting */
+sub, sup {
+    line-height: 0;
+}
+
 /* General Tags */
 .title {
     display: inline-block;
@@ -287,6 +292,7 @@ pre {
     line-height: 1.2em;
     padding: 1rem;
     text-size-adjust: none;
+    -webkit-text-size-adjust: none;
 }
 
 .highlight {
