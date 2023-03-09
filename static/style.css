@@ -16,7 +16,7 @@ html {
     --text-alt: #555555;
     --text-accent: #eaeaea;
     --link: #36769b;
-    --background: #fdfdfd;
+    --background: #fbfbfb;
     --select-highlight: #c9ddf7;
     --code-background: #eaeaea;
 
@@ -97,11 +97,6 @@ blockquote {
 
 blockquote p {
     text-align: left;
-}
-
-/* fix in-line formatting */
-sub, sup, code {
-    line-height: 0;
 }
 
 /* General Tags */
