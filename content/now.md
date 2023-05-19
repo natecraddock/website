@@ -6,7 +6,9 @@ lastmod = 2023-03-07
 
 ## Now
 
-Here are the projects I'm focused on right now
+Right now my big focus is working on my own personal text editor. It is very rough around the edges right now, but I have successfully edited a text file! I keep getting deeper and deeper into this project, so expect to hear more about this in the future. It has led me to learn about the internals of the macOS Objective-C runtime, Zig, Lua, and many other fun topics!
+
+Here are a few other projects I am working on right now:
 
 ### zf
 
