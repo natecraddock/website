@@ -1,11 +1,13 @@
 +++
 type = "plain"
-lastmod = 2023-03-06
+lastmod = 2023-05-18
 +++
 
 Hello, I'm Nathan!
 
-I work as a software engineer maintaining internal software written in JavaScript and PHP, which leaves me with plenty of mental energy for solving more exciting problems in my free time. Nearly all of my personal projects are written in [Zig](https://ziglang.org), but I also enjoy Lua, C, Python, and many other languages. Read my [now](/now) page for more details of what I'm currently working on.
+I work as a software engineer maintaining internal software written in JavaScript and PHP. However, my real interests lie outside the world of web development.
+
+Nearly all of my personal projects are written in [Zig](https://ziglang.org), but I also enjoy Lua, C, Python, and many other languages. I often find myself reinventing the wheel just to learn how something works, or to fix something that annoys me. Read my [now](/now) page for more details of what I'm currently working on.
 
 I'm an active member of the open source software community; both creating new projects and contributing to existing projects.
 
