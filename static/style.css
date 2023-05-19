@@ -104,6 +104,11 @@ sub, sup {
     line-height: 0;
 }
 
+sup {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 /* General Tags */
 .title {
     display: inline-block;
