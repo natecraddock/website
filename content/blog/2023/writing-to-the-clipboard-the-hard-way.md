@@ -421,10 +421,8 @@ Hopefully that was an enjoyable and informative introduction to many different l
 
 ## A reflection on learning
 
-A few weeks ago I knew very little about the Objective-C runtime, Cocoa, or the macOS pasteboard.
+I actually debated publishing this post for a while. After I write something it always seems too simple and basic to share. But then I remembered what I went through to learn all this. 
 
 A couple months ago I read [Serge's post on cross-platform minimal GUI frameworks](https://zserge.com/posts/fenster/). I thought it was neat, and I bookmarked it for future reference, but I didn't understand everything. Recently I came across [zig-objc](https://github.com/mitchellh/zig-objc). The moment I realized there was a way to connect a non Objective-C program with the macOS frameworks, I went back to Serge's article. With that fresh knowledge everything made more sense. It's amazing what a little exposure to a topic can do.
 
 So I write this to remind myself what it felt like as I stumbled around trying to learn these various topics. This article is the guide I wish existed when I was learning about these things. I write this hoping that I can be another drop in the vast internet ocean of knowledge. Hopefully something I write can help someone else learn. Perhaps you are one of [today's lucky 10,000](https://xkcd.com/1053/).
-
-It is easy to feel superior from a position of knowledge, and far harder to remember that you once were in the dark.
