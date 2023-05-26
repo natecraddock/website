@@ -1,0 +1,430 @@
++++
+title = "Writing to the macOS clipboard the hard way"
+description = "How to access the system clipboard on macOS with Lua with increasing complexity using Lua, Objective-C, C, and Zig"
+date = 2023-05-20T10:31:39-06:00
+tags = ["macos", "zig", "c", "objective-c", "lua"]
++++
+
+<!-- add lots of links to external resources -->
+
+I want to write a string to the macOS system clipboard from a Lua script. How can I do it?
+
+We will walk through four approaches for writing to the macOS clipboard, and along the way we will touch on the Objective-C runtime, the Lua C API, and some Zig metaprogramming. I'll leave plenty of links to external resources if you want to learn more on the various topics covered.
+
+Most of the code discussed here is available in my public [sandbox](https://github.com/natecraddock/sandbox/tree/main/objc). This is all for learning and just for fun,[^on-purpose] so let's dive in!
+
+[^on-purpose]: While I do have a reason for why I went through this exercise, it is mostly [just for fun](https://justforfunnoreally.dev/).
+
+## First steps
+
+Let's start simple. MacOS includes the [`pbcopy`](https://www.unix.com/man-page/mojave/1/PBCOPY/) and [`pbpaste`](https://www.unix.com/man-page/mojave/1/PBPASTE/) commands that provide write and read access to the clipboard.
+
+```sh
+$ echo "Hello from the Terminal!" | pbcopy
+$ pbpaste
+Hello from the Terminal!
+```
+
+The command `pbcopy` reads stdin to the clipboard, and `pbpaste` writes the contents of the clipboard to stdout.
+
+For running programs in a subprocess, the Lua standard library includes the [`io.popen()`](https://www.lua.org/manual/5.4/manual.html#pdf-io.popen) function. With `pbcopy` and `io.popen()`, we can write this simple Lua script to write to the clipboard:
+
+```lua
+-- open the command pbcopy in write mode
+pboard = io.popen('pbcopy', 'w')
+
+-- write a string to the subprocess file on stdin and close it
+pboard:write('Hello from Lua!')
+pboard:close()
+```
+
+After executing this in a Lua interpreter, a Command+V will paste the string `Hello from Lua!`. That's all it takes to write an arbitrary string to the macOS system clipboard.
+
+Extending this to support paste is trivial:
+
+```lua
+pboard = io.popen('pbpaste')
+text = pboard:read()
+pboard:close()
+
+-- do something useful with text
+print(text)
+```
+
+This solution does require creating a subprocess, but I can't think of any situation where you would need highly optimized clipboard access.[^sniped] This code is likely sufficient for any purpose. Wrap these in functions and problem solved!
+
+[^sniped]: Okay, I thought of a weird use case for optimized clipboard access and nerd-sniped myself. But let's save that thought for later.
+
+## But this feels like cheating, can we do better?
+
+Instead of relying on executing system commands as subprocesses, we can instead write code to access the clipboard directly.
+
+The `pbcopy` and `pbpaste` programs link against the [macOS AppKit framework](https://developer.apple.com/documentation/appkit?language=objc).[^otool] AppKit contains an API for clipboard access via the [NSPasteboard](https://developer.apple.com/documentation/appkit/nspasteboard?language=objc) class:
+
+[^otool]: This information can be discovered with the `otool -L $(which pbcopy)` command.
+
+> The pasteboard server is shared by all running apps. It contains data that the user has cut or copied...
+> NSPasteboard objects are an application’s **sole interface to the server** and to all pasteboard operations.
+
+So if we want to do this from our program, we need to use the NSPasteboard API and link against AppKit. We will do this by writing code in Objective-C.[^swift]
+
+[^swift]: You can also use Swift to access the system pasteboard.
+
+Also notice that Apple's documentation refers to the clipboard as the "Pasteboard". That is where the "pb" in `pbcopy` and `pbpaste` comes from. Because clipboard is a more commonplace term, I will continue to use the word clipboard unless I am talking about the macOS API, but do note that internally on macOS it is called a pasteboard.
+
+Our goal is to create a [library](https://www.lua.org/pil/26.2.html) written in Objective-C that can be loaded into Lua at runtime.
+
+### Clipboard access from Objective-C
+That's a lot to do all at once, so we will ignore Lua for now. Our first step will be creating a simple program to write a string to the clipboard. We are effectively replicating this command from earlier in Objective-C code:
+
+```sh
+$ echo "Hello from the Terminal!" | pbcopy
+```
+
+The macOS pasteboard server allows creating custom pasteboards, but for our purposes we want to use the [`generalPasteboard`](https://developer.apple.com/documentation/appkit/nspasteboard/1530091-generalpasteboard?language=objc). This is the default pasteboard shared among all applications (and connected devices using Apple's Universal Clipboard).
+
+To get a reference to the `generalPasteboard` we can use this code:
+
+{{< code lang="objective-c" header="pboard.m" >}}
+#import <Cocoa/Cocoa.h>
+
+int main() {
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    return 0;
+}
+{{</ code >}}
+
+This code does nothing meaningful, but it provides a simple starting place to explain a few things before moving on.
+
+[Objective-C](https://en.wikipedia.org/wiki/Objective-C) is a superset of C that adds object-oriented messaging through a [dynamic runtime](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048-CH1-SW1). Rather than an `object.function()` syntax, it uses message expressions written like this:
+
+```objective-c
+[receiver message]
+```
+
+In our code we have the expression `[NSPasteboard generalPasteboard]`. This sends the `generalPasteboard` message to the `NSPasteboard` class and returns the object for the general pasteboard. We aren't doing anything with that object yet, so let's add two more statements to copy the string "Hello from Objective-C!" to the clipboard.
+
+{{< code lang="objective-c" header="pboard.m" >}}
+#import <Cocoa/Cocoa.h>
+
+int main() {
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    [pboard clearContents];
+    [pboard setString:@"Hello from Objective-C!"
+            forType:NSPasteboardTypeString];
+    return 0;
+}
+{{</ code >}}
+
+The expression `[pboard clearContents]` sends the `clearContents` message to our `pboard` object. Clearing the pasteboard before writing is recommended in the [documentation](https://developer.apple.com/documentation/appkit/nspasteboard/1533599-clearcontents?language=objc).
+
+The next expression uses the [`setString:forType`](https://developer.apple.com/documentation/appkit/nspasteboard/1528225-setstring?language=objc) message which takes two arguments, a string literal, and a previously declared data type:[^other-types]
+
+```objective-c
+[pboard setString:@"Hello from Objective-C!"
+        forType:NSPasteboardTypeString];
+```
+
+This copies our string to the pasteboard.
+
+[^other-types]: The pasteboard can read and write data types other than strings. See [the `NSPasteboardType` documentation](https://developer.apple.com/documentation/appkit/nspasteboardtype?language=objc) for more details. Here we will only be concerned with strings.
+
+Now if we compile and run this code with `cc -framework Cocoa pboard.m -o pboard && ./pboard` the string "Hello from Objective-C!" will be copied to the clipboard.
+
+### Integration with Lua
+Now that we know how to write to the clipboard, we need to integrate this program with the Lua C API so we can complete our goal of writing a string to the clipboard from Lua. This doesn't take much more code. Here is the full program:
+
+{{< code lang="objective-c" header="pboard.m" >}}
+#import <Cocoa/Cocoa.h>
+
+#include <lua/lua.h>
+#include <lua/lauxlib.h>
+
+int set(lua_State *L) {
+    const char *str = luaL_checkstring(L, 1);
+
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    [pboard clearContents];
+    [pboard setString:[NSString stringWithUTF8String:str]
+            forType:NSPasteboardTypeString];
+
+    return 0;
+}
+
+const luaL_Reg fns[] = {
+    { "set", set },
+    { NULL, NULL },
+};
+
+int luaopen_pboard(lua_State *L) {
+    luaL_newlib(L, fns);
+    return 1;
+}
+{{</ code >}}
+
+Let's look at these additions in isolation.
+
+First we replace our `main()` function with `int set(lua_State *L)`. Instead of creating an executable with an entrypoint, we will be creating a shared library to be loaded by Lua. [C functions called from Lua](https://www.lua.org/manual/5.4/manual.html#lua_CFunction) must accept a `lua_State *` parameter and return an `int` indicating the number of return values.
+
+```objective-c
+int set(lua_State *L) {
+    const char *str = luaL_checkstring(L, 1);
+
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    [pboard clearContents];
+    [pboard setString:[NSString stringWithUTF8String:str]
+            forType:NSPasteboardTypeString];
+
+    return 0;
+}
+```
+
+This code is nearly identical to our original `main()` function. The two differences are to get a string argument from Lua, and instead of passing a string literal to the pasteboard, we create an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring?language=objc) (the string type used by the macOS APIs).
+
+The [`luaL_checkstring(L, 1)`](https://www.lua.org/manual/5.4/manual.html#luaL_checkstring) function call will ensure the first argument passed to our function is a string. If it is, a pointer to the string is returned, otherwise it will raise a Lua error.
+
+The expression [`[NSString stringWithUTF8String:str]`](https://developer.apple.com/documentation/foundation/nsstring/1497379-stringwithutf8string) accepts our Lua C string (`str`) and converts it to an `NSString` for use with the Objective-C runtime.
+
+The remaining new code is to export our function as a Lua library.
+
+```objective-c
+const luaL_Reg fns[] = {
+    { "set", set },
+    { NULL, NULL }, // sentinel
+};
+
+int luaopen_pboard(lua_State *L) {
+    luaL_newlib(L, fns);
+    return 1;
+}
+```
+
+The array `fns` stores  name and function pairs. The call to [`luaL_newlib`](https://www.lua.org/manual/5.4/manual.html#luaL_newlib) creates a Lua table from that array. [Lua will search for](https://www.lua.org/manual/5.4/manual.html#pdf-package.searchers) the `luaopen_pboard` function at runtime (the `luaopen_` prefix is important) when we run `require 'pboard'`. The call to require will return our library table, which contains a single key `set` which is bound to the `int set(lua_State *L)` function we created.
+
+We can compile this code with `cc -framework Cocoa -l lua -I /opt/homebrew/include -L /opt/homebrew/lib -shared -o pboard.so pboard.m`.[^brew] This will compile our code as a shared library to `pboard.so`. Then from a Lua interpreter in the same directory as the `pboard.so` file:
+
+[^brew]: I have the latest version of Lua installed from homebrew on an M2 Macbook Air. On an x86 Macbook, the library and include paths should already be searched by default.
+
+```lua
+pboard = require 'pboard'
+pboard.set('Hello from Objective C!')
+```
+
+And the string "Hello from Objective C!" is copied to the clipboard.
+
+Let's review what this does:
+1. The `require 'pboard'` instructs Lua to search for a `pboard` module. Because the path doesn't include a `pboard.lua` file, it attempts to search for a `pboard.so` file.
+2. After `pboard.so` is loaded, Lua looks for a `luaopen_pboard` function.
+3. This function is executed, registering our `int set(lua_State *L)` function to the key `set` in a Lua table.
+4. This table is returned from `require` and stored in the global `pboard`.
+5. When we call `pboard.set(...)` we are passing our string from Lua to our Objective-C function where that string is passed to the macOS pasteboard code.
+
+Not too much work, and now we have a more efficient way to write to the clipboard from Lua that doesn't require subprocesses. I won't include code to read from the clipboard for brevity, but it is very similar.
+
+But Objective-C is a dynamic runtime built on top of plain old C. Can we rewrite this code in C? I think this StackOverflow comment answers things nicely:
+
+> Yes, and you can dig a foundation with a spoon, but that doesn't make it either a good idea nor terribly effective ([StackOverflow](https://stackoverflow.com/questions/10289890/how-to-write-ios-app-purely-in-c#comment13239523_10289913)).
+
+So while this isn't the _best_ idea, digging a foundation with a spoon is a great way to learn, so onward we go!
+
+## Replacing Objective-C with C
+
+Objective-C is a superset of C, and it relies heavily on a dynamic runtime. This runtime is accessible from C, so any language that can integrate with C can communicate with the [Objective-C runtime](https://developer.apple.com/documentation/objectivec/objective-c_runtime?language=objc). The docs mention
+
+> You typically don't need to use the Objective-C runtime library directly when programming in Objective-C. This API is useful primarily for developing bridge layers between Objective-C and other languages.
+
+This Objective-C runtime library sounds like the perfect solution!
+
+Back to the messaging syntax from earlier. The Objective-C compiler converts message expressions `[receiver message]` into a call to the messaging function `objc_msgSend()`. See the [Messaging](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtHowMessagingWorks.html#//apple_ref/doc/uid/TP40008048-CH104-SW1) documentation for more details.
+
+To rewrite our Objective-C program in plain C, all we have to do is take up the role of the compiler and rewrite all of the message expressions into C function calls. There are three runtime function calls we need to be familiar with to translate our program:
+
+* [objc_getClass](https://developer.apple.com/documentation/objectivec/1418952-objc_getclass?language=objc): The `Class objc_getClass(const char *name)` function accepts the name of an Objective-C class as a string, and returns a reference to the class (or `NULL` if it doesn't exist).
+
+* [sel_registerName](https://developer.apple.com/documentation/objectivec/1418557-sel_registername?language=objc): The `SEL sel_registerName(const char *name)` function accepts the name of a method as a string, and returns a selector for the method. Selectors are objects that represent the name of a method at runtime.
+
+  In the `[receiver message]` expressions, the `message` is transformed into a call to `sel_registerName`.
+
+* [objc_msgSend](https://developer.apple.com/documentation/objectivec/1456712-objc_msgsend?language=objc): This is the most complex function, and it always accepts at least two arguments: `self` and `op`. `self` is the receiver, and `op` is the selector of the method that handles the message. Receivers can be classes or objects. Any additional arguments beyond those two are passed to the selected method.
+
+  Rather than being a variadic function, this function has a signature of `void objc_msgSend(void)`. This is because we are expected to type cast this function into the correct function for the types we are passing and returning.
+
+Another important part of the runtime is the type [`id`](https://developer.apple.com/documentation/objectivec/id?language=objc), which is a pointer to an instance of a class.
+
+Once again, here is the full code, and we will look at it closer after:
+
+{{< code lang="c" header="pboard.c" >}}
+#include <objc/NSObjCRuntime.h>
+#include <objc/objc-runtime.h>
+
+#include <lua/lua.h>
+#include <lua/lauxlib.h>
+
+extern id const NSPasteboardTypeString;
+
+int set(lua_State *L) {
+    const char *str = luaL_checkstring(L, 1);
+
+    Class NSPasteboard = objc_getClass("NSPasteboard");
+    id pboard = ((id (*)(Class, SEL))objc_msgSend)(NSPasteboard, sel_registerName("generalPasteboard"));
+
+    ((void (*)(id, SEL))objc_msgSend)(pboard, sel_registerName("clearContents"));
+
+    Class NSString = objc_getClass("NSString");
+    id nsStr = ((id (*)(Class, SEL, const char *))objc_msgSend)(NSString, sel_registerName("stringWithUTF8String:"), str);
+
+    ((bool (*)(id, SEL, id, id))objc_msgSend)(pboard, sel_registerName("setString:forType:"), nsStr, NSPasteboardTypeString);
+
+    return 0;
+}
+
+const luaL_Reg fns[] = {
+    { "set", set },
+    { NULL, NULL },
+};
+
+int luaopen_pboard(lua_State *L) {
+    luaL_newlib(L, fns);
+    return 1;
+}
+{{</ code >}}
+
+The first thing to point out is that the `#import <Carbon/Carbon.h>` is replaced with `#include` directives for the Objective-C runtime. We are no longer compiling this code with an Objective-C compiler, so that makes sense.
+
+Nothing has changed with the Lua code, so let's focus on the `int set(lua_State *L)` function. For context, this is what it looked like in Objective-C:
+
+```objective-c
+int set(lua_State *L) {
+    const char *str = luaL_checkstring(L, 1);
+
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    [pboard clearContents];
+    [pboard setString:[NSString stringWithUTF8String:str]
+            forType:NSPasteboardTypeString];
+
+    return 0;
+}
+```
+
+And this is the same function in C:
+
+```c
+int set(lua_State *L) {
+    const char *str = luaL_checkstring(L, 1);
+
+    Class NSPasteboard = objc_getClass("NSPasteboard");
+    id pboard = ((id (*)(Class, SEL))objc_msgSend)(NSPasteboard, sel_registerName("generalPasteboard"));
+
+    ((void (*)(id, SEL))objc_msgSend)(pboard, sel_registerName("clearContents"));
+
+    Class NSString = objc_getClass("NSString");
+    id nsStr = ((id (*)(Class, SEL, const char *))objc_msgSend)(NSString, sel_registerName("stringWithUTF8String:"), str);
+
+    ((bool (*)(id, SEL, id, id))objc_msgSend)(pboard, sel_registerName("setString:forType:"), nsStr, NSPasteboardTypeString);
+
+    return 0;
+}
+```
+
+Oh no! Our previously readable code is now a huge mess. Let's break down just the first changed line.
+
+```c
+Class NSPasteboard = objc_getClass("NSPasteboard");
+```
+
+Here we use `objc_getClass()` to return a reference to the `NSPasteboard` class. Note that if the class does not exist, the variable `NSPasteboard` will be `NULL`. I'm not handling errors here because if `NSPasteboard` isn't available something horribly wrong has occurred.
+
+```c
+id pboard = ((id (*)(Class, SEL))objc_msgSend)(NSPasteboard, sel_registerName("generalPasteboard"));
+```
+
+Here is our first taste of some messy function pointer casting. `((id (*)(Class, SEL))objc_msgSend)` casts the `objc_msgSend` function into a function that returns an `id`, and accepts `Class` and `SEL` parameters. The function signature is now `id objc_msgSend(Class, SEL)`.
+
+Then we call the function, passing in our `NSPasteboard` class reference, and the `SEL` selector for the `generalPasteboard` method. The resulting object reference (`id`) is stored in the `pboard` variable.
+
+These two complex lines together are equivalent to `[NSPasteboard generalPasteboard]`. Much more complicated, but not too bad when you break it into small pieces.
+
+Now we clear the contents of the pasteboard with the following:
+
+```c
+((void (*)(id, SEL))objc_msgSend)(pboard, sel_registerName("clearContents"));
+```
+
+The remaining lines follow the same pattern of casting `objc_msgSend`, so I won't explain them in detail. One other thing to point out is that we need to declare [`NSPasteboardTypeString`](https://developer.apple.com/documentation/appkit/nspasteboardtypestring) as an external variable.
+
+```c
+extern id const NSPasteboardTypeString;
+```
+
+We need this because this object is defined at runtime. It is referenced in the Carbon headers but we cannot `#include` those headers in our C file because they are written in Objective-C. So we manually define a reference to the externally defined object that is resolved at link time.
+
+Now we can compile our code with `cc -framework Cocoa -l lua -I /opt/homebrew/include -L /opt/homebrew/lib -shared -o pboard.so pboard.c`. When loaded into Lua this should give the same behavior as our Objective-C example.
+
+```lua
+pboard = require 'pboard'
+pboard.set('Hello from C!')
+```
+
+While the Objective-C version is more readable, taking the time to rewrite this in plain C shows more details on how the Objective-C language adds a dynamic object-oriented runtime on top of C.
+
+One thing that can be done to increase readability of the code is to define macros to hide the pointer casting. A small project that makes use of this technique is the [Fenster single-header C library](https://github.com/zserge/fenster/) for cross-platform GUIs. Take a look at some of the [macro definitions here](https://github.com/zserge/fenster/blob/5a005ec1e8dc56e20330dfe1a0e6069a31e03848/fenster.h#L55).
+
+## A bonus Zig implementation
+
+Rather than add C macros, I decided to take things one step further and rewrite the code one last time in Zig! I spent the last year writing a [Lua bindings package for Zig](https://github.com/natecraddock/ziglua), and I would much rather use that than write C.
+
+To keep this short, I'm not going to explain the Zig part too much. It relies on both my Ziglua package and a metaprogramming-heavy Objective-C runtime wrapper. But the final code is very similar to our Objective-C and C examples.
+
+```zig
+const objc = @import("objc.zig");
+const std = @import("std");
+const ziglua = @import("ziglua");
+
+const Class = objc.Class;
+const Lua = ziglua.Lua;
+const Object = objc.Object;
+
+export fn luaopen_pboard(state: *ziglua.LuaState) i32 {
+    var lua = Lua{ .state = state };
+    lua.newLib(&funcs);
+    return 1;
+}
+
+const funcs = [_]ziglua.FnReg{
+    .{ .name = "set", .func = ziglua.wrap(set) },
+};
+
+fn set(lua: *Lua) i32 {
+    const str = lua.checkBytes(1);
+
+    const pboard = objc.getClass("NSPasteboard").send(Object, "generalPasteboard", .{});
+    pboard.send(void, "clearContents", .{});
+
+    const textToCopy = objc.getClass("NSString").send(Object, "stringWithUTF8String:", .{str});
+    _ = pboard.send(bool, "setString:forType:", .{ textToCopy.value, objc.NSPasteboardTypeString });
+
+    return 0;
+}
+```
+
+The full code for this example is available [in my sandbox repository](https://github.com/natecraddock/sandbox/tree/main/objc). Look at the `src/main.zig` and `src/objc.zig` files for more details.
+
+I'll just point out that by using Zig's metaprogramming capabilities, I was able to write code that hides most of the underlying details of the runtime. I can directly send messages to object references with code like this:
+
+```zig
+pboard.send(void, "clearContents", .{});
+```
+
+It is more verbose than the Objective-C version, but much more easy to read than the C version. If there is interest, maybe I will explain the metaprogramming wrapper in a future post.
+
+Hopefully that was an enjoyable and informative introduction to many different languages and topics! This post touches on many of the technologies I have learned over the last two years while working on a new project.
+
+## A reflection on learning
+
+A few weeks ago I knew very little about the Objective-C runtime, Cocoa, or the macOS pasteboard.
+
+A couple months ago I read [Serge's post on cross-platform minimal GUI frameworks](https://zserge.com/posts/fenster/). I thought it was neat, and I bookmarked it for future reference, but I didn't understand everything. Recently I came across [zig-objc](https://github.com/mitchellh/zig-objc). The moment I realized there was a way to connect a non Objective-C program with the macOS frameworks, I went back to Serge's article. With that fresh knowledge everything made more sense. It's amazing what a little exposure to a topic can do.
+
+So I write this to remind myself what it felt like as I stumbled around trying to learn these various topics. This article is the guide I wish existed when I was learning about these things. I write this hoping that I can be another drop in the vast internet ocean of knowledge. Hopefully something I write can help someone else learn. Perhaps you are one of [today's lucky 10,000](https://xkcd.com/1053/).
+
+It is easy to feel superior from a position of knowledge, and far harder to remember that you once were in the dark.
