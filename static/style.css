@@ -35,7 +35,7 @@ html {
         --background: #1c1c1c;
         --link: #88aec3;
         --select-highlight: #2a649d;
-        --code-background: #505050;
+        --code-background: #282c34;
     }
 
     .invert {
@@ -307,7 +307,6 @@ pre {
 }
 
 .labeled-code {
-    border-radius: 4px;
     margin-top: 1rem;
     margin-bottom: 1.3rem;
     overflow: hidden;
@@ -319,7 +318,10 @@ pre {
 }
 
 .code-header {
-    font-style: italic;
+    background-color: var(--code-background);
+    padding-top: 2px;
+    border-bottom: 2px solid var(--background);
+    padding-left: 1rem;
     font-family: var(--mono-font);
     font-size: 8pt;
 }

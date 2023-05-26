@@ -1,7 +1,7 @@
 +++
 title = "Writing to the macOS clipboard the hard way"
 description = "How to access the system clipboard on macOS with Lua with increasing complexity using Lua, Objective-C, C, and Zig"
-date = 2023-05-20T10:31:39-06:00
+date = 2023-05-26T06:20:39-06:00
 tags = ["macos", "zig", "c", "objective-c", "lua"]
 +++
 

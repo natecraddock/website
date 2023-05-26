@@ -4,7 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {{ if isset .Params "description" }}
-            <meta name="description" content="{{ .Params.description | safe }}">
+            <meta name="description" content="{{ .Params.description }}">
+        {{ else if isset .Page "Title" }}
+            <meta name="description" content="{{ .Page.Title }}">
+        {{ else }}
+            <meta name="description" content="Nathan Craddock's website">
         {{ end }}
 
         <link rel=icon href=data:,>
