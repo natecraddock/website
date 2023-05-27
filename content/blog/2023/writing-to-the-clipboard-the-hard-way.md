@@ -289,7 +289,7 @@ int luaopen_pboard(lua_State *L) {
 }
 {{</ code >}}
 
-The first thing to point out is that the `#import <Carbon/Carbon.h>` is replaced with `#include` directives for the Objective-C runtime. We are no longer compiling this code with an Objective-C compiler, so that makes sense.
+The first thing to point out is that the `#import <Cocoa/Cocoa.h>` is replaced with `#include` directives for the Objective-C runtime. We are no longer compiling this code with an Objective-C compiler, so that makes sense.
 
 Nothing has changed with the Lua code, so let's focus on the `int set(lua_State *L)` function. For context, this is what it looked like in Objective-C:
 
@@ -356,7 +356,9 @@ The remaining lines follow the same pattern of casting `objc_msgSend`, so I won'
 extern id const NSPasteboardTypeString;
 ```
 
-We need this because this object is defined at runtime. It is referenced in the Carbon headers but we cannot `#include` those headers in our C file because they are written in Objective-C. So we manually define a reference to the externally defined object that is resolved at link time.
+We need this because `NSPasteboardTypeString` is defined Cocoa headers but we cannot `#include` those headers in our C file because they are written in Objective-C. So we manually define a reference to the externally defined object that is resolved at link time.[^thanks]
+
+[^thanks]: Thanks to David Chisnall for pointing out an error in a previous version that I have since corrected. I incorrectly said `NSPasteboardTypeString` was defined at runtime, when it is just a constant string. David shares some more interesting thoughts based on this post [here](https://lobste.rs/s/x3sfpo/writing_macos_clipboard_hard_way#c_nknsxq).
 
 Now we can compile our code with `cc -framework Cocoa -l lua -I /opt/homebrew/include -L /opt/homebrew/lib -shared -o pboard.so pboard.c`. When loaded into Lua this should give the same behavior as our Objective-C example.
 
