@@ -91,7 +91,6 @@ ol, ul {
 blockquote {
     border-left: solid var(--text-accent) 4px;
     margin-bottom: 1rem;
-    font-style: italic;
     padding-left: 1rem;
 }
 
