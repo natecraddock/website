@@ -1,0 +1,58 @@
+Hello, I'm Nathan!
+
+* Email: [nathan@nathancraddock.com](mailto:nathan@nathancraddock.com)
+* GitHub: [natecraddock](https://github.com/natecraddock)
+
+I work as a software engineer maintaining internal software written in JavaScript and PHP.
+For personal projects I enjoy writing code in Zig, Lua, C, and Python. I regularly contribute
+to open source. Outside of computery things I enjoy hiking, running, reading, and piano.
+
+Below are things I have written and projects I have worked on.
+
+## Reckless Drivin
+
+I'm working on a rewrite of the Macintosh game [Reckless Drivin'](http://jonasechterhoff.com/Reckless_Drivin.html).
+Jonas Echterhoff [shared the original source code](https://github.com/jechter/RecklessDrivin) in 2019, and I have
+been working on [my rewrite](/blog/open-reckless-drivin) ever since. Despite starting with the original source code,
+the project has involved a lot of reversing to understand the binary format for the game assets.
+I occasionally write about what I have learned and share progress updates:
+
+* [Unpacking LZRW-compressed game assets from resource forks](/blog/resource-forks-and-lzrw-compression)
+* [Rewriting Reckless Drivin' in Zig](/blog/moving-to-zig)
+* [Resource decryption and generating registration codes](/blog/decryption-generating-registration-codes)
+* [Deserializing resources with Zig comptime metaprogramming](/blog/deserialization-with-zig-metaprogramming)
+* [We have pixels! And some undefined behavior...](/blog/drawing-the-road)
+
+## Projects
+
+* [zf](https://github.com/natecraddock/zf): a fuzzy finder that is optimized for filtering filepaths.
+
+    * [A different approach to fuzzy finding](/blog/a-different-approach-to-fuzzy-finding)
+    * [In search of a better file finder](/blog/in-search-of-a-better-finder)
+    * [Creating a better file finder](/blog/creating-a-better-file-finder)
+
+* [Ziglua](https://github.com/natecraddock/ziglua): an idiomatic Zig wrapper for the Lua C API.
+
+    * [Introducing Ziglua](/blog/ziglua)
+
+* [workspaces.nvim](https://github.com/natecraddock/workspaces.nvim) and [sessions.nvim](https://github.com/natecraddock/sessions.nvim): simple workspace and session plugins for neovim.
+* [projectile](https://github.com/natecraddock/projectile): a Blender addon to apply initial velocities to rigid body objects.
+* [Blender](https://blender.org): I participated in the Google Summer of Code in
+[2019](https://summerofcode.withgoogle.com/archive/2019/projects/5416561530109952/) and
+[2020](https://summerofcode.withgoogle.com/archive/2020/projects/5735262606327808/) improving the
+outliner editor. My [commit history](https://miikahweb.com/en/blender/git-statistics/developers/natecraddock)
+shows other areas I contributed to.
+
+## Other writing
+
+* [macOS doesn't like polling /dev/tty](/blog/macos-dev-tty-polling)
+* [Writing to the macOS clipboard the hard way](/blog/writing-to-the-clipboard-the-hard-way)
+* [Some thoughts on Zig testing](/blog/thoughts-on-zig-test)
+* [My thoughts on Vim, terminals, and GUI editors](/blog/thoughts-on-vim-terminals-gui)
+* [Catching undefined behavior in Zig cc](/blog/zig-cc-undefined-behavior)
+* [Exploring the inner-workings of custom Git commands](/blog/custom-git-commands)
+* [Consistency and precision in Zig's type system](/blog/consistency-in-zigs-type-system)
+* [Zig naming conventions](/blog/zig-naming-conventions)
+* [Running a Hugo server on local and public networks](/blog/hugo-server-on-local-and-public-networks)
+* [Funny variable names](/blog/variable-names)
+* [Light The World sheet music](/blog/light-the-world-sheet-music)

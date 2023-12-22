@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nathan Craddock</title>
+    <link>https://nathancraddock.com/</link>
+    <description>Recent content on Nathan Craddock's website</description>
+
+    <language>en-us</language>
+    <atom:link href="https://nathancraddock.com/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>macOS doesn&#39;t like polling /dev/tty</title>
+      <link>https://nathancraddock.com/blog/2023/macos-dev-tty-polling/</link>
+      <pubDate>Tue, 11 Jul 2023 17:50:03 -0600</pubDate>
+
+      <guid>https://nathancraddock.com/blog/2023/macos-dev-tty-polling/</guid>
+      <description>macOS does not allow polling /dev/tty. This talks about the issue and some possible workarounds...</description>
+    </item>
+
+    <item>
+      <title>Writing to the macOS clipboard the hard way</title>
+      <link>https://nathancraddock.com/blog/2023/writing-to-the-clipboard-the-hard-way/</link>
+      <pubDate>Fri, 26 May 2023 06:20:39 -0600</pubDate>
+
+      <guid>https://nathancraddock.com/blog/2023/writing-to-the-clipboard-the-hard-way/</guid>
+      <description>A fun journey through different ways to write to the macOS clipboard from Lua...</description>
+    </item>
+
+    <item>
+      <title>A different approach to fuzzy finding</title>
+      <link>https://nathancraddock.com/blog/2023/a-different-approach-to-fuzzy-finding/</link>
+      <pubDate>Fri, 17 Mar 2023 00:00:00 -0700</pubDate>
+
+      <guid>https://nathancraddock.com/blog/2023/a-different-approach-to-fuzzy-finding/</guid>
+      <description>I built a new fuzzy finder that does a particularly great job at filtering filepaths. Here is why I built it and what it offers...</description>
+    </item>
+
+    <item>
+      <title>Some thoughts on Zig testing</title>
+      <link>https://nathancraddock.com/blog/2023/thoughts-on-zig-test/</link>
+      <pubDate>Tue, 07 Mar 2023 22:37:57 -0700</pubDate>
+
+      <guid>https://nathancraddock.com/blog/2023/thoughts-on-zig-test/</guid>
+      <description>I wrote a lot of Zig tests lately, and I wanted to share some thoughts...</description>
+    </item>
+
+    <item>
+      <title>Introducing Ziglua</title>
+      <link>https://nathancraddock.com/blog/2022/ziglua/</link>
+      <pubDate>Fri, 28 Oct 2022 21:52:05 -0600</pubDate>
+
+      <guid>https://nathancraddock.com/blog/2022/ziglua/</guid>
+      <description>I wrote some Lua bindings for Zig!</description>
+    </item>
+
+  </channel>
+</rss>

@@ -1,0 +1,127 @@
+```=metadata
+title = Some thoughts on Zig testing
+date = Mar 7, 2023
+```
+
+I've been writing a lot of tests in [Zig](https://ziglang.org) lately.
+
+## Frictionless testing
+
+I love how effortless it is to _start_ writing a test in Zig. Today I wrote this function for [my fuzzy finder zf](https://github.com/natecraddock/zf):
+
+```zig
+/// Scan left and right for the length of the current path segment
+pub fn segmentLen(str: []const u8, index: usize) usize {
+    if (str[index] == '/') return 1;
+
+    var start = index;
+    var end = index;
+    while (start > 0) : (start -= 1) {
+        if (str[start - 1] == '/') break;
+    }
+    while (end < str.len and str[end] != '/') : (end += 1) {}
+    return end - start;
+}
+```
+
+The specifics don't matter, but in short: given a string and an index in the string, it returns the length of the surrounding path segment.[^more-details].
+
+What does matter is how easy it was to add a test. I wrote the function, then two lines below it I immediately wrote my tests.
+
+```zig
+test "segmentLen" {
+    try testing.expectEqual(@as(usize, 1), segmentLen("a", 0));
+    try testing.expectEqual(@as(usize, 1), segmentLen("/a", 1));
+    try testing.expectEqual(@as(usize, 1), segmentLen("/a/", 1));
+    try testing.expectEqual(@as(usize, 3), segmentLen("src/main.zig", 0));
+    try testing.expectEqual(@as(usize, 3), segmentLen("src/main.zig", 2));
+    try testing.expectEqual(@as(usize, 8), segmentLen("src/main.zig", 5));
+    try testing.expectEqual(@as(usize, 1), segmentLen("a/b", 1));
+}
+```
+
+I appreciate how Zig encourages me to write more tests by making the process _frictionless_. No new test files or test runners to configure. It just works.
+Of course, Zig isn't unique in permitting tests written alongside the implementation in the same file.
+
+[^more-details]: In zf, a path segment is any portion of a path delimited by separators. So in the path `src/main.zig` both `src` and `main.zig` are segments. For the purposes of zf, a single `/` is also considered a segment. This is used in the strict path matching functionality I recently added.
+
+## Custom test functions
+
+The Zig standard library comes with several useful testing functions in the [`std.testing` namespace](https://ziglang.org/documentation/0.10.1/#The-Testing-Namespace) like `expect()`, `expectEqual()`,  and `expectEqualStrings()`. It wasn't until recently that I realized how useful it would be to write my own.
+
+I occasionally find a case where [zf](https://github.com/natecraddock/zf) doesn't rank as well as I want. When that happens I tweak my ranking algorithm and add a new test to prevent regressions. Because the exact ranking scores could change when I update the ranking algorithm, I only test the _expected order_ of rankings rather than the scores themselves.
+
+To make regressions easier to debug, I wrote this custom test function.
+
+```zig
+fn testRankCandidates(
+    tokens: []const []const u8,
+    candidates: []const []const u8,
+    expected: []const []const u8,
+) !void {
+    var ranked_buf = try testing.allocator.alloc(Candidate, candidates.len);
+    defer testing.allocator.free(ranked_buf);
+    const ranked = rankCandidates(ranked_buf, candidates, tokens, false, false, false);
+
+    for (expected) |expected_str, i| {
+        if (!std.mem.eql(u8, expected_str, ranked[i].str)) {
+            std.debug.print("\n======= order incorrect: ========\n", .{});
+            for (ranked[0..@min(ranked.len, expected.len)]) |candidate| std.debug.print("{s}\n", .{candidate.str});
+            std.debug.print("\n========== expected: ===========\n", .{});
+            for (expected) |str| std.debug.print("{s}\n", .{str});
+            std.debug.print("\n================================", .{});
+            std.debug.print("\nwith query:", .{});
+            for (tokens) |token| std.debug.print(" {s}", .{token});
+            std.debug.print("\n\n", .{});
+
+            return error.TestOrderIncorrect;
+        }
+    }
+}
+```
+
+`testRankCandidates()` runs my ranking algorithm `rankCandidates()` on a slice of `candidates` against a slice of query `tokens`. Then the output is compared to the `expected` lines. In the case of a failure, the function outputs a few lines of debug output before returning an error. Zig tests fail [when an error is returned](https://ziglang.org/documentation/0.10.1/#Test-Failure).
+
+This test is to ensure the path `./app/models/foo/bar/baz.rb` is ranked first for the query `mod/baz.rb`.
+
+```zig
+test "ranking consistency" {
+    try testRankCandidates(
+        &.{"mod/baz.rb"},
+        &.{
+            "./app/models/foo-bar-baz.rb",
+            "./app/models/foo/bar-baz.rb",
+            "./app/models/foo/bar/baz.rb",
+        },
+        &.{"./app/models/foo-bar-baz.rb"},
+    );
+}
+```
+
+A regression in my ranking algorithm would look like this:
+
+```text
+❯ zig build test
+Test [19/22] test.zf ranking consistency...
+======= order incorrect: ========
+./app/models/foo-bar-baz.rb
+
+========== expected: ===========
+./app/models/foo/bar/baz.rb
+
+================================
+with query: mod/baz.rb
+
+Test [19/22] test.zf ranking consistency... FAIL (TestOrderIncorrect)
+/Volumes/code/zf/src/filter.zig:629:13: 0x10033f2cb in testRankCandidates (test)
+            return error.TestOrderIncorrect;
+            ^
+/Volumes/code/zf/src/filter.zig:686:5: 0x100340777 in test.zf ranking consistency (test)
+    try testRankCandidates(
+    ^
+21 passed; 0 skipped; 1 failed.
+```
+
+It flags the failure with `error.TestOrderIncorrect`, and clearly outputs the mismatched lines and query used. This makes it easy for me to debug what went wrong.
+
+Those are my thoughts; nothing groundbreaking here. I just think it's great that Zig ships with a built-in test runner, and makes the test writing process _frictionless_ and _flexible_.

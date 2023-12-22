@@ -1,0 +1,9 @@
+/blog/feed.xml /feed.xml
+
+/music/light-the-world/ /blog/light-the-world-sheet-music.html
+/blog/reckless-drivin-cleanup/ /blog/open-reckless-drivin.html
+/blog/reckless-drivin-decompression/ /blog/open-reckless-drivin.html
+/blog/reckless-drivin-decryption/ /blog/open-reckless-drivin.html
+
+/blog/:year/:slug /blog/:slug
+/blog/:year/:slug/ /blog/:slug

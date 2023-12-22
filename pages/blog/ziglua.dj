@@ -1,0 +1,22 @@
+```=metadata
+title = Introducing Ziglua
+date = Oct 28, 2022
+```
+
+Hi! This is a small update to share something I have been working on over the past few months: [Ziglua](https://github.com/natecraddock/ziglua). In short, Ziglua is a complete Zig wrapper around the Lua API for versions 5.1, 5.2, 5.3, and 5.4. It makes it super easy compile and embed Lua in a Zig program, and exposes the C API in a Ziggified way. Check out the repo for more information if you're interested.
+
+So how did this come about?
+
+While contributing to Blender during the Google Summer of Code in 2019 and 2020, I was fascinated by the Blender Python API. I decided then that I eventually wanted to write some sort of program that embedded another language for some form of extensibility.
+
+Then I learned Lua. After hearing about it for years, I first used Lua when [creating a fuzzy finder for Neovim](/blog/creating-a-better-file-finder/), a project I have since abandoned. But that project introduced me to Lua and it's simplicity, and reminded me of my plan to embed a language in a program of my own.
+
+Then earlier this year [I ranted about text editors](/blog/thoughts-on-vim-terminals-gui/). At the time I was using Neovim full time, and had been for about a year. Before that I was using Emacs. Those experiences opened my eyes to different text editing paradigms. The rant focused on how I wanted a perfect Vim + GUI editor, most likely a GUI layer on top of the Neovim API.
+
+The funny thing is, almost a week after writing those thoughts down my plans changed.
+
+Writing down why I preferred GUI editors prompted me to move back to VSCode. After some more thought, I decided it would be a great (and very long-term) project to [build my own text editor](https://justforfunnoreally.dev). Since I love both Zig and Lua, I decided those would be my implementation languages. And that is how [Ziglua](https://github.com/natecraddock/ziglua) was started.
+
+I bought the [Programming in Lua](http://www.lua.org/pil/) book, read the chapters on the C API, and wrote a wrapper around the majority of the Lua 5.4 API within a few weeks. Then I started my first software job and progress has slowed over the last several months. But now the project is polished and stable enough to share in a pre-release fashion.
+
+So what is next? I have some plans for Ziglua, but now that it's relatively stable I want to move back to working on [Reckless Drivin'](https://github.com/natecraddock/open-reckless-drivin). I have been blocked for a long time due to bugs in the Zig compiler. Now that Zig 0.10.0 is about to be released I should be able to get up and running again!

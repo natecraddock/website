@@ -1,0 +1,42 @@
+```=metadata
+title = Variable names
+date = Jun 29, 2020
+description = Funny variable names in various programming languages
+```
+
+I found a few lists of funny variable names at some point and collected them here.
+It's been so long that I don't remember where I found them.
+
+## C
+
+```cpp
+char broiled;
+double burger;
+double trouble;
+short cake;
+short circuit;
+float ice_cream;
+long story;
+long division;
+long time_no_see;
+signed sincerely;
+static electricity;
+auto mechanic;
+volatile substance;
+unsigned autobiography;
+string cheese;
+
+struct by_lightning {};
+
+int eger;
+char acter;
+float ing_point;
+bool ean;
+```
+
+## Java
+
+```java
+class Brick extends Throwable {};
+class Race extends Runnable {};
+```

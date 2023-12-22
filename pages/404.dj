@@ -1,0 +1,28 @@
+```=metadata
+title = 404
+dest = /404.html
+```
+
+```=html
+<h1>404: Page Not Found</h1>
+<div>
+
+<p>
+You step in the stream,<br>
+but the water has moved on.<br>
+This page is not here.
+</p>
+
+<p>
+The Web site you seek<br>
+cannot be located but<br>
+endless others exist
+</p>
+
+<p>
+<em>Haikus from <a href="https://www.gnu.org/fun/jokes/error-haiku.en.html">GNU</a></em>
+</p>
+
+<a href="/">Go back home</a>
+</div>
+```
