@@ -12,7 +12,7 @@ html {
     --text: #000000;
     --text-alt: #555555;
     --text-accent: #eaeaea;
-    --link: #36769b;
+    --link: #099bc1;
     --background: #ffffff;
     --select-highlight: #c9ddf7;
     --code-background: #eaeaea;
@@ -132,6 +132,10 @@ sup {
 
 a {
     color: var(--link);
+}
+
+a:has(sup) {
+    text-decoration: none;
 }
 
 a:has(code) {
