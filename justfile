@@ -10,8 +10,8 @@ serve:
 clean:
 	rm -rf build/
 
-deploy:
+deploy: build
 	npx wrangler pages deployment create --project-name $PROJECT --commit-dirty=true build/
 
-stage:
+stage: build
 	npx wrangler pages deployment create --project-name $PROJECT --commit-dirty=true --branch 'stage' build/
