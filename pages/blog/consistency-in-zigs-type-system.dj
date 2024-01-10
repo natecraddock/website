@@ -79,7 +79,7 @@ var values: [2]i32 = .{ 0, 0 };
 Here we begin to see more notable differences between C and Zig. With the
 introduction of arrays, C begins to fragment the type information between the two
 sides of the array name; the datatype on the left, and the size of the array on
-the right.
+the right. This has been called the [Clockwise/Spiral Rule](https://c-faq.com/decl/spiral.anderson.html).
 
 Zig stays consistent with the single integer example by prefixing the type
 annotation with `[2]` to specify an array size 2. The data is initialized with
