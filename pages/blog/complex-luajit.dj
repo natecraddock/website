@@ -1,0 +1,99 @@
+```=metadata
+title = LuaJIT is more complex than I thought
+description = Learning the hard way that LuaJIT is much more complicated than Lua
+date = Jan 20, 2024
+```
+
+Today I added initial support for [LuaJIT](https://luajit.org) in [Ziglua](https://github.com/natecraddock/ziglua).
+I've put it off for over a year because I expected it to be difficult. But I didn't know just how complex LuaJIT's
+build script was until now.
+
+Ziglua already supports Lua 5.1, 5.2, 5.3, and 5.4. The build process for these languages is simple because Lua is
+written in pure ANSI C. All I do is give Zig the C source files and compile them.
+
+This output shows the build graph. The tests depend on the Lua library, which is compiled from the Lua sources.
+
+```text
+❯ zig build test --summary all -Dlang=lua54
+Build Summary: 9/9 steps succeeded; 66/66 tests passed
+test success
+└─ run test 66 passed 231ms MaxRSS:19M
+   └─ zig test Debug native success 1s MaxRSS:233M
+      ├─ zig build-lib lua Debug native success 742ms MaxRSS:138M
+      ├─ install dependency to lua.h success
+      ├─ install dependency to lualib.h success
+      ├─ install dependency to lauxlib.h success
+      ├─ install dependency to luaconf.h success
+      └─ options success
+```
+
+On the other hand, building LuaJIT requires compiling `minilua`, a stripped-down version of Lua used at build time
+to generate header files used by other parts of the build. An additional `buildvm` executable is compiled which
+generates other headers.
+
+The build graph shows how much more complex LuaJIT is.
+
+```text
+❯ zig build test --summary all -Dlang=luajit
+Build Summary: 20/20 steps succeeded; 66/66 tests passed
+test success
+└─ run test 66 passed 157ms MaxRSS:2M
+   └─ zig test Debug native success 1s MaxRSS:222M
+      ├─ zig build-lib lua Debug native success 1s MaxRSS:62M
+      │  ├─ run buildvm (lj_vm.S) success 128ms MaxRSS:1M
+      │  │  └─ zig build-exe buildvm ReleaseSafe native success 316ms MaxRSS:67M
+      │  │     ├─ run minilua (buildvm_arch.h) success 172ms MaxRSS:3M
+      │  │     │  └─ zig build-exe minilua ReleaseSafe native success 1s MaxRSS:125M
+      │  │     ├─ run minilua (luajit.h) success 105ms MaxRSS:1M
+      │  │     │  └─ zig build-exe minilua ReleaseSafe native (reused)
+      │  │     ├─ run minilua (buildvm_arch.h) (+1 more reused dependencies)
+      │  │     └─ run minilua (luajit.h) (+1 more reused dependencies)
+      │  ├─ run minilua (luajit.h) (+1 more reused dependencies)
+      │  ├─ run buildvm (lj_bcdef.h) success 123ms MaxRSS:1M
+      │  │  └─ zig build-exe buildvm ReleaseSafe native (+4 more reused dependencies)
+      │  ├─ run buildvm (lj_ffdef.h) success 123ms MaxRSS:1M
+      │  │  └─ zig build-exe buildvm ReleaseSafe native (+4 more reused dependencies)
+      │  ├─ run buildvm (lj_libdef.h) success 123ms MaxRSS:1M
+      │  │  └─ zig build-exe buildvm ReleaseSafe native (+4 more reused dependencies)
+      │  ├─ run buildvm (lj_recdef.h) success 123ms MaxRSS:1M
+      │  │  └─ zig build-exe buildvm ReleaseSafe native (+4 more reused dependencies)
+      │  ├─ run buildvm (lj_folddef.h) success 123ms MaxRSS:1M
+      │  │  └─ zig build-exe buildvm ReleaseSafe native (+4 more reused dependencies)
+      │  ├─ run buildvm (lj_vm.S) (+1 more reused dependencies)
+      │  ├─ run minilua (luajit.h) (+1 more reused dependencies)
+      │  ├─ run buildvm (lj_bcdef.h) (+1 more reused dependencies)
+      │  ├─ run buildvm (lj_ffdef.h) (+1 more reused dependencies)
+      │  ├─ run buildvm (lj_libdef.h) (+1 more reused dependencies)
+      │  ├─ run buildvm (lj_recdef.h) (+1 more reused dependencies)
+      │  └─ run buildvm (lj_folddef.h) (+1 more reused dependencies)
+      ├─ install dependency to lua.h success
+      ├─ install dependency to lualib.h success
+      ├─ install dependency to lauxlib.h success
+      ├─ install dependency to luaconf.h success
+      ├─ install generated to luajit.h success
+      │  └─ run minilua (luajit.h) (+1 more reused dependencies)
+      └─ options success
+```
+
+It wasn't until I was nearly finished with this that I saw a warning from Mike Pall on the
+[LuaJIT website](https://luajit.org/install.html#embed):
+
+> It's strongly suggested to build LuaJIT separately using the supplied build system. Please do not attempt
+> to integrate the individual source files into your build tree. You'll most likely get the internal build
+> dependencies wrong or mess up the compiler flags. Treat LuaJIT like any other external library and link
+> your application with either the dynamic or static library, depending on your needs.
+
+I thought I was close to finishing, so I pressed on. I soon had tests passing on my computer! I made a PR
+so my CI could test my branch on other platforms.
+
+The tests failed on Ubuntu x86_64.
+
+It turns out the warning was right. Getting all of the compiler flags correct is _hard_. Translating the
+complex web of Makefile targets and generated headers to a `build.zig` file is not straightforward. But
+from what I can see it _should_ be possible to accurately build LuaJIT using the Zig build system.
+
+So I'll keep working on this.
+
+If it turns out that I should have listened to the warning and I need to throw all this code away, this
+wasn't a waste of time. Getting LuaJIT to build (even imperfectly) has exposed me to parts of the Zig build
+system I hadn't used before, and I feel much more equipped to build projects in the future.

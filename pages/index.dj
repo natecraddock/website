@@ -9,7 +9,9 @@ to open source. Outside of computery things I enjoy hiking, running, reading, an
 
 Below are things I have written and projects I have worked on.
 
-## Reckless Drivin
+## Projects
+
+### Reckless Drivin
 
 I'm working on a rewrite of the Macintosh game [Reckless Drivin'](http://jonasechterhoff.com/Reckless_Drivin.html).
 Jonas Echterhoff [shared the original source code](https://github.com/jechter/RecklessDrivin) in 2019, and I have
@@ -23,17 +25,25 @@ I occasionally write about what I have learned and share progress updates:
 * [Deserializing resources with Zig comptime metaprogramming](/blog/deserialization-with-zig-metaprogramming)
 * [We have pixels! And some undefined behavior...](/blog/drawing-the-road)
 
-## Projects
+### zf
 
-* [zf](https://github.com/natecraddock/zf): a fuzzy finder that is optimized for filtering filepaths.
+[zf](https://github.com/natecraddock/zf) is a fuzzy finder that is optimized for filtering filepaths.
 
-    * [A different approach to fuzzy finding](/blog/a-different-approach-to-fuzzy-finding)
-    * [In search of a better file finder](/blog/in-search-of-a-better-finder)
-    * [Creating a better file finder](/blog/creating-a-better-file-finder)
+* [A different approach to fuzzy finding](/blog/a-different-approach-to-fuzzy-finding)
+* [In search of a better file finder](/blog/in-search-of-a-better-finder)
+* [Creating a better file finder](/blog/creating-a-better-file-finder)
 
-* [Ziglua](https://github.com/natecraddock/ziglua): an idiomatic Zig wrapper for the Lua C API.
+### Ziglua
 
-    * [Introducing Ziglua](/blog/ziglua)
+[Ziglua](https://github.com/natecraddock/ziglua) is an idiomatic Zig wrapper for [Lua](https://www.lua.org) and [Luau](https://luau-lang.org).
+Building something cool with Ziglua? Or want to get involved? Chat with us on [Discord](https://discord.com/invite/XpZqDFvAtK)!
+
+* [Introducing Ziglua](/blog/ziglua)
+* [LuaJIT is more complex than I thought](/blog/complex-luajit)
+
+{% * In [Zig's package manager is getting good](/blog/ziglua-package) I share how to add LPeg and Fennel to a Zig project using Ziglua %}
+
+### Other projects
 
 * [workspaces.nvim](https://github.com/natecraddock/workspaces.nvim) and [sessions.nvim](https://github.com/natecraddock/sessions.nvim): simple workspace and session plugins for neovim.
 * [projectile](https://github.com/natecraddock/projectile): a Blender addon to apply initial velocities to rigid body objects.
@@ -43,7 +53,9 @@ I occasionally write about what I have learned and share progress updates:
 outliner editor. My [commit history](https://miikahweb.com/en/blender/git-statistics/developers/natecraddock)
 shows other areas I contributed to.
 
-## Other writing
+## Writing
+
+{% * [Why can't I search for sheet music?](/blog/sheet-music) %}
 
 * [macOS doesn't like polling /dev/tty](/blog/macos-dev-tty-polling)
 * [Writing to the macOS clipboard the hard way](/blog/writing-to-the-clipboard-the-hard-way)
