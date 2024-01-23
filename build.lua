@@ -90,6 +90,11 @@ while #queue > 0 do
             heading.format = 'html'
             heading.text = string.format('<h%d><a class="header-anchor" href="#%s">#</a> %s</h%d>', heading.level, element.attr.id, text, heading.level)
         end,
+        div = function(element)
+            if element.attr.class == 'callout' then
+                element.attr.role = 'note'
+            end
+        end
     }}
     djot.filter.apply_filter(doc, filters)
 

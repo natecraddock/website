@@ -209,6 +209,15 @@ hr {
     color: var(--text-alt);
 }
 
+summary {
+    cursor: pointer;
+}
+
+.callout {
+    padding: 1ch;
+    border: solid 1px var(--text-accent);
+}
+
 /* syntax highlight */
 code {
     font-family: var(--mono-font);

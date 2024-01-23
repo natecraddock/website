@@ -156,7 +156,7 @@ together.
 
 ```=html
 <details>
-<summary>Expand to view the full deserializer code</summary>
+<summary>View the full deserializer code</summary>
 ```
 
 ```zig
