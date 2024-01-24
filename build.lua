@@ -58,6 +58,11 @@ while #queue > 0 do
         link = function(element)
             -- internal links
             if element.destination:sub(1, 1) == '/' and not element.destination:match('#.*$') then
+                -- trim ending slash
+                if element.destination:sub(#element.destination, #element.destination) == '/' then
+                    element.destination = element.destination:sub(1, #element.destination - 1)
+                end
+
                 if visited[element.destination] ~= true then
                     visited[element.destination] = true
                     table.insert(queue, element.destination)
